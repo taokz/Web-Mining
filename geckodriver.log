@@ -1,0 +1,336 @@
+1538682634872	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\yongk\\AppData\\Local\\Temp\\rust_mozprofile.D3bqkMbmdWSK"
+1538682636957	Marionette	INFO	Listening on port 50760
+1538682637010	Marionette	WARN	TLS certificate errors will be ignored for this session
+1538682637055	Marionette	DEBUG	[6442450945] Frame script loaded
+1538682637062	Marionette	DEBUG	[6442450945] Frame script registered
+1538682637092	Marionette	DEBUG	[6442450945] Received DOM event beforeunload for about:blank
+1538682637245	Marionette	DEBUG	[6442450945] Received DOM event pagehide for about:blank
+1538682637810	Marionette	DEBUG	[6442450945] Received DOM event DOMContentLoaded for https://www.quora.com/topic/Machine-Learning
+1538682644836	Marionette	DEBUG	[6442450945] Received DOM event pageshow for https://www.quora.com/topic/Machine-Learning
+1538682667222	Marionette	INFO	Stopped listening on port 50760
+[Child 8480, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 848JavaScript error: https://qsbr.fs.quoracdn.net/-3-chunk.web.main.js.out-34-b29f85f778fae2a1.webpack, line 11: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://qsbr.fs.quoracdn.net/-3-chunk.web.main.js.out-34-b29f85f778fae2a1.webpack, line 17: NS_ERROR_NOT_INITIALIZED: 
+[Parent 12336, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 15308, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 15308,[Parent 12336, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 16340, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 163[GPU 15048, Ch
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1538684044847	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\yongk\\AppData\\Local\\Temp\\rust_mozprofile.VtvPSzZAdF7v"
+1538684046806	Marionette	INFO	Listening on port 50932
+1538684047000	Marionette	WARN	TLS certificate errors will be ignored for this session
+1538684047050	Marionette	DEBUG	[6442450945] Frame script loaded
+1538684047052	Marionette	DEBUG	[6442450945] Frame script registered
+1538684047070	Marionette	DEBUG	[6442450945] Received DOM event beforeunload for about:blank
+1538684047480	Marionette	DEBUG	[6442450945] Received DOM event pagehide for about:blank
+1538684048044	Marionette	DEBUG	[6442450945] Received DOM event DOMContentLoaded for https://www.quora.com/topic/Machine-Learning
+1538684049540	Marionette	DEBUG	[6442450945] Received DOM event pageshow for https://www.quora.com/topic/Machine-Learning
+1538684049878	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+[Parent 3352, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+JavaScript error: https://qsbr.fs.quoracdn.net/-3-chunk.web.main.js.out-34-91e6573d03e7f922.webpack, line 11: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://qsbr.fs.quoracdn.net/-3-chunk.web.main.js.out-34-91e6573d03e7f922.webpack, line 17: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://qsbr.fs.quoracdn.net/-3-chunk.web.main.js.out-34-91e6573d03e7f922.webpack, line 17: NS_ERROR_NOT_INITIALIZED: 
+[Parent 3352, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 16632, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/i[Child 1p1168,c _Chrochannel_winme_ChildT.cc, line 346
+hread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 11168[Parent 3352, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 14824, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 14821538684858638	Marionette	INFO	Stopped listening on port 50932
+[GPU 5444, Chrome_ChildT
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+_ERROR_NOT_INITIALIZED: 
+[Parent 16684, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 1668, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 1668, Ch[Child 1736, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 1736, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 16684, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 8476, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 8476,1538684857320	Marionette	INFO	Stopped listening on port 51039
+[GPU 7088, Chrome_Chi
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+_NOT_INITIALIZED: 
+[Child 15404, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/bu[Parent 11008, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 3472, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 347[Parent 11008, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 2724, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 27241538684856095	Marionette	INFO	Stopped listening on port 51182
+[GPU 11324, Chrome_ChildTh
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1538685055082	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\yongk\\AppData\\Local\\Temp\\rust_mozprofile.wBuzdtJzXF7E"
+1538685057195	Marionette	INFO	Listening on port 51249
+1538685057248	Marionette	WARN	TLS certificate errors will be ignored for this session
+1538685057280	Marionette	DEBUG	[6442450945] Frame script loaded
+1538685057281	Marionette	DEBUG	[6442450945] Frame script registered
+1538685057326	Marionette	DEBUG	[6442450945] Received DOM event beforeunload for about:blank
+1538685057667	Marionette	DEBUG	[6442450945] Received DOM event pagehide for about:blank
+1538685058067	Marionette	DEBUG	[6442450945] Received DOM event DOMContentLoaded for https://www.quora.com/topic/Machine-Learning
+1538685059262	Marionette	DEBUG	[6442450945] Received DOM event pageshow for https://www.quora.com/topic/Machine-Learning
+1538685080845	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685081410	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685082079	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685082725	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685083201	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685087450	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685088048	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685088875	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+[Parent 2776, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+1538685091253	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685091769	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685103506	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685104021	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685106466	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685107144	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685128667	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685129520	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685130489	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685143922	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685146293	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685157027	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685157944	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685158365	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685158682	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685159828	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685170468	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685170851	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685171419	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685172334	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685173994	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685175134	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685181638	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685182205	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685182566	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685183812	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685184798	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685185254	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685187773	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685188312	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685189043	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685199693	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685200075	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685201520	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685202753	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685204551	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685205531	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685206140	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685206598	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685208058	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685219491	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685223463	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685224387	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685235046	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685235703	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685236638	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685236933	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685237815	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685238172	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685238523	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685239913	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685251838	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685252346	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685274496	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685275770	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685276960	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685277512	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685278325	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685282681	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685283238	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685284674	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685285591	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685286772	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685287346	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685287873	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685288374	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685288861	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685290310	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685291794	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685292321	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685292759	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685293167	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685294292	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685295986	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685297065	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685302342	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685303034	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685307671	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685309212	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685310185	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685311757	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685312227	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685312799	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685314396	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685314807	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685315290	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685315937	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685316631	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685317647	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685318105	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685329085	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685329601	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685330282	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685330869	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685337010	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685337963	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685338969	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685340496	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685342658	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685343235	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685345071	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685345991	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685347622	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685348261	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685348675	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685370186	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685371204	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685371671	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685373617	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685374048	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685374572	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+[Parent 2776, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 8712, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 8712, Ch[Parent 2776, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+JavaScript error: https://qsbr.fs.quoracdn.net/-3-chunk.web.main.js.out-34-91e6573d03e7f922.webpack, line 11: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://qsbr.fs.quoracdn.net/-3-chunk.web.main.js.out-34-91e6573d03e7f922.webpack, line 17: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://qsbr.fs.quoracdn.net/-3-chunk.web.main.js.out-34-91e6573d03e7f922.webpack, line 17: NS_ERROR_NOT_INITIALIZED: 
+[Child 4876, Chrome_ChildThread] WARNING: pipe error: 232: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 513
+[Child 4876, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 2776, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 2108, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 21081538685401842	Marionette	INFO	Stopped listening on port 51249
+[GPU 10204, Chrome_
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1538685470909	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\yongk\\AppData\\Local\\Temp\\rust_mozprofile.DdMc1FGm86SZ"
+1538685473093	Marionette	INFO	Listening on port 51533
+1538685473186	Marionette	WARN	TLS certificate errors will be ignored for this session
+1538685473218	Marionette	DEBUG	[6442450945] Frame script loaded
+1538685473219	Marionette	DEBUG	[6442450945] Frame script registered
+1538685473266	Marionette	DEBUG	[6442450945] Received DOM event beforeunload for about:blank
+1538685473413	Marionette	DEBUG	[6442450945] Received DOM event pagehide for about:blank
+1538685473803	Marionette	DEBUG	[6442450945] Received DOM event DOMContentLoaded for https://www.quora.com/topic/Machine-Learning
+1538685474170	Marionette	DEBUG	[6442450945] Received DOM event pageshow for https://www.quora.com/topic/Machine-Learning
+1538685484453	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685484991	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685488316	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685499241	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685499740	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685500217	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685500843	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685502176	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685502593	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685503047	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685503481	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+[Parent 6128, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+1538685514595	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685515301	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685515801	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685516988	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685517557	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685518181	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685541524	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685542058	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685543054	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685554267	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685554953	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685565946	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685566372	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685566823	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685569166	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685579976	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685592059	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685592447	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685604931	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685605391	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685606279	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685606815	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685608100	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685609186	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685610390	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685611509	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685613847	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685640536	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685641014	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685641614	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685642247	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685643546	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685655141	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685659232	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685659978	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685660619	Marionette	DEBUG	[6442450945] Received observer notification outer-window-destroyed for 6442450971
+1538685660667	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685661162	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685661631	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685662720	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685664493	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685664927	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685665992	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685666502	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685667452	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685667882	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685668314	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685670333	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685670782	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685671230	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685671679	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685672182	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685683242	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685683662	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685684106	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685684555	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685685692	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685697324	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685703330	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685703886	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685705088	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685705560	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685706019	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685706583	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685708353	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685708808	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685709755	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685710178	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685712285	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685736948	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685738016	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685745357	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685746006	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685746755	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685747198	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685747729	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685748160	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685749566	Marionette	DEBUG	[6442450945] Canceled page load listener because no navigation has been detected
+1538685750628	Marionette	INFO	Stopped listening on port 51533
+[Child 4648, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 4648, C[Parent 6128, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+JavaScript error: https://qsbr.fs.quoracdn.net/-3-chunk.web.main.js.out-34-91e6573d03e7f922.webpack, line 11: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://qsbr.fs.quoracdn.net/-3-chunk.web.main.js.out-34-91e6573d03e7f922.webpack, line 17: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://qsbr.fs.quoracdn.net/-3-chunk.web.main.js.out-34-91e6573d03e7f922.webpack, line 17: NS_ERROR_NOT_INITIALIZED: 
+[Child 1092, Chrome_ChildThread] WARNING: pipe error: 232: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 513
+[Child 1092, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 6128, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 1660, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 1660, Chrome[GPU 10060, 
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1538686105351	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\yongk\\AppData\\Local\\Temp\\rust_mozprofile.iMJcFZ3xpk46"
+1538686107077	Marionette	INFO	Listening on port 51752
+1538686107469	Marionette	WARN	TLS certificate errors will be ignored for this session
+1538686107545	Marionette	DEBUG	[6442450945] Frame script loaded
+1538686107547	Marionette	DEBUG	[6442450945] Frame script registered
+1538686107567	Marionette	DEBUG	[6442450945] Received DOM event beforeunload for about:blank
+1538686107759	Marionette	DEBUG	[6442450945] Received DOM event pagehide for about:blank
+1538686108155	Marionette	DEBUG	[6442450945] Received DOM event DOMContentLoaded for https://www.quora.com/topic/Machine-Learning
+1538686109001	Marionette	DEBUG	[6442450945] Received DOM event pageshow for https://www.quora.com/topic/Machine-Learning
+1538686109222	Marionette	INFO	Stopped listening on port 51752
+[Child 3068, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 3068, JavaScript error: https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML,Safe, line 19: NS_ERROR_NOT_INITIALIZED: 
+[Child 13724, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 13724, Chrome_Chi[Parent 15052, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 10148, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 10148, Chrome_ChildThread] [GPU 14856
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+

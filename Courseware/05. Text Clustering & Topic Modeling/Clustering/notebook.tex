@@ -1,0 +1,941 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Text\_Clustering}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \#
+
+Unsupervised Learing: Text Clustering
+
+References: *
+https://www-users.cs.umn.edu/\textsubscript{kumar/dmbook/ch8.pdf *
+http://infolab.stanford.edu/}ullman/mmds/ch7.pdf
+
+    \hypertarget{clustering-vs.classification}{%
+\subsection{1. Clustering
+vs.~Classification}\label{clustering-vs.classification}}
+
+\begin{itemize}
+\tightlist
+\item
+  Clustering (Unsupervised): divide a set of objects into clusters
+  (parts of the set) so that objects in the same cluster are similar to
+  each other, and/or objects in different clusters are dissimilar.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Representation of the objects
+  \item
+    Similarity/distance measure
+  \end{itemize}
+\item
+  Classifification (Supervised): group objects into predetermined
+  categories
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Representation of the objects
+  \item
+    A training set
+  \end{itemize}
+\end{itemize}
+
+    \hypertarget{why-clustering}{%
+\subsection{2. Why clustering}\label{why-clustering}}
+
+\begin{itemize}
+\tightlist
+\item
+  Understand conceptually meaningful groups of objects that share common
+  characteristics
+\item
+  Provides an abstraction from individual data objects to the clusters
+  in which those data objects reside
+\item
+  Uses of clustering
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Summarization
+  \item
+    Compression
+  \item
+    Efficiently finding nearest neighbors
+  \end{itemize}
+\end{itemize}
+
+    \hypertarget{types-of-clusterings}{%
+\subsection{3. Types of Clusterings}\label{types-of-clusterings}}
+
+\begin{itemize}
+\tightlist
+\item
+  Different kinds of models
+  (https://www.geeksforgeeks.org/different-types-clustering-algorithm/):
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Centroid models (partition):
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Similarity is derived as the closeness of a data point to the
+      centroid of clusters.
+    \item
+      Flat partition, e.g.~K-Means 
+    \end{itemize}
+  \item
+    Connectivity models (Hierarchical algorithms):
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Data points closer in data space exhibit more similarity to each
+      other than the data points lying farther away.\\
+    \item
+      Hierarchy of clusters, e.g.~agglomerative clustering 
+    \end{itemize}
+  \item
+    Distribution models:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      How probable is it that all data points in the cluster belong to
+      the same distribution, concept, or topic
+    \item
+      e.g.~Latent Semantics Analysis, Latent Dirichlet Allocation (LDA) 
+    \end{itemize}
+  \item
+    Density models: clusters correspond to areas of varied density of
+    data points in the data space
+
+    \begin{itemize}
+    \tightlist
+    \item
+      e.g.~DBSCAN 
+    \end{itemize}
+  \end{itemize}
+\item
+  Exclusive vs.~Overlapping
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Exclusive: each object is assigned to a single cluster, e.g.~K-Means
+  \item
+    Overlapping (non-exclusive): an object can simultaneously belong to
+    more than one cluster, e.g.~LDA
+  \end{itemize}
+\end{itemize}
+
+    \hypertarget{evaluation-of-clustering-what-is-a-good-clustering}{%
+\subsection{4. Evaluation of Clustering: What is a good
+clustering}\label{evaluation-of-clustering-what-is-a-good-clustering}}
+
+\hypertarget{external-evaluation}{%
+\subsubsection{4.1 External Evaluation:}\label{external-evaluation}}
+
+\begin{itemize}
+\tightlist
+\item
+  External evaluation measures the degree to which predicted clustering
+  labels correspond to actual class labels\\
+\item
+  \textbf{Precision} and \textbf{Recall}
+\end{itemize}
+
+    \hypertarget{internal-evaluation}{%
+\subsubsection{4.2. Internal Evaluation}\label{internal-evaluation}}
+
+ * \textbf{Cohension (Intra-cluster similarity)}: how ``cohesive'' a
+cluster is, i.e.~the average similarity of objects in the same cluster.
+- e.g.~cluster radius: \(\max{d(x, μ_A)}\) where \(μ_A\) is the
+arithmetic mean of cluster A and \(x\) is a point in A - e.g.~cluster
+diameter: \(\max{d(x, y)}\) where \(x,y\) are two points in cluster A
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Separation (Inter-cluster dissimilarity)}: how ``separate'' a
+  cluster from another, i.e.~the average similarity of all samples in
+  cluster \(A\) to all the samples in cluster \(B\).
+
+  \begin{itemize}
+  \tightlist
+  \item
+    e.g.~Separation can be calculated as average distance:
+    \(\frac{1}{|A|*|B|}\sum_{x \in A}{\sum_{y \in B}{d(x, y)}}\)
+  \end{itemize}
+\item
+  Metrics with combined cohension and separation
+  (http://scikit-learn.org/stable/modules/clustering.html\#clustering-evaluation)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Silhouette Coefficient: \(s=\frac{b-a}{\max(a,b)}\), where \(a\):
+    the mean distance between a sample and all other points in the same
+    cluster, and \(b\): the mean distance between a sample and all other
+    points in the next nearest cluster. \(s \in [-1, 1]\).
+  \item
+    Calinski-Harabaz Index: \(s=\frac{b}{a}\) where \(a\) is mean
+    within-cluster separation, and \(b\) is the mean between-cluster
+    separation
+  \end{itemize}
+\end{itemize}
+
+    \hypertarget{k-means}{%
+\subsection{5. K-Means}\label{k-means}}
+
+\hypertarget{algorithm-outline-cluster-objects-into-k-clusters}{%
+\subsubsection{5.1. Algorithm outline: Cluster objects into K
+clusters}\label{algorithm-outline-cluster-objects-into-k-clusters}}
+
+ - Algorithm: 1. Select K points as initial centroids 2. Repeat until
+centroids do not change: 1. Form K clusters by assigning each point to
+its closest centroid by distance. 2. Recompute the centroid of each
+cluster as the arithmetic mean of samples within the cluster. - A few
+observations of K-means: - Initial centroids have an impact on
+clustering. Usually, several rounds of clustering with random initial
+centroids are performed, and the most commonly occurring output
+centroids are chosen. - Centroids and distance measure are crtical in
+the algorithm - \textbf{Euclidean distance}: - The best centroid for
+minimizing the average distance from all samples to the centroid is the
+mean of points in the cluster
+(https://www-users.cs.umn.edu/\textasciitilde{}kumar001/dmbook/ch8.pdf)
+- Curse of dimensionality - Sensitive to outliers - \textbf{Cosine
+similarity}: * Well-accepted similarity measure for documents * It is
+not guaranteed that the mean of samples in a cluster is the best
+centroid * For text clustering, the centroid does not stand for an
+actual document. How to interpret clusters? - A modified version of
+Kmeans is called \textbf{K-medoids}, where a representative sample is
+choosen as the center of a cluster, called as a medoid. - Python
+packages for Kmean * NLTK: can choose Euclidean or Cosine similarity as
+distance measure * Sklearn: only Euclidean distance is supported
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{from} \PY{n+nn}{IPython}\PY{n+nn}{.}\PY{n+nn}{core}\PY{n+nn}{.}\PY{n+nn}{interactiveshell} \PY{k}{import} \PY{n}{InteractiveShell}
+        \PY{n}{InteractiveShell}\PY{o}{.}\PY{n}{ast\PYZus{}node\PYZus{}interactivity} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{all}\PY{l+s+s2}{\PYZdq{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{c+c1}{\PYZsh{} Exercise 5.1.1 Load data and generate TF\PYZhy{}IDF}
+        \PY{c+c1}{\PYZsh{} Load datasets (http://qwone.com/\PYZti{}jason/20Newsgroups/)}
+        \PY{c+c1}{\PYZsh{} A subset is loaded}
+        
+        \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        \PY{n}{df}\PY{o}{=}\PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{../../dataset/twenty\PYZus{}news\PYZus{}data.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PYZbs{}
+                       \PY{n}{header}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+        \PY{n}{df}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} get unique labels}
+        \PY{n}{df}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{label}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Select three labels for now}
+        \PY{n}{labels} \PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{comp.graphics}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{soc.religion.christian}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PYZbs{}
+                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sci.med}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        \PY{n}{data}\PY{o}{=}\PY{n}{df}\PY{p}{[}\PY{n}{df}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{label}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{isin}\PY{p}{(}\PY{n}{labels}\PY{p}{)}\PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{} print out the full text of the first sample}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{text}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}2}]:}                                                 text                   label
+        0  From: sd345@city.ac.uk (Michael Collier)\textbackslash{}nSubj{\ldots}           comp.graphics
+        1  From: ani@ms.uky.edu (Aniruddha B. Deglurkar)\textbackslash{}{\ldots}           comp.graphics
+        2  From: djohnson@cs.ucsd.edu (Darin Johnson)\textbackslash{}nSu{\ldots}  soc.religion.christian
+        3  From: s0612596@let.rug.nl (M.M. Zwart)\textbackslash{}nSubjec{\ldots}  soc.religion.christian
+        4  From: stanly@grok11.columbiasc.ncr.com (stanly{\ldots}  soc.religion.christian
+\end{Verbatim}
+            
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}2}]:} array(['comp.graphics', 'soc.religion.christian', 'sci.med',
+               'alt.atheism'], dtype=object)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+From: sd345@city.ac.uk (Michael Collier)
+Subject: Converting images to HP LaserJet III?
+Nntp-Posting-Host: hampton
+Organization: The City University
+Lines: 14
+
+Does anyone know of a good way (standard PC application/PD utility) to
+convert tif/img/tga files into LaserJet III format.  We would also like to
+do the same, converting to HPGL (HP plotter) files.
+
+Please email any response.
+
+Is this the correct group?
+
+Thanks in advance.  Michael.
+-- 
+Michael Collier (Programmer)                 The Computer Unit,
+Email: M.P.Collier@uk.ac.city                The City University,
+Tel: 071 477-8000 x3769                      London,
+Fax: 071 477-8565                            EC1V 0HB.
+
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+c1}{\PYZsh{} initialize the TfidfVectorizer }
+        \PY{c+c1}{\PYZsh{} set min document frequency to 5}
+        
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{feature\PYZus{}extraction}\PY{n+nn}{.}\PY{n+nn}{text} \PY{k}{import} \PY{n}{TfidfVectorizer}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn} \PY{k}{import} \PY{n}{metrics}
+        \PY{k+kn}{from} \PY{n+nn}{nltk}\PY{n+nn}{.}\PY{n+nn}{corpus} \PY{k}{import} \PY{n}{stopwords}
+        
+        
+        \PY{c+c1}{\PYZsh{} set the min document frequency to 5}
+        \PY{c+c1}{\PYZsh{} generate tfidf matrix}
+        \PY{n}{tfidf\PYZus{}vect} \PY{o}{=} \PY{n}{TfidfVectorizer}\PY{p}{(}\PY{n}{stop\PYZus{}words}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{english}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PYZbs{}
+                                     \PY{n}{min\PYZus{}df}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)} 
+        
+        \PY{n}{dtm}\PY{o}{=} \PY{n}{tfidf\PYZus{}vect}\PY{o}{.}\PY{n}{fit\PYZus{}transform}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{text}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{)}
+        \PY{n+nb}{print} \PY{p}{(}\PY{n}{dtm}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+(1777, 7006)
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{c+c1}{\PYZsh{} Exercise 5.1.2 Clustering using NLTK KMean}
+        
+        \PY{k+kn}{from} \PY{n+nn}{nltk}\PY{n+nn}{.}\PY{n+nn}{cluster} \PY{k}{import} \PY{n}{KMeansClusterer}\PY{p}{,} \PYZbs{}
+        \PY{n}{cosine\PYZus{}distance}
+        
+        \PY{c+c1}{\PYZsh{} set number of clusters}
+        \PY{n}{num\PYZus{}clusters}\PY{o}{=}\PY{l+m+mi}{3}
+        
+        \PY{c+c1}{\PYZsh{} initialize clustering model}
+        \PY{c+c1}{\PYZsh{} using cosine distance}
+        \PY{c+c1}{\PYZsh{} clustering will repeat 20 times}
+        \PY{c+c1}{\PYZsh{} each with different initial centroids}
+        \PY{n}{clusterer} \PY{o}{=} \PY{n}{KMeansClusterer}\PY{p}{(}\PY{n}{num\PYZus{}clusters}\PY{p}{,} \PYZbs{}
+                                    \PY{n}{cosine\PYZus{}distance}\PY{p}{,} \PYZbs{}
+                                    \PY{n}{repeats}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} samples are assigned to cluster labels starting from 0}
+        \PY{n}{clusters} \PY{o}{=} \PY{n}{clusterer}\PY{o}{.}\PY{n}{cluster}\PY{p}{(}\PY{n}{dtm}\PY{o}{.}\PY{n}{toarray}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PYZbs{}
+                                     \PY{n}{assign\PYZus{}clusters}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}print the cluster labels of the first 5 samples}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{clusters}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[0, 0, 2, 2, 2]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{c+c1}{\PYZsh{} Exercise 5.1.3 Interpret each cluster by centroid}
+        
+        \PY{c+c1}{\PYZsh{} a centroid is the arithemtic mean }
+        \PY{c+c1}{\PYZsh{} of all samples in the cluster}
+        \PY{c+c1}{\PYZsh{} it may not stand for a real document}
+        
+        \PY{c+c1}{\PYZsh{} find top words at centroid of each cluster}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn} \PY{k}{import} \PY{n}{metrics}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        
+        \PY{c+c1}{\PYZsh{} clusterer.means() contains the centroids}
+        \PY{c+c1}{\PYZsh{} each row is a cluster, and }
+        \PY{c+c1}{\PYZsh{} each column is a feature (word)}
+        \PY{n}{centroids}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{clusterer}\PY{o}{.}\PY{n}{means}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} argsort sort the matrix in ascending order }
+        \PY{c+c1}{\PYZsh{} and return locations of features before sorting}
+        \PY{c+c1}{\PYZsh{} [:,::\PYZhy{}1] reverse the order}
+        \PY{n}{sorted\PYZus{}centroids} \PY{o}{=} \PY{n}{centroids}\PY{o}{.}\PY{n}{argsort}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{p}{:}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} 
+        
+        \PY{c+c1}{\PYZsh{} The mapping between feature (word)}
+        \PY{c+c1}{\PYZsh{} index and feature (word) can be obtained by}
+        \PY{c+c1}{\PYZsh{} the vectorizer\PYZsq{}s function get\PYZus{}feature\PYZus{}names()}
+        \PY{n}{voc\PYZus{}lookup}\PY{o}{=} \PY{n}{tfidf\PYZus{}vect}\PY{o}{.}\PY{n}{get\PYZus{}feature\PYZus{}names}\PY{p}{(}\PY{p}{)}
+        
+        \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{num\PYZus{}clusters}\PY{p}{)}\PY{p}{:}
+            
+            \PY{c+c1}{\PYZsh{} get words with top 20 tf\PYZhy{}idf weight in the centroid}
+            \PY{n}{top\PYZus{}words}\PY{o}{=}\PY{p}{[}\PY{n}{voc\PYZus{}lookup}\PY{p}{[}\PY{n}{word\PYZus{}index}\PY{p}{]} \PYZbs{}
+                       \PY{k}{for} \PY{n}{word\PYZus{}index} \PY{o+ow}{in} \PY{n}{sorted\PYZus{}centroids}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{p}{:}\PY{l+m+mi}{20}\PY{p}{]}\PY{p}{]}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Cluster }\PY{l+s+si}{\PYZpc{}d}\PY{l+s+s2}{:}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{ }\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{i}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{; }\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{top\PYZus{}words}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Cluster 0:
+ edu; graphics; posting; lines; subject; host; nntp; university; organization; com; thanks; files; image; uk; file; 3d; program; help; ac; software 
+Cluster 1:
+ edu; com; pitt; gordon; banks; geb; msg; cs; article; writes; science; organization; subject; food; dyer; lines; doctor; don; disease; pittsburgh 
+Cluster 2:
+ god; edu; jesus; people; church; christians; bible; christian; christ; believe; hell; faith; think; rutgers; know; say; truth; christianity; don; subject 
+
+    \end{Verbatim}
+
+    \hypertarget{how-to-evaluate-clustering}{%
+\subsubsection{5.2. How to evaluate
+clustering}\label{how-to-evaluate-clustering}}
+
+\begin{itemize}
+\tightlist
+\item
+  External evaluation:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Obtain ``ground truth'': if data is not labeled, manually label a
+    random subset of samples as ``ground truth''
+  \item
+    Assign each cluster to a ``true'' class by the \textbf{majority vote
+    rule}, for example:
+  \item
+    Calculate precision and recall
+  \end{itemize}
+
+  \begin{longtable}[]{@{}ll@{}}
+  \toprule
+  Cluster ID & Ground Truth Class Label\tabularnewline
+  \midrule
+  \endhead
+  0 & comp.graphics\tabularnewline
+  1 & sci.med\tabularnewline
+  2 & soc.religion.christian\tabularnewline
+  \bottomrule
+  \end{longtable}
+\item
+  Internal evaluation
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Silhouette Coefficient
+  \item
+    Calinski-Harabaz Index
+  \item
+    \ldots{}
+  \end{itemize}
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{c+c1}{\PYZsh{} Exercise 5.2.1 External evaluation}
+        \PY{c+c1}{\PYZsh{} determine cluster labels and calcuate precision and recall}
+        
+        \PY{c+c1}{\PYZsh{} Create \PYZdq{}cluster\PYZdq{} column in the dataframe}
+        \PY{n}{data}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{cluster}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{=}\PY{n}{clusters}
+        \PY{n}{data}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} generate crosstab between clusters and true labels}
+        \PY{n}{pd}\PY{o}{.}\PY{n}{crosstab}\PY{p}{(} \PY{n}{index}\PY{o}{=}\PY{n}{data}\PY{o}{.}\PY{n}{cluster}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{n}{data}\PY{o}{.}\PY{n}{label}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/Users/rliu/anaconda/envs/py36/lib/python3.6/site-packages/ipykernel\_launcher.py:5: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row\_indexer,col\_indexer] = value instead
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html\#indexing-view-versus-copy
+  """
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}6}]:}                                                 text                   label  \textbackslash{}
+        0  From: sd345@city.ac.uk (Michael Collier)\textbackslash{}nSubj{\ldots}           comp.graphics   
+        1  From: ani@ms.uky.edu (Aniruddha B. Deglurkar)\textbackslash{}{\ldots}           comp.graphics   
+        2  From: djohnson@cs.ucsd.edu (Darin Johnson)\textbackslash{}nSu{\ldots}  soc.religion.christian   
+        3  From: s0612596@let.rug.nl (M.M. Zwart)\textbackslash{}nSubjec{\ldots}  soc.religion.christian   
+        4  From: stanly@grok11.columbiasc.ncr.com (stanly{\ldots}  soc.religion.christian   
+        
+           cluster  
+        0        0  
+        1        0  
+        2        2  
+        3        2  
+        4        2  
+\end{Verbatim}
+            
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}6}]:} label    comp.graphics  sci.med  soc.religion.christian
+        cluster                                                
+        0                  575       65                      19
+        1                    9      517                      13
+        2                    0       12                     567
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{c+c1}{\PYZsh{} Map cluster id to true labels by \PYZdq{}majority vote\PYZdq{}}
+        \PY{n}{cluster\PYZus{}dict}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{comp.graphics}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PYZbs{}
+                      \PY{l+m+mi}{1}\PY{p}{:}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{sci.med}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PYZbs{}
+                      \PY{l+m+mi}{2}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{soc.religion.christian}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}
+        
+        \PY{c+c1}{\PYZsh{} Map true label to cluster id}
+        \PY{n}{predicted\PYZus{}target}\PY{o}{=}\PY{p}{[}\PY{n}{cluster\PYZus{}dict}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PYZbs{}
+                          \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{clusters}\PY{p}{]}
+        
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{metrics}\PY{o}{.}\PY{n}{classification\PYZus{}report}\PYZbs{}
+              \PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{label}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{predicted\PYZus{}target}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+                        precision    recall  f1-score   support
+
+         comp.graphics       0.87      0.98      0.93       584
+               sci.med       0.96      0.87      0.91       594
+soc.religion.christian       0.98      0.95      0.96       599
+
+             micro avg       0.93      0.93      0.93      1777
+             macro avg       0.94      0.93      0.93      1777
+          weighted avg       0.94      0.93      0.93      1777
+
+
+    \end{Verbatim}
+
+    \hypertarget{clustering-with-sklearn-package---euclidean-distance}{%
+\subsubsection{5.3. Clustering with sklearn package - Euclidean
+distance}\label{clustering-with-sklearn-package---euclidean-distance}}
+
+\begin{itemize}
+\tightlist
+\item
+  Compare its performance with NLTK Kmeans result
+\item
+  Discuss: the difference between performance
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{c+c1}{\PYZsh{} Exercise 5.3.1 Clustering with sklearn package \PYZhy{} Euclidean distance}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{cluster} \PY{k}{import} \PY{n}{KMeans}
+        
+        \PY{c+c1}{\PYZsh{} Kmeans with 20 different centroid seeds}
+        \PY{n}{km} \PY{o}{=} \PY{n}{KMeans}\PY{p}{(}\PY{n}{n\PYZus{}clusters}\PY{o}{=}\PY{n}{num\PYZus{}clusters}\PY{p}{,} \PY{n}{n\PYZus{}init}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}\PYZbs{}
+        \PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{dtm}\PY{p}{)}
+        \PY{n}{clusters} \PY{o}{=} \PY{n}{km}\PY{o}{.}\PY{n}{labels\PYZus{}}\PY{o}{.}\PY{n}{tolist}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{c+c1}{\PYZsh{} Exercise 5.3.2 Performance Evaluation}
+        
+        \PY{n}{data}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{cluster}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{=}\PY{n}{clusters}
+        \PY{n}{data}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} generate crosstab between clusters and true labels}
+        \PY{n}{pd}\PY{o}{.}\PY{n}{crosstab}\PY{p}{(} \PY{n}{index}\PY{o}{=}\PY{n}{data}\PY{o}{.}\PY{n}{cluster}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{n}{data}\PY{o}{.}\PY{n}{label}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/Users/rliu/anaconda/envs/py36/lib/python3.6/site-packages/ipykernel\_launcher.py:3: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row\_indexer,col\_indexer] = value instead
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html\#indexing-view-versus-copy
+  This is separate from the ipykernel package so we can avoid doing imports until
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}9}]:}                                                 text                   label  \textbackslash{}
+        0  From: sd345@city.ac.uk (Michael Collier)\textbackslash{}nSubj{\ldots}           comp.graphics   
+        1  From: ani@ms.uky.edu (Aniruddha B. Deglurkar)\textbackslash{}{\ldots}           comp.graphics   
+        2  From: djohnson@cs.ucsd.edu (Darin Johnson)\textbackslash{}nSu{\ldots}  soc.religion.christian   
+        3  From: s0612596@let.rug.nl (M.M. Zwart)\textbackslash{}nSubjec{\ldots}  soc.religion.christian   
+        4  From: stanly@grok11.columbiasc.ncr.com (stanly{\ldots}  soc.religion.christian   
+        
+           cluster  
+        0        0  
+        1        0  
+        2        1  
+        3        1  
+        4        1  
+\end{Verbatim}
+            
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}9}]:} label    comp.graphics  sci.med  soc.religion.christian
+        cluster                                                
+        0                  584      510                     105
+        1                    0        6                     494
+        2                    0       78                       0
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{cluster\PYZus{}dict}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+m+mi}{1}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{comp.graphics}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{:}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{sci.med}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PYZbs{}
+                       \PY{l+m+mi}{2}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{soc.religion.christian}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}
+         
+         \PY{c+c1}{\PYZsh{} Assign true class to cluster}
+         \PY{n}{predicted\PYZus{}clusters}\PY{o}{=}\PY{p}{[}\PY{n}{cluster\PYZus{}dict}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{clusters}\PY{p}{]}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{metrics}\PY{o}{.}\PY{n}{classification\PYZus{}report}\PYZbs{}
+               \PY{p}{(}\PY{n}{target}\PY{p}{,} \PY{n}{predicted\PYZus{}clusters}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        ---------------------------------------------------------------------------
+
+        NameError                                 Traceback (most recent call last)
+
+        <ipython-input-10-97bc5e6665a6> in <module>
+          7 
+          8 print(metrics.classification\_report\textbackslash{}
+    ----> 9       (target, predicted\_clusters))
+    
+
+        NameError: name 'target' is not defined
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Exercise 5.3.3 Add \PYZdq{}alt.atheism\PYZdq{} documents to }
+        \PY{c+c1}{\PYZsh{} the samples and re\PYZhy{}do clustering}
+        \PY{c+c1}{\PYZsh{} Steps:}
+        \PY{c+c1}{\PYZsh{} 1. add \PYZdq{}alt.atheism\PYZdq{} to line 13 of Exercise 5.1.1}
+        \PY{c+c1}{\PYZsh{} 2. change the number of clusters to 4 in line 6 of Exercise 5.1.2}
+        \PY{c+c1}{\PYZsh{} 3. Re\PYZhy{}run Exercise 5.1.1 and Exercise 5.1.2}
+        \PY{c+c1}{\PYZsh{} 4. In Exercise 5.2.1, change the mapping between clusters }
+        \PY{c+c1}{\PYZsh{}    and true class and recalculate performance}
+        
+        \PY{c+c1}{\PYZsh{} 5. Accordingly, try Exercise 5.3.1 and 5.3.2 to see}
+        \PY{c+c1}{\PYZsh{}    the performance under Euclidean distance   }
+\end{Verbatim}
+
+
+    \hypertarget{how-to-pick-k-the-number-of-clusters}{%
+\subsubsection{\texorpdfstring{5.4. How to pick \emph{K}, the number of
+clusters?}{5.4. How to pick K, the number of clusters?}}\label{how-to-pick-k-the-number-of-clusters}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Try external valuation first!!!}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    manually assess a subset of documents to create ``ground truth''
+  \end{itemize}
+\item
+  In case it is impossible to figure out how many clusters in the data
+  set manually, \textbf{theorectically}, \emph{K} may be selected as
+  follows:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Select a metric to measure the ``goodness'' of clusters,
+    e.g.~average radius, average diameter, etc.
+  \item
+    Varying \emph{K} from 2 to N, perform clustering for each \emph{K}
+  \item
+    Ideally, as \emph{K} increases to some point, the metric should grow
+    slowly (\textbf{elbow method})
+  \end{itemize}
+\end{itemize}
+
+ source:
+http://infolab.stanford.edu/\textasciitilde{}ullman/mmds/ch7.pdf -
+However, if samples do not have clear structures, this method may not
+work (elbow does not exist!) 
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

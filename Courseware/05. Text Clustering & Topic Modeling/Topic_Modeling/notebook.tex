@@ -1,0 +1,1045 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Topic\_Modeling}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \#
+
+Topic Modeling
+
+\begin{itemize}
+\tightlist
+\item
+  This lecture is created based on
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Blei. D. (2012), ``Probabilistic Topic Models'',
+    http://www.cs.columbia.edu/\textasciitilde{}blei/talks/Blei\_ICML\_2012.pdf
+  \item
+    http://videolectures.net/mlss09uk\_blei\_tm/
+  \end{itemize}
+\end{itemize}
+
+    \hypertarget{introduction}{%
+\subsection{1. Introduction}\label{introduction}}
+
+\begin{itemize}
+\tightlist
+\item
+  Topic modeling provides methods for automatically organizing,
+  understanding, searching, and summarizing large electronic archives.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Discover the hidden themes that pervade the collection.
+  \item
+    Annotate the documents according to those themes.
+  \item
+    Use annotations to organize, summarize, and search the texts.
+  \end{itemize}
+\item
+  Formal Definition
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Topics}: each topic is a \textbf{distribution over words}
+
+    \begin{itemize}
+    \tightlist
+    \item
+      e.g.~for topic ``Gentics'', \(p('gene'~|~'Genetics')~=~0.04\),
+      \(p('dna'~|~'Genetics')=0.02\)
+    \item
+      \(K\) topics \(\theta_1, \theta_2, ..., \theta_K\), \(N\) words
+      \(w_1, w_2, ..., w_N\) in corpus, we need to know
+      \(p(w_i|\theta_j)\) for \(i \in N\) and \(j\in K\)
+    \end{itemize}
+  \item
+    \textbf{Document (\(d\))}: a \textbf{mixture of topics}
+
+    \begin{itemize}
+    \tightlist
+    \item
+      e.g.~for above document \(d\), \(p('Genetics'~|~d)=0.5\),
+      \(p('LifeScience'~|~d)=0.15\), \ldots{}
+    \item
+      In general, given document \(d\) and topic \(\theta_j\), we need
+      to know \(p(\theta_j~|~d)\), i.e. \textbf{topic proportion}
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+    \hypertarget{statistical-language-model}{%
+\subsection{2. Statistical Language
+Model}\label{statistical-language-model}}
+
+\begin{itemize}
+\tightlist
+\item
+  Definition: given a corpus with \(M\) documents, \(N\) words, \(K\)
+  topics, a model contains the following probabilities:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    topic probability distribution in corpus: \(p(\theta_j)\) for
+    \(j \in K\), \(\sum_{j\in K}{p(\theta_j)}=1\)
+  \item
+    topic distribution per document \(d\) (document assignment):
+    \(p(\theta_j~|~d)\), \(\sum_{j\in K}{p(\theta_j~|~d)}=1\)
+  \item
+    word distribution per topic (why do we need to know it?):
+    \(p(w_i~|~\theta_j)\) for \(i \in N\) and \(j\in K\),
+    \(\sum_{i\in N}{p(w_i~|~\theta_j)}=1\) 
+  \end{itemize}
+\end{itemize}
+
+    \hypertarget{how-to-estimate-these-probabilities}{%
+\subsection{3. How to estimate these
+probabilities?}\label{how-to-estimate-these-probabilities}}
+
+\hypertarget{supervised-learning---naive-bayes}{%
+\subsubsection{3.1. Supervised learning - Naive
+Bayes}\label{supervised-learning---naive-bayes}}
+
+\begin{itemize}
+\tightlist
+\item
+  Topic probability:
+  \[ p(\theta_j) = \frac{\text{documents in topic } j + \alpha_1} {\text{total documents}+\alpha_2}\]\\
+\item
+  Word distribution per topic:
+  \[ p(w_i~|~\theta_j)= \frac{\text{count of word } w_i \text{ in topic } j + \alpha_1} {\text{total word count in documents of topic }j + \alpha_2}\]\\
+\item
+  Topic distribution per document: \[ \begin{array}{l}
+   p(\theta_j~|~d) = \frac{p(d|\theta_j) * p(\theta_j)}{p(d)} \text{         # Bayesian rule}\\
+   C_{MAP} = \underset{\theta}{\operatorname{argmax}}{p(d~|~\theta)*p(\theta)} \text{         # maximum a posteriori}\\
+    C_{MAP} = \underset{\theta}{\operatorname{argmax}}{p(w_1,w_2, ...,w_N~|~\theta)*p(\theta)} \\
+    C_{MAP} = \underset{\theta}{\operatorname{argmax}}({\prod_{i \in N} {p(w_i~|~\theta)})*p(\theta)}  \textit{ # independence assumption}
+  \end{array}\]\\
+\item
+  Naive Bayes model is also a kind of language model
+\end{itemize}
+
+    \hypertarget{generative-model-for-unsupervised-learning}{%
+\subsubsection{3.2. Generative Model for Unsupervised
+learning}\label{generative-model-for-unsupervised-learning}}
+
+\begin{itemize}
+\tightlist
+\item
+  We don't have labeled data; we only observe the documents
+\item
+  We \textbf{cannot} estimate \(p(\theta_j)\) and \(p(w_i~|~\theta_j)\)
+  as above
+\item
+  Instead, we use a \textbf{generative model} that describes how a
+  document \(d\) was created
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    decide on document length \(N\), e.g.~100 words
+  \item
+    decide on topic mixture (i.e. \(p(\theta_j~|~d)\)), e.g.~70\% about
+    genetics and 30\% about life science, \ldots{}
+  \item
+    for each of the N words,
+
+    \begin{itemize}
+    \tightlist
+    \item
+      3.1. choose a topic from the topic mixture, e.g. ``genetics''
+    \item
+      3.2. choose a word from based on the probabilities of words in the
+      topic (i.e. \(p(w_i~|~\theta_j)\)), e.g. ``gene''
+    \item
+      At the end, you may get a document such as ``gene dna life
+      \ldots{}''
+    \end{itemize}
+  \end{enumerate}
+\item
+  We assume all documents in the dataset were generated following this
+  process. Then we infer these probabilities from samples such that
+  these probabilities have the maximum likelihood to generate the
+  samples
+\item
+  Probabilities \(p(w_i~|~\theta_j)\) and \(p(\theta_j~|~d)\) are
+  \textbf{hidden structures} to be discovered, a.k.a \textbf{latent
+  variables} 
+\end{itemize}
+
+    \hypertarget{latent-dirichlet-allocation-lda}{%
+\subsection{4. Latent Dirichlet Allocation
+(LDA)}\label{latent-dirichlet-allocation-lda}}
+
+\hypertarget{model}{%
+\subsubsection{4.1 Model}\label{model}}
+
+\begin{itemize}
+\tightlist
+\item
+  A generative model which generates a document \(d\) as follows:
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    Choose document length \(N\) ∼ Poisson(ξ).
+  \item
+    Choose topic mixture \(\theta\) \textasciitilde{} Dir(α).
+  \item
+    For each of the \(N\) words \(w_n\):
+
+    \begin{itemize}
+    \item
+      \begin{enumerate}
+      \def\labelenumii{(\alph{enumii})}
+      \tightlist
+      \item
+        Choose a topic assignment \(z_n\) ∼ Multinomial(θ), i.e.
+        \(p(z_n~|~\theta)\)
+      \end{enumerate}
+    \item
+      \begin{enumerate}
+      \def\labelenumii{(\alph{enumii})}
+      \setcounter{enumii}{1}
+      \tightlist
+      \item
+        Choose a word \(w_n\) from the topic, \(w_n\) ∼
+        Multinomial(\(\beta_{z_n}\)), where \(\beta_{z_n}\) is the word
+        distribution for assigned topic \(z_n\), i.e.
+        \(p(w_n~|~z_n, ~\theta)\)
+      \end{enumerate}
+    \end{itemize}
+  \end{enumerate}
+\end{itemize}
+
+    \hypertarget{a-few-distributions}{%
+\subsubsection{4.2. A few distributions}\label{a-few-distributions}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Poisson}(ξ) : a given number of events occurring in a fixed
+  interval of time/space with rate ξ independently of the time/space
+  since the last event
+\item
+  \textbf{Multinomial}(θ) \& Multinomial(\(\beta\)):
+
+  \begin{itemize}
+  \tightlist
+  \item
+    suppose X is a vector which represents n draws of a random variable
+    with three possible outcomes (i.e.~words), say A, B, C.
+  \item
+    e.g.~when n=10, an example draw of X could be x = {[}4,4,2{]}, i.e.,
+    A occured 4 times, B 4 times, and C 2 times
+  \item
+    assume three outcomes have probability \(\beta\)=\{\(\beta_A\),
+    \(\beta_B\), \(\beta_C\)\} respectively (i.e.~0.5,0.3,0.2)
+  \item
+    the multinomial distribution describes the prob. mass distribution
+    of X,
+    \[ P(X=[4,4,2]) = \frac{10!}{4!4!2!}\beta_A^{4}\beta_B^{4}\beta_C^{2}\]
+  \end{itemize}
+\item
+  \textbf{Dirichlet} Dir(α) : is a probability distribution with
+  parameter \(α, e.g. \{α_1,α_2,α_3\}\) to generate
+  \(θ, e.g. \{ θ_1,θ_2,θ_3\}\). For details of Dirichlet function, check
+  videos e.g.~https://www.youtube.com/watch?v=nfBNOWv1pgE
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Dirichlet distribution is conjugate to the multinomial.
+  \item
+    Given a multinomial observation, the posterior distribution of θ is
+    a Dirichlet.
+
+    \begin{itemize}
+    \tightlist
+    \item
+      e.g.~in the above multinomial example, if \(\beta\)
+      \textasciitilde{} \$Dir (\alpha) \$ (i.e.~prior), with samples
+      \(X\), \(\beta~|~X\) \textasciitilde{} \(Dir (\alpha + X)\)
+      (i.e.~posterior)
+    \end{itemize}
+  \item
+    In LDA, usually \(α_1=α_2=α_3=...=\frac{1}{K}\)
+  \end{itemize}
+\end{itemize}
+
+    \hypertarget{lda-parameter-fitting}{%
+\subsubsection{4.3. LDA Parameter Fitting}\label{lda-parameter-fitting}}
+
+\begin{itemize}
+\tightlist
+\item
+  Common techniques to estimate these probabilities are EM
+  (Expectation-Maximization), Collapsed Gibbs Sampling (See Blei's paper
+  for details)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Collapsed Gibbs Sampling:
+    https://www.youtube.com/watch?v=u7l5hhmdc0M
+
+    \begin{enumerate}
+    \def\labelenumi{\arabic{enumi}.}
+    \tightlist
+    \item
+      Randomly assign each word in each sample to a topic
+    \item
+      Iteratively update the assignment of each word 
+    \end{enumerate}
+  \end{itemize}
+\end{itemize}
+
+    \hypertarget{evaluate-topic-model---perplexity}{%
+\subsubsection{4.4. Evaluate Topic Model -
+Perplexity}\label{evaluate-topic-model---perplexity}}
+
+\begin{itemize}
+\tightlist
+\item
+  For a single document \(d\) with \(N_d\) words
+  \(\{w_1, w_2, ..., w_{N_d}\}\), denoted as \(\textbf{W}_d\) \[
+  perplexity(d)= exp({H(d)}),  
+  H(d) = - \frac{ln (p(\textbf{W}_d))}{N_d}  
+  \]
+\item
+  \(p(\textbf{W}_d)\), the probability of seeing a document \(d\), can
+  be calculated based on:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    word distribution per topic, i.e. \(p(w_i~|~\theta_j)\), and
+  \item
+    topic mixture, i.e. \(p(\theta_j~|~d)\)
+  \end{itemize}
+\item
+  For a test set of D with M documents
+  \[ perplexity(d)= exp({H(D)}), H(D) = - \frac{\sum_{d \in D} {ln   (p(\textbf{W}_d)})}{\sum_{d \in D}{N_d}} \]
+\item
+  Intutition:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    A lower perplexity score indicates better generalization performance
+  \item
+    Minimizing H(d) is equivalent to maximizing log likelihood
+  \end{itemize}
+\item
+  To evaluate a topic model, calcuate perplexity on \textbf{testing
+  dataset} (i.e.~evaluating how generaalized the model is)
+\item
+  Note: if you have some labeled data, you should also conduct
+  \textbf{external evaluation}, i.e.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    map each topic to a labeled class,
+  \item
+    compute precision/recall from the labeled data
+  \end{itemize}
+\end{itemize}
+
+    \hypertarget{experiement-with-lda}{%
+\subsection{5. Experiement with LDA}\label{experiement-with-lda}}
+
+\begin{itemize}
+\tightlist
+\item
+  A few libraries available for LDA: gensim, lda, sklearn
+\item
+  We use sklearn here since it has a good text preprocessing module
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{from} \PY{n+nn}{IPython}\PY{n+nn}{.}\PY{n+nn}{core}\PY{n+nn}{.}\PY{n+nn}{interactiveshell} \PY{k}{import} \PY{n}{InteractiveShell}
+        \PY{n}{InteractiveShell}\PY{o}{.}\PY{n}{ast\PYZus{}node\PYZus{}interactivity} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{all}\PY{l+s+s2}{\PYZdq{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{c+c1}{\PYZsh{} Exercise 5.1. Load 20 news group data}
+         \PY{k+kn}{import} \PY{n+nn}{json}
+         \PY{k+kn}{from} \PY{n+nn}{numpy}\PY{n+nn}{.}\PY{n+nn}{random} \PY{k}{import} \PY{n}{shuffle}
+         
+         \PY{n}{data}\PY{o}{=}\PY{n}{json}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n+nb}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{../../../../ydata.json}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} shuffle the data}
+         \PY{n}{shuffle}\PY{p}{(}\PY{n}{data}\PY{p}{)}
+         
+         \PY{n}{text}\PY{p}{,}\PY{n}{label}\PY{o}{=}\PY{n+nb}{zip}\PY{p}{(}\PY{o}{*}\PY{n}{data}\PY{p}{)}
+         \PY{n}{text}\PY{o}{=}\PY{n+nb}{list}\PY{p}{(}\PY{n}{text}\PY{p}{)}
+         \PY{n}{label}\PY{o}{=}\PY{n+nb}{list}\PY{p}{(}\PY{n}{label}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{text}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{label}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+research and markets kohl s corporation latest financial analysis report dublin business wire research and markets http www researchandmarkets com research financial analysis has announced the addition of the financial analysis kohl s corporation company profile to their offering business scenario in today s context niche opportunities limited time periods ever increasing risk and the need for precise decision making which if not done correctly would run the costs in million even before brakes are exercised that is the speed of business in todays high octane economies which are constantly metamorphosing into global empires of influence even the best decision makers have made mistakes which have wiped out entire reserves built over a period of hard work by the company s stakeholders including the employees the responsibility imposed on the shoulders of senior management is immense and does not leave much room for mistakes to be absorbed by the interest holders in the company in this scenario the management needs a good strong and logic driven decision making tool which and can serve as easily referable is common in language can be applied globally with standard parameters as also is accepted by various independent assessors a tool as useful as this which is numerically driven and with accepted logic is aruvian s research s financial analysis financial analysis is a compact focused report which helps management s critical decision making by lending itself to analyzing a company s profitability solvency as well as financial stability these facts financial analysis helps the management to make different decisions on segregating priority businesses present funding requirements mergers and acquisition activities etc financial analysis brings to the management a complete profile of the company which is under consideration and also provides an insight on the business segments in which the company operates as well as its subsidiaries and some of the key executives of that company the financial analysis report further presents a complete ownership pattern of the company which is very critical information in m a activity in order for the management to plan the acquisition accordingly the ownership pattern analysis is as declared at the last agm of the organization unless fuelled by some exceptional activity mid year financial analysis report combines a complete swot analysis of the company thereby increasing the strategic management analysis presented in the report the report documents a complete board of the latest financial information of the company including stock prices over a period earnings per share income statements balance sheets eps growth qtr on qtr and yr over yr the report further presents the complete array of financial ratios of the company which points to the basic health of its activities and even goes a step further to present the efficiency of the company s management some of the ratios as price profitability liquidity give a very accurate picture of the financial health of the company and are explained in detail in aruvian s research s financial analysis another key parameter which the report analyses is the position of the vis vis its competition in the market this helps the decision maker decide clearly what strategic position the firm enjoys in the market currently and whether there is opportunity for the investor to take it further in the future or whether the firms competitors are too strong which means the firm will need more financial effort to move forward this analysis enables the investor to decide the future course of action as well as make a guarded offer in lieu of the risks that the investor is about to undertake financial analysis report also provides a future perspective of the company and its growth prospects this financial analysis is a complete power researched capsule of the real strengths of a company and provides the numerical decision making tool for the investor which is objective as well as globally accepted the report is a critical interface which helps investors sift through opportunities and pick the correct one as per their risk appetites and financial acumen in the ever increasing haze of globalization wherein it is imperative for organizations to expand their global footprint either by investing or by mergers acquisitions this financial analysis helps them steer the right business direction to islands of profit mining and greater returns on their invested capital key topics covered a executive summary b introduction to the company c analyzing the ownership pattern in the company d swot framework analysis e financial analysis f analyzing the key ratios g undertaking a profitability analysis h competitor group analysis i future perspective of the company j appendix k glossary of terms for more information visit http www researchandmarkets com research financial analysis
+
+['investment']
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{c+c1}{\PYZsh{} Exercise 5.2. Preprocessing \PYZhy{} Create Term Frequency Matrix}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{feature\PYZus{}extraction}\PY{n+nn}{.}\PY{n+nn}{text} \PY{k}{import} \PY{n}{CountVectorizer}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{model\PYZus{}selection} \PY{k}{import} \PY{n}{train\PYZus{}test\PYZus{}split}
+         
+         \PY{c+c1}{\PYZsh{} LDA can only use raw term counts for LDA }
+         \PY{n}{tf\PYZus{}vectorizer} \PY{o}{=} \PY{n}{CountVectorizer}\PY{p}{(}\PY{n}{max\PYZus{}df}\PY{o}{=}\PY{l+m+mf}{0.90}\PY{p}{,} \PYZbs{}
+                         \PY{n}{min\PYZus{}df}\PY{o}{=}\PY{l+m+mi}{50}\PY{p}{,} \PY{n}{stop\PYZus{}words}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{english}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{tf} \PY{o}{=} \PY{n}{tf\PYZus{}vectorizer}\PY{o}{.}\PY{n}{fit\PYZus{}transform}\PY{p}{(}\PY{n}{text}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} each feature is a word (bag of words)}
+         \PY{c+c1}{\PYZsh{} get\PYZus{}feature\PYZus{}names() gives all words}
+         \PY{n}{tf\PYZus{}feature\PYZus{}names} \PY{o}{=} \PY{n}{tf\PYZus{}vectorizer}\PY{o}{.}\PY{n}{get\PYZus{}feature\PYZus{}names}\PY{p}{(}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{tf\PYZus{}feature\PYZus{}names}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{10}\PY{p}{]}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} split dataset into train (90\PYZpc{}) and test sets (10\PYZpc{})}
+         \PY{c+c1}{\PYZsh{} the test sets will be used to evaluate proplexity of topic modeling}
+         \PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{X\PYZus{}test} \PY{o}{=} \PY{n}{train\PYZus{}test\PYZus{}split}\PY{p}{(}\PYZbs{}
+                         \PY{n}{tf}\PY{p}{,} \PY{n}{test\PYZus{}size}\PY{o}{=}\PY{l+m+mf}{0.1}\PY{p}{,} \PY{n}{random\PYZus{}state}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+['aaron', 'abandoned', 'abc', 'ability', 'able', 'abroad', 'absolutely', 'abuse', 'academy', 'accelerate']
+(6426, 4273)
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{c+c1}{\PYZsh{} Exercise 5.3. Train LDA model}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{decomposition} \PY{k}{import} \PY{n}{LatentDirichletAllocation}
+         
+         \PY{n}{num\PYZus{}topics} \PY{o}{=} \PY{l+m+mi}{4}
+         
+         \PY{c+c1}{\PYZsh{} Run LDA. For details, check}
+         \PY{c+c1}{\PYZsh{} http://scikit\PYZhy{}learn.org/stable/modules/generated/sklearn.decomposition.LatentDirichletAllocation.html\PYZsh{}sklearn.decomposition.LatentDirichletAllocation.perplexity}
+         
+         \PY{c+c1}{\PYZsh{} max\PYZus{}iter control the number of iterations }
+         \PY{c+c1}{\PYZsh{} evaluate\PYZus{}every determines how often the perplexity is calculated}
+         \PY{c+c1}{\PYZsh{} n\PYZus{}jobs is the number of parallel threads}
+         \PY{n}{lda} \PY{o}{=} \PY{n}{LatentDirichletAllocation}\PY{p}{(}\PY{n}{n\PYZus{}components}\PY{o}{=}\PY{n}{num\PYZus{}topics}\PY{p}{,} \PYZbs{}
+                                         \PY{n}{max\PYZus{}iter}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{,}\PY{n}{verbose}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,}
+                                         \PY{n}{evaluate\PYZus{}every}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{n\PYZus{}jobs}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,}
+                                         \PY{n}{random\PYZus{}state}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+K:\textbackslash{}Anaconda3\textbackslash{}lib\textbackslash{}site-packages\textbackslash{}sklearn\textbackslash{}decomposition\textbackslash{}online\_lda.py:536: DeprecationWarning: The default value for 'learning\_method' will be changed from 'online' to 'batch' in the release 0.20. This warning was introduced in 0.18.
+  DeprecationWarning)
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+iteration: 1 of max\_iter: 20, perplexity: 1634.6552
+iteration: 2 of max\_iter: 20, perplexity: 1618.9478
+iteration: 3 of max\_iter: 20, perplexity: 1614.1578
+iteration: 4 of max\_iter: 20, perplexity: 1611.9855
+iteration: 5 of max\_iter: 20, perplexity: 1610.7301
+iteration: 6 of max\_iter: 20, perplexity: 1609.8174
+iteration: 7 of max\_iter: 20, perplexity: 1609.1578
+iteration: 8 of max\_iter: 20, perplexity: 1608.6676
+iteration: 9 of max\_iter: 20, perplexity: 1608.2875
+iteration: 10 of max\_iter: 20, perplexity: 1607.9845
+iteration: 11 of max\_iter: 20, perplexity: 1607.7330
+iteration: 12 of max\_iter: 20, perplexity: 1607.5203
+iteration: 13 of max\_iter: 20, perplexity: 1607.3384
+iteration: 14 of max\_iter: 20, perplexity: 1607.1803
+iteration: 15 of max\_iter: 20, perplexity: 1607.0438
+iteration: 16 of max\_iter: 20, perplexity: 1606.9196
+iteration: 17 of max\_iter: 20, perplexity: 1606.8110
+iteration: 18 of max\_iter: 20, perplexity: 1606.7071
+iteration: 19 of max\_iter: 20, perplexity: 1606.6117
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{c+c1}{\PYZsh{} Exercise 5.4. Check topic and word distribution per topic}
+         
+         \PY{n}{num\PYZus{}top\PYZus{}words}\PY{o}{=}\PY{l+m+mi}{20}
+         
+         \PY{c+c1}{\PYZsh{} lda.components\PYZus{} returns a KxN matrix}
+         \PY{c+c1}{\PYZsh{} for word distribution in each topic.}
+         \PY{c+c1}{\PYZsh{} Each row consists of }
+         \PY{c+c1}{\PYZsh{} probability (counts) of each word in the feature space}
+         
+         \PY{k}{for} \PY{n}{topic\PYZus{}idx}\PY{p}{,} \PY{n}{topic} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{lda}\PY{o}{.}\PY{n}{components\PYZus{}}\PY{p}{)}\PY{p}{:}
+             \PY{n+nb}{print} \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Topic }\PY{l+s+si}{\PYZpc{}d}\PY{l+s+s2}{:}\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{topic\PYZus{}idx}\PY{p}{)}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{} print out top 20 words per topic }
+             \PY{n}{words}\PY{o}{=}\PY{p}{[}\PY{p}{(}\PY{n}{tf\PYZus{}feature\PYZus{}names}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,}\PY{n}{topic}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)} \PYZbs{}
+                    \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{topic}\PY{o}{.}\PY{n}{argsort}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{p}{:}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{n}{num\PYZus{}top\PYZus{}words}\PY{p}{]}\PY{p}{]}
+             \PY{n+nb}{print}\PY{p}{(}\PY{n}{words}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Topic 0:
+[('com', 5433.558283176055), ('company', 4219.173522256302), ('new', 3678.011609093095), ('business', 3369.75907022145), ('www', 3272.6629887554263), ('information', 3030.171263943948), ('services', 2331.979447121942), ('products', 2088.7574853051456), ('technology', 2013.830544687252), ('industry', 1975.6581016154637), ('http', 1802.851585899561), ('service', 1770.7743818694591), ('market', 1739.2261798424838), ('customers', 1618.3693906938763), ('solutions', 1601.0107791617713), ('based', 1595.7907486166037), ('said', 1570.1619304208327), ('companies', 1563.7480372940547), ('online', 1512.5299944339886), ('available', 1495.865266588939)]
+
+
+Topic 1:
+[('said', 11735.586740957884), ('police', 3598.47029304553), ('year', 2527.7999146297534), ('court', 2319.073909808763), ('people', 1733.376589944797), ('told', 1657.8180045943081), ('state', 1612.136569936346), ('years', 1578.0474051190379), ('case', 1557.1022346064742), ('old', 1409.5192495708914), ('man', 1372.3837007601715), ('new', 1323.1033827782921), ('law', 1289.872324891773), ('say', 1261.596789215085), ('federal', 1222.9487165907467), ('government', 1201.870398005146), ('time', 1155.6371587861267), ('trial', 1108.4415182625069), ('says', 1092.9093781334395), ('attorney', 1086.2306006450929)]
+
+
+Topic 2:
+[('company', 4649.168782944162), ('market', 4318.767704096202), ('million', 3882.9100779044393), ('finance', 3295.0593631489946), ('stock', 3156.485444182773), ('quarter', 2965.3957587094374), ('financial', 2928.7788565646606), ('income', 2898.4304369040833), ('yahoo', 2887.3235891006943), ('year', 2753.348720581479), ('share', 2679.905475879285), ('information', 2415.535213881101), ('com', 2357.915531665103), ('data', 2322.983206771167), ('news', 2290.674176456662), ('percent', 2277.9103141597625), ('investment', 2260.658370400052), ('stocks', 2172.2840394790933), ('net', 2132.9009485173333), ('new', 2115.8578783323546)]
+
+
+Topic 3:
+[('comment', 4451.501081698781), ('news', 3311.1161440408077), ('sign', 2641.0845538214953), ('users', 2194.3191958483912), ('rate', 2186.7581701370864), ('video', 1710.5503200023206), ('report', 1465.862929739275), ('yahoo', 1395.3957476648636), ('ap', 1207.0595891810685), ('world', 1131.376924033257), ('com', 1091.2056704240133), ('search', 1013.7364943848161), ('abuse', 968.1054818301734), ('business', 966.8038378208954), ('time', 955.7983506939183), ('new', 949.8822887109352), ('home', 901.5841820002923), ('liked', 900.6890398935531), ('disliked', 884.5427581210256), ('money', 872.0380826687626)]
+
+
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+         \PY{k+kn}{from} \PY{n+nn}{wordcloud} \PY{k}{import} \PY{n}{WordCloud}
+         \PY{k+kn}{import} \PY{n+nn}{math}
+         
+         \PY{n}{num\PYZus{}top\PYZus{}words}\PY{o}{=}\PY{l+m+mi}{50}
+         \PY{n}{f}\PY{p}{,} \PY{n}{axarr} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+         
+         \PY{k}{for} \PY{n}{topic\PYZus{}idx}\PY{p}{,} \PY{n}{topic} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{lda}\PY{o}{.}\PY{n}{components\PYZus{}}\PY{p}{)}\PY{p}{:}
+             \PY{c+c1}{\PYZsh{} create a dataframe with two columns (word, weight) for each topic}
+             
+             \PY{c+c1}{\PYZsh{} create a word:count dictionary}
+             \PY{n}{f}\PY{o}{=}\PY{p}{\PYZob{}}\PY{n}{tf\PYZus{}feature\PYZus{}names}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{:}\PY{n}{topic}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{topic}\PY{o}{.}\PY{n}{argsort}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{p}{:}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{n}{num\PYZus{}top\PYZus{}words}\PY{p}{]}\PY{p}{\PYZcb{}}
+             
+             \PY{c+c1}{\PYZsh{} generate wordcloud in subplots}
+             \PY{n}{wordcloud} \PY{o}{=} \PY{n}{WordCloud}\PY{p}{(}\PY{n}{width}\PY{o}{=}\PY{l+m+mi}{480}\PY{p}{,} \PY{n}{height}\PY{o}{=}\PY{l+m+mi}{450}\PY{p}{,} \PY{n}{margin}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{background\PYZus{}color}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{black}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+             \PY{n}{\PYZus{}} \PY{o}{=} \PY{n}{wordcloud}\PY{o}{.}\PY{n}{generate\PYZus{}from\PYZus{}frequencies}\PY{p}{(}\PY{n}{frequencies}\PY{o}{=}\PY{n}{f}\PY{p}{)}\PY{p}{;}
+             
+             \PY{n}{\PYZus{}} \PY{o}{=} \PY{n}{axarr}\PY{p}{[}\PY{n}{math}\PY{o}{.}\PY{n}{floor}\PY{p}{(}\PY{n}{topic\PYZus{}idx}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,} \PY{n}{topic\PYZus{}idx}\PY{o}{\PYZpc{}}\PY{k}{2}].imshow(wordcloud, interpolation=\PYZdq{}bilinear\PYZdq{});
+             \PY{n}{\PYZus{}} \PY{o}{=} \PY{n}{axarr}\PY{p}{[}\PY{n}{math}\PY{o}{.}\PY{n}{floor}\PY{p}{(}\PY{n}{topic\PYZus{}idx}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,} \PY{n}{topic\PYZus{}idx}\PY{o}{\PYZpc{}}\PY{k}{2}].set\PYZus{}title(\PYZdq{}Topic: \PYZdq{}+str(topic\PYZus{}idx));
+             \PY{n}{\PYZus{}} \PY{o}{=} \PY{n}{axarr}\PY{p}{[}\PY{n}{math}\PY{o}{.}\PY{n}{floor}\PY{p}{(}\PY{n}{topic\PYZus{}idx}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,} \PY{n}{topic\PYZus{}idx}\PY{o}{\PYZpc{}}\PY{k}{2}].axis(\PYZsq{}off\PYZsq{})
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{c+c1}{\PYZsh{} Exercise 5.5. Assign documents to topic}
+         \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+         
+         \PY{c+c1}{\PYZsh{} Generate topic assignment of each document}
+         \PY{n}{topic\PYZus{}assign}\PY{o}{=}\PY{n}{lda}\PY{o}{.}\PY{n}{transform}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{topic\PYZus{}assign}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} set a probability threshold}
+         \PY{c+c1}{\PYZsh{} the threshold determines precision/recall}
+         \PY{n}{prob\PYZus{}threshold}\PY{o}{=}\PY{l+m+mf}{0.25}
+         
+         \PY{n}{topics}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{n}{topic\PYZus{}assign}\PY{p}{)}
+         \PY{n}{topics}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{where}\PY{p}{(}\PY{n}{topics}\PY{o}{\PYZgt{}}\PY{o}{=}\PY{n}{prob\PYZus{}threshold}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{topics}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} How to calulate precision and recall}
+         \PY{c+c1}{\PYZsh{} if your test data has been labeled}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[[1.35783153e-01 8.53746146e-01 5.26876586e-03 5.20193554e-03]
+ [1.25249031e-01 6.29449767e-04 8.73476159e-01 6.45359479e-04]
+ [7.74204746e-04 9.77515705e-01 7.97528368e-04 2.09125615e-02]
+ [2.76212003e-01 1.53240943e-03 2.91413761e-01 4.30841827e-01]
+ [8.56763751e-01 1.59350300e-03 1.40062930e-01 1.57981597e-03]]
+[[0 1 0 0]
+ [0 0 1 0]
+ [0 1 0 0]
+ [1 0 1 1]
+ [1 0 0 0]]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{c+c1}{\PYZsh{} Exercise 5.6. Evaluate topic models by perplexity of test data}
+         
+         \PY{n}{perplexity}\PY{o}{=}\PY{n}{lda}\PY{o}{.}\PY{n}{perplexity}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{perplexity}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+2086.7877325682525
+
+    \end{Verbatim}
+
+    \hypertarget{find-the-number-of-topics-k}{%
+\subsubsection{\texorpdfstring{5.1. Find the number of topics
+(\(K\))}{5.1. Find the number of topics (K)}}\label{find-the-number-of-topics-k}}
+
+\begin{itemize}
+\tightlist
+\item
+  There are no ``golden'' rules to find K.
+\item
+  Perplexity may be one way for you to find the number of topics
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Typically, the best number of topics should be around the
+    \textbf{lowest perplexity}
+  \end{itemize}
+\item
+  However, in practice, a few factors need to be considered:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    It is usually difficult for human to understand or visulaize a big
+    number of topics
+  \item
+    You may manually scan the data to figure out possible topics in the
+    data, but these topics may not be correlated with the hidden
+    structure discovered by LDA
+  \item
+    Usually, after LDA, we need manually inspect each discovered topic,
+    merge or trim topics to get semantically coherent but
+    distinguishable topics
+  \end{itemize}
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} \PY{c+c1}{\PYZsh{} Exercise 5.1.1 How to find the best number of topics?}
+         \PY{c+c1}{\PYZsh{} Vary variable num\PYZus{}topics, e.g. set it to 2, 3, 5, ...}
+         \PY{c+c1}{\PYZsh{} For each value, train LDA model, }
+         \PY{c+c1}{\PYZsh{} calculate perplexity on the test data}
+         
+         \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+         \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+         
+         \PY{n}{result}\PY{o}{=}\PY{p}{[}\PY{p}{]}
+         \PY{k}{for} \PY{n}{num\PYZus{}topics} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{15}\PY{p}{)}\PY{p}{:}
+             \PY{n}{lda} \PY{o}{=} \PY{n}{LatentDirichletAllocation}\PY{p}{(}\PY{n}{n\PYZus{}components}\PY{o}{=}\PY{n}{num\PYZus{}topics}\PY{p}{,} \PYZbs{}
+                                         \PY{n}{learning\PYZus{}method}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{online}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PYZbs{}
+                                         \PY{n}{max\PYZus{}iter}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{,}\PY{n}{verbose}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{n\PYZus{}jobs}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,}
+                                         \PY{n}{random\PYZus{}state}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{)}
+             \PY{n}{p}\PY{o}{=}\PY{n}{lda}\PY{o}{.}\PY{n}{perplexity}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{)}
+             \PY{n}{result}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{[}\PY{n}{num\PYZus{}topics}\PY{p}{,}\PY{n}{p}\PY{p}{]}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{n}{num\PYZus{}topics}\PY{p}{,} \PY{n}{p}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+2 2156.1722924591973
+3 2095.5102632229537
+4 2087.58664853511
+5 2074.8114356542405
+6 2071.2916045571023
+7 2115.3135184913453
+8 2162.3649539425614
+9 2164.9889570881446
+10 2213.6657212813193
+11 2220.321111333512
+12 2239.25157719226
+13 2278.577194492858
+14 2293.715161411709
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+         \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{result}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{K}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Perlexity}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{plot}\PY{o}{.}\PY{n}{line}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{K}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{y}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Perlexity}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_20_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{lda-gensim-package}{%
+\subsection{6. LDA Gensim Package}\label{lda-gensim-package}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} \PY{c+c1}{\PYZsh{} 6.1. Create LDA model using the same TF matrix generated from sklearn}
+         
+         \PY{k+kn}{import} \PY{n+nn}{gensim}
+         \PY{k+kn}{from} \PY{n+nn}{gensim} \PY{k}{import} \PY{n}{corpora}
+         
+         \PY{c+c1}{\PYZsh{} A corpus is TF matrix in the list format, e.g.:}
+         \PY{c+c1}{\PYZsh{} [[(0, 1), (1,2), (4, 1), ...], [...], ...]}
+         \PY{c+c1}{\PYZsh{} which shows the first document has words with id=0,1,4}
+         \PY{c+c1}{\PYZsh{} and the count of word 0 is 1, word 1 is 2, ...}
+         
+         \PY{c+c1}{\PYZsh{} convert the gensim corpus from the sparse tf matrix}
+         \PY{n}{corpus} \PY{o}{=} \PY{n}{gensim}\PY{o}{.}\PY{n}{matutils}\PY{o}{.}\PY{n}{Sparse2Corpus}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{documents\PYZus{}columns}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} create the mapping between id and words}
+         \PY{n}{id2word}\PY{o}{=}\PY{p}{\PYZob{}}\PY{n}{idx}\PY{p}{:}\PY{n}{w} \PY{k}{for} \PY{n}{idx}\PY{p}{,} \PY{n}{w} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{tf\PYZus{}vectorizer}\PY{o}{.}\PY{n}{get\PYZus{}feature\PYZus{}names}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{\PYZcb{}}
+         
+         \PY{c+c1}{\PYZsh{} create a gensim dictionary from the corpus}
+         \PY{c+c1}{\PYZsh{} a dictionary contains the frequency of each words }
+         \PY{c+c1}{\PYZsh{} the mapping between ids and words}
+         \PY{n}{dictionary} \PY{o}{=} \PY{n}{corpora}\PY{o}{.}\PY{n}{Dictionary}\PY{o}{.}\PY{n}{from\PYZus{}corpus}\PY{p}{(}\PY{n}{corpus}\PY{p}{,} \PY{n}{id2word}\PY{o}{=}\PY{n}{id2word}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} \PY{c+c1}{\PYZsh{} 6.2. Train LDA model}
+         
+         \PY{n}{NUM\PYZus{}TOPICS} \PY{o}{=} \PY{l+m+mi}{4}
+         
+         \PY{c+c1}{\PYZsh{} for detailed parameters, check}
+         \PY{c+c1}{\PYZsh{}https://radimrehurek.com/gensim/models/ldamodel.html}
+         
+         \PY{n}{ldamodel} \PY{o}{=} \PY{n}{gensim}\PY{o}{.}\PY{n}{models}\PY{o}{.}\PY{n}{ldamodel}\PY{o}{.}\PY{n}{LdaModel}\PY{p}{(}\PY{n}{corpus}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{auto}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{num\PYZus{}topics} \PY{o}{=} \PY{n}{NUM\PYZus{}TOPICS}\PY{p}{,} \PYZbs{}
+                                                    \PY{n}{id2word}\PY{o}{=}\PY{n}{id2word}\PY{p}{,} \PY{n}{iterations}\PY{o}{=}\PY{l+m+mi}{15}\PY{p}{)}
+         
+         \PY{n}{topics} \PY{o}{=} \PY{n}{ldamodel}\PY{o}{.}\PY{n}{print\PYZus{}topics}\PY{p}{(}\PY{n}{num\PYZus{}words}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}
+         \PY{k}{for} \PY{n}{topic} \PY{o+ow}{in} \PY{n}{topics}\PY{p}{:}
+             \PY{n+nb}{print}\PY{p}{(}\PY{n}{topic}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+(0, '0.008*"said" + 0.008*"com" + 0.007*"new" + 0.006*"company" + 0.006*"information" + 0.006*"business" + 0.004*"financial" + 0.004*"services" + 0.004*"year" + 0.004*"www" + 0.003*"market" + 0.003*"income" + 0.003*"industry" + 0.003*"million" + 0.003*"service" + 0.003*"online" + 0.003*"based" + 0.003*"http" + 0.002*"investment" + 0.002*"companies"')
+(1, '0.011*"said" + 0.007*"comment" + 0.007*"com" + 0.006*"new" + 0.006*"news" + 0.005*"time" + 0.005*"year" + 0.005*"yahoo" + 0.005*"police" + 0.004*"company" + 0.004*"information" + 0.004*"sign" + 0.004*"report" + 0.003*"home" + 0.003*"users" + 0.003*"market" + 0.003*"ap" + 0.003*"www" + 0.003*"rate" + 0.003*"business"')
+(2, '0.017*"said" + 0.006*"company" + 0.006*"year" + 0.005*"new" + 0.005*"market" + 0.005*"percent" + 0.004*"million" + 0.004*"news" + 0.003*"business" + 0.003*"com" + 0.003*"information" + 0.003*"police" + 0.003*"years" + 0.003*"quarter" + 0.003*"time" + 0.003*"including" + 0.003*"people" + 0.003*"data" + 0.002*"www" + 0.002*"group"')
+(3, '0.008*"company" + 0.008*"com" + 0.007*"news" + 0.007*"market" + 0.006*"comment" + 0.005*"said" + 0.005*"million" + 0.005*"year" + 0.005*"new" + 0.004*"finance" + 0.004*"information" + 0.004*"stock" + 0.004*"sign" + 0.004*"free" + 0.004*"yahoo" + 0.004*"www" + 0.004*"business" + 0.004*"report" + 0.003*"financial" + 0.003*"rate"')
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}30}]:} \PY{c+c1}{\PYZsh{} 6.3. visualize topics}
+         
+         \PY{k+kn}{import} \PY{n+nn}{pyLDAvis}\PY{n+nn}{.}\PY{n+nn}{gensim}
+         \PY{n}{lda\PYZus{}display} \PY{o}{=} \PY{n}{pyLDAvis}\PY{o}{.}\PY{n}{gensim}\PY{o}{.}\PY{n}{prepare}\PY{p}{(}\PY{n}{ldamodel}\PY{p}{,} \PY{n}{corpus}\PY{p}{,} \PY{n}{dictionary}\PY{p}{,} \PY{n}{sort\PYZus{}topics}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}pyLDAvis.display(lda\PYZus{}display)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}29}]:} \PY{c+c1}{\PYZsh{} 6.4. Test unseen documents}
+         
+         \PY{n}{test\PYZus{}corpus} \PY{o}{=} \PY{n}{gensim}\PY{o}{.}\PY{n}{matutils}\PY{o}{.}\PY{n}{Sparse2Corpus}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{documents\PYZus{}columns}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+         \PY{n}{predict} \PY{o}{=} \PY{n}{ldamodel}\PY{o}{.}\PY{n}{get\PYZus{}document\PYZus{}topics}\PY{p}{(}\PY{n}{test\PYZus{}corpus}\PY{p}{)}
+         \PY{n+nb}{list}\PY{p}{(}\PY{n}{predict}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}29}]:} [[(0, 0.19551283), (1, 0.22836311), (2, 0.062560156), (3, 0.5135639)],
+          [(0, 0.03547712), (1, 0.8617756), (2, 0.08785622), (3, 0.014891135)],
+          [(0, 0.4425305), (1, 0.09599636), (2, 0.33844104), (3, 0.123032115)],
+          [(0, 0.49201575), (2, 0.3049721), (3, 0.19396669)],
+          [(0, 0.8151823), (1, 0.035107512), (2, 0.06758211), (3, 0.082128)]]
+\end{Verbatim}
+            
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

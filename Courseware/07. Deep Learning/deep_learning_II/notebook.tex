@@ -1,0 +1,2567 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{deep\_learning\_II}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \#
+
+Deep Learning and Text Analytics II
+
+References: - General introduction -
+http://ufldl.stanford.edu/tutorial/supervised/MultiLayerNeuralNetworks/
+- Word vector: - https://code.google.com/archive/p/word2vec/ - Keras
+tutorial -
+https://machinelearningmastery.com/tutorial-first-neural-network-python-keras/
+- CNN -
+http://www.wildml.com/2015/11/understanding-convolutional-neural-networks-for-nlp/
+
+    \hypertarget{agenda}{%
+\subsection{1. Agenda}\label{agenda}}
+
+\begin{itemize}
+\tightlist
+\item
+  Introduction to neural networks
+\item
+  Word/Document Vectors (vector representation of
+  words/phrases/paragraphs)
+\item
+  Convolutional neural network (CNN)
+\item
+  Application of CNN in text classification
+\end{itemize}
+
+    \hypertarget{word2vector-a.k.a-word-embedding-and-doc2vector}{%
+\subsection{4. Word2Vector (a.k.a word embedding) and
+Doc2Vector}\label{word2vector-a.k.a-word-embedding-and-doc2vector}}
+
+\hypertarget{word2vector}{%
+\subsubsection{4.1. Word2Vector}\label{word2vector}}
+
+\begin{itemize}
+\tightlist
+\item
+  Vector representation of words (i.e.~word vectors) learned using
+  neural network
+
+  \begin{itemize}
+  \tightlist
+  \item
+    e.g. ``apple'' : {[}0.35, -0.2, 0.4, \ldots{}{]}, `mongo': {[}0.32,
+    -0.18, 0.5, \ldots{}{]}
+  \item
+    Interesting properties of word vectors:
+  \item
+    \textbf{Words with similar semantics have close word vectors}
+  \item
+    \textbf{Composition}:
+    e.g.~vector(``woman'')+vector(``king'')-vector(`man') \(\approx\)
+    vector(``queen'')
+  \end{itemize}
+\item
+  Models:
+
+  \begin{itemize}
+  \item
+    \textbf{CBOW} (Continuous Bag of Words): Predict a target word based
+    on context
+
+    \begin{itemize}
+    \tightlist
+    \item
+      e.g.~the fox jumped over the lazy dog
+    \item
+      Assuming symmetric context with window size 3, this sentence can
+      create training samples:
+
+      \begin{itemize}
+      \tightlist
+      \item
+        ({[}-, fox{]}, the)
+      \item
+        ({[}the, jumped{]}, fox)
+      \item
+        ({[}fox, over{]}, jumped)
+      \item
+        ({[}jumped, the{]}, over)
+      \item
+        \ldots{}
+      \end{itemize}
+
+       source:
+      https://www.analyticsvidhya.com/blog/2017/06/word-embeddings-count-word2veec/
+    \end{itemize}
+  \item
+    \textbf{Skip Gram}: predict context based on target words
+
+     source:
+    https://www.analyticsvidhya.com/blog/2017/06/word-embeddings-count-word2veec/
+  \item
+    Nagtive Sampling:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      When training a neural network, for each sample, all weights are
+      adjusted slightly so that it predicts that training sample more
+      accurately.
+    \item
+      CBOW or skip gram models have tremendous number of weights, all of
+      which would be updated slightly by every one of billions of
+      training samples!
+    \item
+      Negative sampling addresses this by having \textbf{each training
+      sample only modify a small percentage of the weights, rather than
+      all of them}.
+    \item
+      e.g.~when training with sample ({[}fox, over{]}, jumped), update
+      output weights connected to ``jumped'' along with a small number
+      of other ``negative words'' sampled randomly
+    \item
+      For details, check
+      http://mccormickml.com/2017/01/11/word2vec-tutorial-part-2-negative-sampling/
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{c+c1}{\PYZsh{} set up interactive shell}
+        \PY{k+kn}{from} \PY{n+nn}{IPython}\PY{n+nn}{.}\PY{n+nn}{core}\PY{n+nn}{.}\PY{n+nn}{interactiveshell} \PY{k}{import} \PY{n}{InteractiveShell}
+        \PY{n}{InteractiveShell}\PY{o}{.}\PY{n}{ast\PYZus{}node\PYZus{}interactivity} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{all}\PY{l+s+s2}{\PYZdq{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{c+c1}{\PYZsh{} Exercise 4.1.1 Train your word vector}
+        
+        \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        \PY{k+kn}{import} \PY{n+nn}{nltk}\PY{o}{,}\PY{n+nn}{string}
+        
+        \PY{c+c1}{\PYZsh{} Load data}
+        \PY{n}{data}\PY{o}{=}\PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{../amazon\PYZus{}review\PYZus{}large.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{header}\PY{o}{=}\PY{k+kc}{None}\PY{p}{)}
+        \PY{n}{data}\PY{o}{.}\PY{n}{columns}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{text}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        \PY{n}{data}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} tokenize each document into a list of unigrams}
+        \PY{c+c1}{\PYZsh{} strip punctuations and leading/trailing spaces from unigrams}
+        \PY{c+c1}{\PYZsh{} only unigrams with 2 or more characters are taken}
+        \PY{n}{sentences}\PY{o}{=}\PY{p}{[} \PY{p}{[}\PY{n}{token}\PY{o}{.}\PY{n}{strip}\PY{p}{(}\PY{n}{string}\PY{o}{.}\PY{n}{punctuation}\PY{p}{)}\PY{o}{.}\PY{n}{strip}\PY{p}{(}\PY{p}{)} \PYZbs{}
+                     \PY{k}{for} \PY{n}{token} \PY{o+ow}{in} \PY{n}{nltk}\PY{o}{.}\PY{n}{word\PYZus{}tokenize}\PY{p}{(}\PY{n}{doc}\PY{o}{.}\PY{n}{lower}\PY{p}{(}\PY{p}{)}\PY{p}{)} \PYZbs{}
+                         \PY{k}{if} \PY{n}{token} \PY{o+ow}{not} \PY{o+ow}{in} \PY{n}{string}\PY{o}{.}\PY{n}{punctuation} \PY{o+ow}{and} \PYZbs{}
+                         \PY{n+nb}{len}\PY{p}{(}\PY{n}{token}\PY{o}{.}\PY{n}{strip}\PY{p}{(}\PY{n}{string}\PY{o}{.}\PY{n}{punctuation}\PY{p}{)}\PY{o}{.}\PY{n}{strip}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{o}{\PYZgt{}}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{]}\PYZbs{}
+                     \PY{k}{for} \PY{n}{doc} \PY{o+ow}{in} \PY{n}{data}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{text}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{]}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{sentences}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}5}]:}    label                                               text
+        0      2  This is a little longer and more detailed than{\ldots}
+        1      1  Only Michelle Branch save this album!!!!All gu{\ldots}
+        2      2  A surprisingly good book, given its inherently{\ldots}
+        3      2  This is a wonderful, quiet and relaxing CD tha{\ldots}
+        4      1  The lights that I received are absolutely not {\ldots}
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+[['this', 'is', 'little', 'longer', 'and', 'more', 'detailed', 'than', 'the', 'first', 'two', 'books', 'in', 'the', 'series', 'however', 'have', 'enjoyed', 'each', 'new', 'aspect', 'of', 'the', 'exciting', 'fantasy', 'universe'], ['only', 'michelle', 'branch', 'save', 'this', 'album', 'all', 'guys', 'play', 'along', 'with', 'unenthusiastic', 'beat', 'even', 'karl']]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{c+c1}{\PYZsh{} Train your own word vectors using gensim}
+        
+        \PY{c+c1}{\PYZsh{} gensim.models is the package for word2vec}
+        \PY{c+c1}{\PYZsh{} check https://radimrehurek.com/gensim/models/word2vec.html}
+        \PY{c+c1}{\PYZsh{} for detailed description}
+        
+        \PY{k+kn}{from} \PY{n+nn}{gensim}\PY{n+nn}{.}\PY{n+nn}{models} \PY{k}{import} \PY{n}{word2vec}
+        \PY{k+kn}{import} \PY{n+nn}{logging}
+        \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        
+        \PY{c+c1}{\PYZsh{} print out tracking information}
+        \PY{n}{logging}\PY{o}{.}\PY{n}{basicConfig}\PY{p}{(}\PY{n+nb}{format}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}(asctime)s}\PY{l+s+s1}{ : }\PY{l+s+si}{\PYZpc{}(levelname)s}\PY{l+s+s1}{ : }\PY{l+s+si}{\PYZpc{}(message)s}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PYZbs{}
+                            \PY{n}{level}\PY{o}{=}\PY{n}{logging}\PY{o}{.}\PY{n}{INFO}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} min\PYZus{}count: words with total frequency lower than this are ignored}
+        \PY{c+c1}{\PYZsh{} size: the dimension of word vector}
+        \PY{c+c1}{\PYZsh{} window: context window, i.e. the maximum distance }
+        \PY{c+c1}{\PYZsh{}         between the current and predicted word }
+        \PY{c+c1}{\PYZsh{}         within a sentence (i.e. the length of ngrams)}
+        \PY{c+c1}{\PYZsh{} workers: \PYZsh{} of parallel threads in training}
+        \PY{c+c1}{\PYZsh{} for other parameters, check https://radimrehurek.com/gensim/models/word2vec.html}
+        \PY{n}{wv\PYZus{}model} \PY{o}{=} \PY{n}{word2vec}\PY{o}{.}\PY{n}{Word2Vec}\PY{p}{(}\PY{n}{sentences}\PY{p}{,} \PYZbs{}
+                    \PY{n}{min\PYZus{}count}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+m+mi}{200}\PY{p}{,} \PYZbs{}
+                    \PY{n}{window}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{workers}\PY{o}{=}\PY{l+m+mi}{4} \PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+K:\textbackslash{}Anaconda3\textbackslash{}lib\textbackslash{}site-packages\textbackslash{}gensim\textbackslash{}utils.py:1212: UserWarning: detected Windows; aliasing chunkize to chunkize\_serial
+  warnings.warn("detected Windows; aliasing chunkize to chunkize\_serial")
+2018-11-29 16:07:06,077 : INFO : collecting all words and their counts
+2018-11-29 16:07:06,078 : INFO : PROGRESS: at sentence \#0, processed 0 words, keeping 0 word types
+2018-11-29 16:07:06,297 : INFO : PROGRESS: at sentence \#10000, processed 712003 words, keeping 36988 word types
+2018-11-29 16:07:06,580 : INFO : collected 55278 word types from a corpus of 1424321 raw words and 20000 sentences
+2018-11-29 16:07:06,580 : INFO : Loading a fresh vocabulary
+2018-11-29 16:07:06,647 : INFO : effective\_min\_count=5 retains 12133 unique words (21\% of original 55278, drops 43145)
+2018-11-29 16:07:06,647 : INFO : effective\_min\_count=5 leaves 1361983 word corpus (95\% of original 1424321, drops 62338)
+2018-11-29 16:07:06,714 : INFO : deleting the raw counts dictionary of 55278 items
+2018-11-29 16:07:06,714 : INFO : sample=0.001 downsamples 57 most-common words
+2018-11-29 16:07:06,714 : INFO : downsampling leaves estimated 1015574 word corpus (74.6\% of prior 1361983)
+2018-11-29 16:07:06,780 : INFO : estimated required memory for 12133 words and 200 dimensions: 25479300 bytes
+2018-11-29 16:07:06,780 : INFO : resetting layer weights
+2018-11-29 16:07:07,097 : INFO : training model with 4 workers on 12133 vocabulary and 200 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2018-11-29 16:07:08,115 : INFO : EPOCH 1 - PROGRESS: at 75.65\% examples, 755354 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:07:08,398 : INFO : worker thread finished; awaiting finish of 3 more threads
+2018-11-29 16:07:08,415 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-11-29 16:07:08,416 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-11-29 16:07:08,419 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-11-29 16:07:08,419 : INFO : EPOCH - 1 : training on 1424321 raw words (1015781 effective words) took 1.3s, 772304 effective words/s
+2018-11-29 16:07:09,416 : INFO : EPOCH 2 - PROGRESS: at 77.00\% examples, 781157 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:07:09,699 : INFO : worker thread finished; awaiting finish of 3 more threads
+2018-11-29 16:07:09,700 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-11-29 16:07:09,700 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-11-29 16:07:09,717 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-11-29 16:07:09,717 : INFO : EPOCH - 2 : training on 1424321 raw words (1015907 effective words) took 1.3s, 786170 effective words/s
+2018-11-29 16:07:10,718 : INFO : EPOCH 3 - PROGRESS: at 74.19\% examples, 752447 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:07:11,034 : INFO : worker thread finished; awaiting finish of 3 more threads
+2018-11-29 16:07:11,039 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-11-29 16:07:11,050 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-11-29 16:07:11,050 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-11-29 16:07:11,062 : INFO : EPOCH - 3 : training on 1424321 raw words (1016332 effective words) took 1.3s, 761978 effective words/s
+2018-11-29 16:07:12,069 : INFO : EPOCH 4 - PROGRESS: at 75.65\% examples, 765697 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:07:12,357 : INFO : worker thread finished; awaiting finish of 3 more threads
+2018-11-29 16:07:12,362 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-11-29 16:07:12,367 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-11-29 16:07:12,375 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-11-29 16:07:12,375 : INFO : EPOCH - 4 : training on 1424321 raw words (1015448 effective words) took 1.3s, 773093 effective words/s
+2018-11-29 16:07:13,396 : INFO : EPOCH 5 - PROGRESS: at 76.35\% examples, 766823 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:07:13,670 : INFO : worker thread finished; awaiting finish of 3 more threads
+2018-11-29 16:07:13,687 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-11-29 16:07:13,687 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-11-29 16:07:13,692 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-11-29 16:07:13,693 : INFO : EPOCH - 5 : training on 1424321 raw words (1015449 effective words) took 1.3s, 776998 effective words/s
+2018-11-29 16:07:13,694 : INFO : training on a 7121605 raw words (5078917 effective words) took 6.6s, 770080 effective words/s
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{c+c1}{\PYZsh{} test word2vec model}
+        
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Top 5 words similar to word }\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{sound}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{wv\PYZus{}model}\PY{o}{.}\PY{n}{wv}\PY{o}{.}\PY{n}{most\PYZus{}similar}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sound}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{topn}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}
+        
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Top 5 words similar to word }\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{sound}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{ but not relevant to }\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{film}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{wv\PYZus{}model}\PY{o}{.}\PY{n}{wv}\PY{o}{.}\PY{n}{most\PYZus{}similar}\PY{p}{(}\PY{n}{positive}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sound}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{music}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PYZbs{}
+                                 \PY{n}{negative}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{film}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{topn}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}
+        
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Similarity between }\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{movie}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{ and }\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{film}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{wv\PYZus{}model}\PY{o}{.}\PY{n}{wv}\PY{o}{.}\PY{n}{similarity}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{movie}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{film}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} 
+        
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Similarity between }\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{movie}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{ and }\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{city}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{wv\PYZus{}model}\PY{o}{.}\PY{n}{wv}\PY{o}{.}\PY{n}{similarity}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{movie}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{city}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} 
+        
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Word does not match with others in the list of }\PY{l+s+se}{\PYZbs{}}
+        \PY{l+s+s2}{[}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{sound}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{, }\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{music}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{, }\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{graphics}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{, }\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{actor}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{, }\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{book}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{]:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{wv\PYZus{}model}\PY{o}{.}\PY{n}{wv}\PY{o}{.}\PY{n}{doesnt\PYZus{}match}\PY{p}{(}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{sound}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{music}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PYZbs{}
+                                  \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{graphics}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{actor}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{book}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{)}
+        
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Word vector for }\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{movie}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{wv\PYZus{}model}\PY{o}{.}\PY{n}{wv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{movie}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+2018-11-29 16:10:06,045 : INFO : precomputing L2-norms of word weight vectors
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Top 5 words similar to word 'sound'
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+K:\textbackslash{}Anaconda3\textbackslash{}lib\textbackslash{}site-packages\textbackslash{}gensim\textbackslash{}matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int32 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}7}]:} [('metal', 0.768135666847229),
+         ('sounds', 0.7587062120437622),
+         ('vocals', 0.750717282295227),
+         ('production', 0.74760901927948),
+         ('rock', 0.7452607154846191)]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+Top 5 words similar to word 'sound' but not relevant to 'film'
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}7}]:} [('rock', 0.8133113980293274),
+         ('pop', 0.7807926535606384),
+         ('lyrics', 0.7637144923210144),
+         ('beats', 0.754810094833374),
+         ('dance', 0.7345940470695496)]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+Similarity between 'movie' and 'film':
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}7}]:} 0.9219632
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+Similarity between 'movie' and 'city':
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}7}]:} 0.009261133
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+Word does not match with others in the list of ['sound', 'music', 'graphics', 'actor', 'book']:
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}7}]:} 'book'
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+Word vector for 'movie':
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}7}]:} array([-0.77269727, -1.4913762 , -1.0019791 , -1.2563334 , -0.12225643,
+               -1.416501  ,  1.2577945 , -0.5184871 ,  0.6585174 , -0.14731687,
+                0.52918917,  0.30294475,  0.495267  ,  0.21776067,  0.124472  ,
+               -1.5360495 ,  0.54938453, -0.06506   , -1.639378  , -0.24853028,
+                0.7968809 , -1.2775854 ,  0.13571614, -0.5208313 ,  1.0953196 ,
+               -0.3756403 , -1.5401527 , -1.8848073 , -0.9565676 , -0.81631154,
+               -1.5816301 ,  0.8726593 , -1.9249322 , -0.27146304, -0.7126626 ,
+                0.08017053, -1.3893516 ,  0.57443464,  1.6364825 , -1.101771  ,
+               -0.86638355,  1.5470277 ,  2.1122425 , -0.57389414, -0.06188415,
+               -0.53467387,  0.7612246 ,  0.25090617, -1.0429192 ,  0.80020404,
+               -0.3509972 ,  1.3647641 ,  1.1475662 ,  0.23796152, -0.5293686 ,
+               -0.89735174, -1.1483487 , -0.8870737 , -0.18562146,  1.0308938 ,
+               -0.60114026, -0.04594025, -0.421823  ,  1.1857368 , -0.17878392,
+                1.1128901 , -0.68922096,  0.6759488 , -0.18189444,  0.67669547,
+               -0.8112388 , -0.25658923, -0.7070955 ,  1.9360776 ,  0.6065412 ,
+               -0.47972393,  0.12294027, -0.7938716 ,  0.25211293,  1.6146445 ,
+               -0.36999384,  1.049893  ,  0.9078559 , -0.96461385, -0.08960876,
+                0.28435275,  0.21821049, -0.60550094, -1.1043705 , -0.69786704,
+                0.12554732, -0.17100833, -0.5390522 ,  0.4112648 , -1.0845039 ,
+               -0.7979792 , -0.7767074 , -0.84314156, -0.73648334, -0.55995196,
+               -0.15940396, -0.8344762 , -0.5995809 ,  0.6405307 ,  0.8661147 ,
+                1.2650728 ,  1.0515083 ,  1.1747751 , -0.86632186,  0.2893218 ,
+                0.811377  ,  0.0248031 , -0.42074353,  0.5006709 , -0.29576305,
+                1.021841  ,  0.1292443 , -0.6084993 ,  0.7691396 ,  2.0140598 ,
+                1.3324313 , -0.43976343,  1.006003  , -0.61457616, -0.08943936,
+               -1.0992777 , -0.1202696 , -0.4609794 ,  1.1047179 ,  1.5530722 ,
+               -0.7465321 , -0.06136184,  1.2173063 ,  0.23307942, -0.10070151,
+               -0.26136082,  0.04527347, -1.2641342 , -0.60950065, -1.0814624 ,
+               -0.10867208,  0.43442667, -0.67189324,  0.25454292, -0.7316441 ,
+                0.98224014, -1.6306415 ,  0.5608005 , -2.6959975 ,  0.7261172 ,
+               -0.22851428, -1.3218769 ,  0.7656932 ,  0.35884294, -2.6852696 ,
+               -2.2272573 , -1.9857117 ,  0.38042858,  0.10453428, -0.5117533 ,
+                0.2084281 ,  1.4015547 , -0.4756179 , -1.7352483 ,  1.7819141 ,
+               -0.87290806,  2.3525958 , -0.08849494, -0.09644988,  0.7801178 ,
+               -0.08978796,  1.0549197 ,  0.37884194,  0.9858719 ,  0.56210744,
+                0.55840576, -2.2890987 , -0.01303246, -2.1224585 , -0.24679804,
+                0.9193536 ,  0.29488608,  0.74678534, -1.4522054 , -0.389866  ,
+                0.5850467 , -0.13796376,  0.73560596,  2.106198  , -0.8934329 ,
+                1.3348032 ,  0.06800973,  0.8989442 ,  0.704554  , -0.7052827 ,
+                0.4381336 , -2.3445568 ,  2.4431107 ,  0.45042893,  0.47325042],
+              dtype=float32)
+\end{Verbatim}
+            
+    \hypertarget{pretrained-word-vectors}{%
+\subsubsection{4.2. Pretrained Word
+Vectors}\label{pretrained-word-vectors}}
+
+\begin{itemize}
+\tightlist
+\item
+  Google published pre-trained 300-dimensional vectors for 3 million
+  words and phrases that were trained on Google News dataset (about 100
+  billion words)(https://code.google.com/archive/p/word2vec/)
+\item
+  GloVe (Global Vectors for Word Representation): Pretained word vectors
+  from different data sources provided by Standford
+  https://nlp.stanford.edu/projects/glove/
+\item
+  FastText by Facebook
+  https://github.com/facebookresearch/fastText/blob/master/pretrained-vectors.md
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{c+c1}{\PYZsh{} Exercise 4.2.1: Use pretrained word vectors}
+        
+        \PY{c+c1}{\PYZsh{} download the bin file for pretrained word vectors}
+        \PY{c+c1}{\PYZsh{} from above links, e.g. https://drive.google.com/file/d/0B7XkCwpI5KDYNlNUTTlSS21pQmM/edit?usp=sharing}
+        \PY{c+c1}{\PYZsh{} Warning: the bin file is very big (over 2G)}
+        \PY{c+c1}{\PYZsh{} You need a powerful machine to load it}
+        
+        \PY{k+kn}{import} \PY{n+nn}{gensim}
+        
+        \PY{n}{model} \PY{o}{=} \PY{n}{gensim}\PY{o}{.}\PY{n}{models}\PY{o}{.}\PY{n}{KeyedVectors}\PY{o}{.}\PYZbs{}
+        \PY{n}{load\PYZus{}word2vec\PYZus{}format}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{GoogleNews\PYZhy{}vectors\PYZhy{}negative300.bin}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{binary}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)} 
+        
+        \PY{n}{model}\PY{o}{.}\PY{n}{wv}\PY{o}{.}\PY{n}{most\PYZus{}similar}\PY{p}{(}\PY{n}{positive}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{women}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{king}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PYZbs{}
+                              \PY{n}{negative}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{man}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+2018-11-29 16:10:22,879 : INFO : loading projection weights from GoogleNews-vectors-negative300.bin
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        ---------------------------------------------------------------------------
+
+        FileNotFoundError                         Traceback (most recent call last)
+
+        <ipython-input-8-58510fb79360> in <module>
+          9 
+         10 model = gensim.models.KeyedVectors.\textbackslash{}
+    ---> 11 load\_word2vec\_format('GoogleNews-vectors-negative300.bin', binary=True)
+         12 
+         13 model.wv.most\_similar(positive=['women','king'], \textbackslash{}
+    
+
+        K:\textbackslash{}Anaconda3\textbackslash{}lib\textbackslash{}site-packages\textbackslash{}gensim\textbackslash{}models\textbackslash{}keyedvectors.py in load\_word2vec\_format(cls, fname, fvocab, binary, encoding, unicode\_errors, limit, datatype)
+       1436         return \_load\_word2vec\_format(
+       1437             cls, fname, fvocab=fvocab, binary=binary, encoding=encoding, unicode\_errors=unicode\_errors,
+    -> 1438             limit=limit, datatype=datatype)
+       1439 
+       1440     def get\_keras\_embedding(self, train\_embeddings=False):
+    
+
+        K:\textbackslash{}Anaconda3\textbackslash{}lib\textbackslash{}site-packages\textbackslash{}gensim\textbackslash{}models\textbackslash{}utils\_any2vec.py in \_load\_word2vec\_format(cls, fname, fvocab, binary, encoding, unicode\_errors, limit, datatype)
+        169 
+        170     logger.info("loading projection weights from \%s", fname)
+    --> 171     with utils.smart\_open(fname) as fin:
+        172         header = utils.to\_unicode(fin.readline(), encoding=encoding)
+        173         vocab\_size, vector\_size = (int(x) for x in header.split())  \# throws for invalid file format
+    
+
+        K:\textbackslash{}Anaconda3\textbackslash{}lib\textbackslash{}site-packages\textbackslash{}smart\_open\textbackslash{}smart\_open\_lib.py in smart\_open(uri, mode, **kw)
+        179         raise TypeError('mode should be a string')
+        180 
+    --> 181     fobj = \_shortcut\_open(uri, mode, **kw)
+        182     if fobj is not None:
+        183         return fobj
+    
+
+        K:\textbackslash{}Anaconda3\textbackslash{}lib\textbackslash{}site-packages\textbackslash{}smart\_open\textbackslash{}smart\_open\_lib.py in \_shortcut\_open(uri, mode, **kw)
+        299     \#
+        300     if six.PY3:
+    --> 301         return open(parsed\_uri.uri\_path, mode, buffering=buffering, **open\_kwargs)
+        302     elif not open\_kwargs:
+        303         return open(parsed\_uri.uri\_path, mode, buffering=buffering)
+    
+
+        FileNotFoundError: [Errno 2] No such file or directory: 'GoogleNews-vectors-negative300.bin'
+
+    \end{Verbatim}
+
+    \hypertarget{sentenceparagraphdocument-vectors}{%
+\subsubsection{4.3. Sentence/Paragraph/Document
+Vectors}\label{sentenceparagraphdocument-vectors}}
+
+\begin{itemize}
+\tightlist
+\item
+  So far we learned vector representation of words
+\item
+  A lot of times, our samples are sentences, paragraphs, or documents
+\item
+  How to create vector representations of sentences, paragraphs, or
+  documents?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Weighted average of word vectors (however, word order is lost as
+    ``bag of words'')
+  \item
+    Concatenation of word vectors (large space)
+  \item
+    ??
+  \end{itemize}
+\item
+  Paragraph Vector: A distributed memory model (PV-DM)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Word vectors are shared across paragraphs
+  \item
+    The paragraph vector is shared across all contexts generated from
+    the same paragraph but not across paragraphs
+  \item
+    \textbf{Both pragraph vectors and word vectors} are returned
+  \item
+    Paragraph vectors can be used for document retrival or as features
+    for classification or clustering Source: Le Q. and Mikolov, T.
+    Distributed Representations of Sentences and Documents
+    https://arxiv.org/pdf/1405.4053v2.pdf
+  \end{itemize}
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{c+c1}{\PYZsh{} Exercise 4.3.1 Train your word vector}
+        
+        \PY{c+c1}{\PYZsh{} We have tokenized sentences}
+        \PY{c+c1}{\PYZsh{} Label each sentence with a unique tag}
+        
+        \PY{k+kn}{from} \PY{n+nn}{gensim}\PY{n+nn}{.}\PY{n+nn}{models}\PY{n+nn}{.}\PY{n+nn}{doc2vec} \PY{k}{import} \PY{n}{TaggedDocument}
+        
+        \PY{n}{docs}\PY{o}{=}\PY{p}{[}\PY{n}{TaggedDocument}\PY{p}{(}\PY{n}{sentences}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{n+nb}{str}\PY{p}{(}\PY{n}{i}\PY{p}{)}\PY{p}{]}\PY{p}{)} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{sentences}\PY{p}{)}\PY{p}{)} \PY{p}{]}
+        \PY{n}{docs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}9}]:} TaggedDocument(words=['this', 'is', 'little', 'longer', 'and', 'more', 'detailed', 'than', 'the', 'first', 'two', 'books', 'in', 'the', 'series', 'however', 'have', 'enjoyed', 'each', 'new', 'aspect', 'of', 'the', 'exciting', 'fantasy', 'universe'], tags=['0'])
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{k+kn}{from} \PY{n+nn}{random} \PY{k}{import} \PY{n}{shuffle}
+         
+         \PY{c+c1}{\PYZsh{} package for doc2vec}
+         \PY{k+kn}{from} \PY{n+nn}{gensim}\PY{n+nn}{.}\PY{n+nn}{models} \PY{k}{import} \PY{n}{doc2vec}
+         
+         \PY{c+c1}{\PYZsh{} for more parameters, check}
+         \PY{c+c1}{\PYZsh{} https://radimrehurek.com/gensim/models/doc2vec.html}
+         
+         \PY{c+c1}{\PYZsh{} initialize the model without documents}
+         \PY{c+c1}{\PYZsh{} distributed memory model is used (dm=1)}
+         \PY{n}{model} \PY{o}{=} \PY{n}{doc2vec}\PY{o}{.}\PY{n}{Doc2Vec}\PY{p}{(}\PY{n}{dm}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{min\PYZus{}count}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{window}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+m+mi}{200}\PY{p}{,} \PY{n}{workers}\PY{o}{=}\PY{l+m+mi}{4}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} build the vocabulary using the documents}
+         \PY{n}{model}\PY{o}{.}\PY{n}{build\PYZus{}vocab}\PY{p}{(}\PY{n}{docs}\PY{p}{)} 
+         
+         \PY{c+c1}{\PYZsh{} train the model in 20 epoches}
+         \PY{c+c1}{\PYZsh{} You may need to incease epoches}
+         \PY{k}{for} \PY{n}{epoch} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{30}\PY{p}{)}\PY{p}{:}
+             \PY{c+c1}{\PYZsh{} shuffle the documents in each epoch}
+             \PY{n}{shuffle}\PY{p}{(}\PY{n}{docs}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{} in each epoch, all samples are used}
+             \PY{n}{model}\PY{o}{.}\PY{n}{train}\PY{p}{(}\PY{n}{docs}\PY{p}{,} \PY{n}{total\PYZus{}examples}\PY{o}{=}\PY{n+nb}{len}\PY{p}{(}\PY{n}{docs}\PY{p}{)}\PY{p}{,} \PY{n}{epochs}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+K:\textbackslash{}Anaconda3\textbackslash{}lib\textbackslash{}site-packages\textbackslash{}gensim\textbackslash{}models\textbackslash{}doc2vec.py:570: UserWarning: The parameter `size` is deprecated, will be removed in 4.0.0, use `vector\_size` instead.
+  warnings.warn("The parameter `size` is deprecated, will be removed in 4.0.0, use `vector\_size` instead.")
+2018-11-29 16:46:03,112 : INFO : collecting all words and their counts
+2018-11-29 16:46:03,113 : INFO : PROGRESS: at example \#0, processed 0 words (0/s), 0 word types, 0 tags
+2018-11-29 16:46:03,372 : INFO : PROGRESS: at example \#10000, processed 712003 words (2667276/s), 36988 word types, 10000 tags
+2018-11-29 16:46:03,756 : INFO : collected 55278 word types and 20000 unique tags from a corpus of 20000 examples and 1424321 words
+2018-11-29 16:46:03,756 : INFO : Loading a fresh vocabulary
+2018-11-29 16:46:03,821 : INFO : effective\_min\_count=5 retains 12133 unique words (21\% of original 55278, drops 43145)
+2018-11-29 16:46:03,821 : INFO : effective\_min\_count=5 leaves 1361983 word corpus (95\% of original 1424321, drops 62338)
+2018-11-29 16:46:03,889 : INFO : deleting the raw counts dictionary of 55278 items
+2018-11-29 16:46:03,889 : INFO : sample=0.001 downsamples 57 most-common words
+2018-11-29 16:46:03,899 : INFO : downsampling leaves estimated 1015574 word corpus (74.6\% of prior 1361983)
+2018-11-29 16:46:03,973 : INFO : estimated required memory for 12133 words and 200 dimensions: 45479300 bytes
+2018-11-29 16:46:03,973 : INFO : resetting layer weights
+2018-11-29 16:46:04,884 : INFO : training model with 4 workers on 12133 vocabulary and 200 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2018-11-29 16:46:05,891 : INFO : EPOCH 1 - PROGRESS: at 32.68\% examples, 339614 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:46:06,895 : INFO : EPOCH 1 - PROGRESS: at 66.92\% examples, 345566 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:46:07,818 : INFO : worker thread finished; awaiting finish of 3 more threads
+2018-11-29 16:46:07,829 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-11-29 16:46:07,838 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-11-29 16:46:07,851 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-11-29 16:46:07,852 : INFO : EPOCH - 1 : training on 1424321 raw words (1035277 effective words) took 3.0s, 349514 effective words/s
+2018-11-29 16:46:07,852 : INFO : training on a 1424321 raw words (1035277 effective words) took 3.0s, 348820 effective words/s
+2018-11-29 16:46:07,880 : WARNING : Effective 'alpha' higher than previous training cycles
+2018-11-29 16:46:07,881 : INFO : training model with 4 workers on 12133 vocabulary and 200 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2018-11-29 16:46:08,927 : INFO : EPOCH 1 - PROGRESS: at 20.11\% examples, 201208 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:46:10,002 : INFO : EPOCH 1 - PROGRESS: at 39.91\% examples, 194851 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:46:11,014 : INFO : EPOCH 1 - PROGRESS: at 59.30\% examples, 196446 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:46:12,049 : INFO : EPOCH 1 - PROGRESS: at 76.79\% examples, 190762 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:46:13,150 : INFO : EPOCH 1 - PROGRESS: at 96.40\% examples, 189787 words/s, in\_qsize 6, out\_qsize 0
+2018-11-29 16:46:13,191 : INFO : worker thread finished; awaiting finish of 3 more threads
+2018-11-29 16:46:13,204 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-11-29 16:46:13,270 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-11-29 16:46:13,288 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-11-29 16:46:13,289 : INFO : EPOCH - 1 : training on 1424321 raw words (1036023 effective words) took 5.4s, 191791 effective words/s
+2018-11-29 16:46:13,293 : INFO : training on a 1424321 raw words (1036023 effective words) took 5.4s, 191498 effective words/s
+2018-11-29 16:46:13,369 : WARNING : Effective 'alpha' higher than previous training cycles
+2018-11-29 16:46:13,369 : INFO : training model with 4 workers on 12133 vocabulary and 200 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2018-11-29 16:46:14,414 : INFO : EPOCH 1 - PROGRESS: at 25.91\% examples, 262047 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:46:15,435 : INFO : EPOCH 1 - PROGRESS: at 54.13\% examples, 271710 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:46:16,451 : INFO : EPOCH 1 - PROGRESS: at 81.33\% examples, 274562 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:46:16,954 : INFO : worker thread finished; awaiting finish of 3 more threads
+2018-11-29 16:46:16,965 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-11-29 16:46:16,988 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-11-29 16:46:16,990 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-11-29 16:46:16,991 : INFO : EPOCH - 1 : training on 1424321 raw words (1035647 effective words) took 3.6s, 287736 effective words/s
+2018-11-29 16:46:16,992 : INFO : training on a 1424321 raw words (1035647 effective words) took 3.6s, 286349 effective words/s
+2018-11-29 16:46:17,013 : WARNING : Effective 'alpha' higher than previous training cycles
+2018-11-29 16:46:17,017 : INFO : training model with 4 workers on 12133 vocabulary and 200 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2018-11-29 16:46:18,054 : INFO : EPOCH 1 - PROGRESS: at 28.88\% examples, 285427 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:46:19,075 : INFO : EPOCH 1 - PROGRESS: at 60.77\% examples, 307329 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:46:20,083 : INFO : EPOCH 1 - PROGRESS: at 92.33\% examples, 312405 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:46:20,261 : INFO : worker thread finished; awaiting finish of 3 more threads
+2018-11-29 16:46:20,283 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-11-29 16:46:20,288 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-11-29 16:46:20,293 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-11-29 16:46:20,295 : INFO : EPOCH - 1 : training on 1424321 raw words (1035799 effective words) took 3.3s, 316647 effective words/s
+2018-11-29 16:46:20,296 : INFO : training on a 1424321 raw words (1035799 effective words) took 3.3s, 315921 effective words/s
+2018-11-29 16:46:20,322 : WARNING : Effective 'alpha' higher than previous training cycles
+2018-11-29 16:46:20,323 : INFO : training model with 4 workers on 12133 vocabulary and 200 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2018-11-29 16:46:21,342 : INFO : EPOCH 1 - PROGRESS: at 19.86\% examples, 199000 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:46:22,392 : INFO : EPOCH 1 - PROGRESS: at 39.82\% examples, 199139 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:46:23,427 : INFO : EPOCH 1 - PROGRESS: at 64.98\% examples, 216861 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:46:24,480 : INFO : EPOCH 1 - PROGRESS: at 93.61\% examples, 233645 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:46:24,629 : INFO : worker thread finished; awaiting finish of 3 more threads
+2018-11-29 16:46:24,639 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-11-29 16:46:24,662 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-11-29 16:46:24,665 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-11-29 16:46:24,669 : INFO : EPOCH - 1 : training on 1424321 raw words (1035349 effective words) took 4.3s, 238777 effective words/s
+2018-11-29 16:46:24,670 : INFO : training on a 1424321 raw words (1035349 effective words) took 4.3s, 238230 effective words/s
+2018-11-29 16:46:24,706 : WARNING : Effective 'alpha' higher than previous training cycles
+2018-11-29 16:46:24,707 : INFO : training model with 4 workers on 12133 vocabulary and 200 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2018-11-29 16:46:25,712 : INFO : EPOCH 1 - PROGRESS: at 18.27\% examples, 188448 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:46:26,739 : INFO : EPOCH 1 - PROGRESS: at 43.38\% examples, 222159 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:46:27,749 : INFO : EPOCH 1 - PROGRESS: at 72.67\% examples, 247878 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:46:28,615 : INFO : worker thread finished; awaiting finish of 3 more threads
+2018-11-29 16:46:28,618 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-11-29 16:46:28,629 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-11-29 16:46:28,640 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-11-29 16:46:28,642 : INFO : EPOCH - 1 : training on 1424321 raw words (1035937 effective words) took 3.9s, 264299 effective words/s
+2018-11-29 16:46:28,643 : INFO : training on a 1424321 raw words (1035937 effective words) took 3.9s, 263277 effective words/s
+2018-11-29 16:46:28,665 : WARNING : Effective 'alpha' higher than previous training cycles
+2018-11-29 16:46:28,665 : INFO : training model with 4 workers on 12133 vocabulary and 200 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2018-11-29 16:46:29,683 : INFO : EPOCH 1 - PROGRESS: at 30.60\% examples, 316154 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:46:30,687 : INFO : EPOCH 1 - PROGRESS: at 63.44\% examples, 327416 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:46:31,696 : INFO : EPOCH 1 - PROGRESS: at 97.95\% examples, 335950 words/s, in\_qsize 3, out\_qsize 1
+2018-11-29 16:46:31,696 : INFO : worker thread finished; awaiting finish of 3 more threads
+2018-11-29 16:46:31,725 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-11-29 16:46:31,727 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-11-29 16:46:31,743 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-11-29 16:46:31,744 : INFO : EPOCH - 1 : training on 1424321 raw words (1036227 effective words) took 3.1s, 337792 effective words/s
+2018-11-29 16:46:31,744 : INFO : training on a 1424321 raw words (1036227 effective words) took 3.1s, 336876 effective words/s
+2018-11-29 16:46:31,769 : WARNING : Effective 'alpha' higher than previous training cycles
+2018-11-29 16:46:31,770 : INFO : training model with 4 workers on 12133 vocabulary and 200 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2018-11-29 16:46:32,881 : INFO : EPOCH 1 - PROGRESS: at 17.64\% examples, 164477 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:46:33,881 : INFO : EPOCH 1 - PROGRESS: at 35.09\% examples, 171859 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:46:34,934 : INFO : EPOCH 1 - PROGRESS: at 53.90\% examples, 176704 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:46:35,944 : INFO : EPOCH 1 - PROGRESS: at 72.11\% examples, 179086 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:46:36,987 : INFO : EPOCH 1 - PROGRESS: at 90.38\% examples, 179224 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:46:37,344 : INFO : worker thread finished; awaiting finish of 3 more threads
+2018-11-29 16:46:37,399 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-11-29 16:46:37,414 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-11-29 16:46:37,418 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-11-29 16:46:37,420 : INFO : EPOCH - 1 : training on 1424321 raw words (1035492 effective words) took 5.6s, 183549 effective words/s
+2018-11-29 16:46:37,420 : INFO : training on a 1424321 raw words (1035492 effective words) took 5.6s, 183287 effective words/s
+2018-11-29 16:46:37,477 : WARNING : Effective 'alpha' higher than previous training cycles
+2018-11-29 16:46:37,477 : INFO : training model with 4 workers on 12133 vocabulary and 200 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2018-11-29 16:46:38,494 : INFO : EPOCH 1 - PROGRESS: at 27.87\% examples, 288138 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:46:39,518 : INFO : EPOCH 1 - PROGRESS: at 57.45\% examples, 292905 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:46:40,519 : INFO : EPOCH 1 - PROGRESS: at 86.83\% examples, 296328 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:46:40,907 : INFO : worker thread finished; awaiting finish of 3 more threads
+2018-11-29 16:46:40,911 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-11-29 16:46:40,933 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-11-29 16:46:40,944 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-11-29 16:46:40,945 : INFO : EPOCH - 1 : training on 1424321 raw words (1035957 effective words) took 3.5s, 299744 effective words/s
+2018-11-29 16:46:40,946 : INFO : training on a 1424321 raw words (1035957 effective words) took 3.5s, 298902 effective words/s
+2018-11-29 16:46:40,981 : WARNING : Effective 'alpha' higher than previous training cycles
+2018-11-29 16:46:40,981 : INFO : training model with 4 workers on 12133 vocabulary and 200 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2018-11-29 16:46:42,081 : INFO : EPOCH 1 - PROGRESS: at 20.38\% examples, 192826 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:46:43,107 : INFO : EPOCH 1 - PROGRESS: at 42.02\% examples, 205148 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:46:44,117 : INFO : EPOCH 1 - PROGRESS: at 62.18\% examples, 206031 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:46:45,161 : INFO : EPOCH 1 - PROGRESS: at 85.98\% examples, 213491 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:46:45,592 : INFO : worker thread finished; awaiting finish of 3 more threads
+2018-11-29 16:46:45,598 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-11-29 16:46:45,607 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-11-29 16:46:45,622 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-11-29 16:46:45,623 : INFO : EPOCH - 1 : training on 1424321 raw words (1035597 effective words) took 4.6s, 223660 effective words/s
+2018-11-29 16:46:45,624 : INFO : training on a 1424321 raw words (1035597 effective words) took 4.6s, 223256 effective words/s
+2018-11-29 16:46:45,658 : WARNING : Effective 'alpha' higher than previous training cycles
+2018-11-29 16:46:45,658 : INFO : training model with 4 workers on 12133 vocabulary and 200 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2018-11-29 16:46:46,737 : INFO : EPOCH 1 - PROGRESS: at 20.12\% examples, 198564 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:46:47,756 : INFO : EPOCH 1 - PROGRESS: at 42.21\% examples, 208832 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:46:48,829 : INFO : EPOCH 1 - PROGRESS: at 62.42\% examples, 204529 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:46:49,841 : INFO : EPOCH 1 - PROGRESS: at 81.83\% examples, 203481 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:46:50,664 : INFO : worker thread finished; awaiting finish of 3 more threads
+2018-11-29 16:46:50,687 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-11-29 16:46:50,692 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-11-29 16:46:50,708 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-11-29 16:46:50,708 : INFO : EPOCH - 1 : training on 1424321 raw words (1035471 effective words) took 5.0s, 205884 effective words/s
+2018-11-29 16:46:50,712 : INFO : training on a 1424321 raw words (1035471 effective words) took 5.0s, 205189 effective words/s
+2018-11-29 16:46:50,760 : WARNING : Effective 'alpha' higher than previous training cycles
+2018-11-29 16:46:50,767 : INFO : training model with 4 workers on 12133 vocabulary and 200 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2018-11-29 16:46:51,807 : INFO : EPOCH 1 - PROGRESS: at 17.57\% examples, 176945 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:46:52,843 : INFO : EPOCH 1 - PROGRESS: at 37.08\% examples, 185714 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:46:53,916 : INFO : EPOCH 1 - PROGRESS: at 56.37\% examples, 186918 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:46:54,992 : INFO : EPOCH 1 - PROGRESS: at 75.97\% examples, 187327 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:46:56,037 : INFO : EPOCH 1 - PROGRESS: at 95.59\% examples, 188588 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:46:56,140 : INFO : worker thread finished; awaiting finish of 3 more threads
+2018-11-29 16:46:56,183 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-11-29 16:46:56,190 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-11-29 16:46:56,194 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-11-29 16:46:56,197 : INFO : EPOCH - 1 : training on 1424321 raw words (1035689 effective words) took 5.4s, 191307 effective words/s
+2018-11-29 16:46:56,198 : INFO : training on a 1424321 raw words (1035689 effective words) took 5.4s, 190723 effective words/s
+2018-11-29 16:46:56,249 : WARNING : Effective 'alpha' higher than previous training cycles
+2018-11-29 16:46:56,249 : INFO : training model with 4 workers on 12133 vocabulary and 200 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2018-11-29 16:46:57,272 : INFO : EPOCH 1 - PROGRESS: at 16.76\% examples, 171964 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:46:58,436 : INFO : EPOCH 1 - PROGRESS: at 34.19\% examples, 163612 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:46:59,449 : INFO : EPOCH 1 - PROGRESS: at 52.92\% examples, 172926 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:47:00,459 : INFO : EPOCH 1 - PROGRESS: at 70.41\% examples, 174172 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:47:01,475 : INFO : EPOCH 1 - PROGRESS: at 88.00\% examples, 175084 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:47:02,054 : INFO : worker thread finished; awaiting finish of 3 more threads
+2018-11-29 16:47:02,067 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-11-29 16:47:02,101 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-11-29 16:47:02,117 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-11-29 16:47:02,120 : INFO : EPOCH - 1 : training on 1424321 raw words (1035942 effective words) took 5.9s, 176963 effective words/s
+2018-11-29 16:47:02,122 : INFO : training on a 1424321 raw words (1035942 effective words) took 5.9s, 176529 effective words/s
+2018-11-29 16:47:02,169 : WARNING : Effective 'alpha' higher than previous training cycles
+2018-11-29 16:47:02,170 : INFO : training model with 4 workers on 12133 vocabulary and 200 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2018-11-29 16:47:03,178 : INFO : EPOCH 1 - PROGRESS: at 24.43\% examples, 252488 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:47:04,189 : INFO : EPOCH 1 - PROGRESS: at 50.92\% examples, 261566 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:47:05,227 : INFO : EPOCH 1 - PROGRESS: at 76.89\% examples, 261295 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:47:06,049 : INFO : worker thread finished; awaiting finish of 3 more threads
+2018-11-29 16:47:06,062 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-11-29 16:47:06,089 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-11-29 16:47:06,101 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-11-29 16:47:06,102 : INFO : EPOCH - 1 : training on 1424321 raw words (1036197 effective words) took 3.9s, 264274 effective words/s
+2018-11-29 16:47:06,102 : INFO : training on a 1424321 raw words (1036197 effective words) took 3.9s, 263596 effective words/s
+2018-11-29 16:47:06,140 : WARNING : Effective 'alpha' higher than previous training cycles
+2018-11-29 16:47:06,142 : INFO : training model with 4 workers on 12133 vocabulary and 200 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2018-11-29 16:47:07,153 : INFO : EPOCH 1 - PROGRESS: at 22.88\% examples, 238233 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:47:08,170 : INFO : EPOCH 1 - PROGRESS: at 48.09\% examples, 247451 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:47:09,177 : INFO : EPOCH 1 - PROGRESS: at 72.45\% examples, 248686 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:47:10,163 : INFO : worker thread finished; awaiting finish of 3 more threads
+2018-11-29 16:47:10,212 : INFO : EPOCH 1 - PROGRESS: at 98.67\% examples, 251270 words/s, in\_qsize 2, out\_qsize 1
+2018-11-29 16:47:10,216 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-11-29 16:47:10,217 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-11-29 16:47:10,229 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-11-29 16:47:10,231 : INFO : EPOCH - 1 : training on 1424321 raw words (1034985 effective words) took 4.1s, 253636 effective words/s
+2018-11-29 16:47:10,231 : INFO : training on a 1424321 raw words (1034985 effective words) took 4.1s, 253058 effective words/s
+2018-11-29 16:47:10,263 : WARNING : Effective 'alpha' higher than previous training cycles
+2018-11-29 16:47:10,264 : INFO : training model with 4 workers on 12133 vocabulary and 200 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2018-11-29 16:47:11,318 : INFO : EPOCH 1 - PROGRESS: at 17.48\% examples, 173715 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:47:12,440 : INFO : EPOCH 1 - PROGRESS: at 36.95\% examples, 176941 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:47:13,461 : INFO : EPOCH 1 - PROGRESS: at 56.59\% examples, 183818 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:47:14,500 : INFO : EPOCH 1 - PROGRESS: at 76.42\% examples, 186542 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:47:15,518 : INFO : EPOCH 1 - PROGRESS: at 97.16\% examples, 191667 words/s, in\_qsize 5, out\_qsize 0
+2018-11-29 16:47:15,553 : INFO : worker thread finished; awaiting finish of 3 more threads
+2018-11-29 16:47:15,603 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-11-29 16:47:15,603 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-11-29 16:47:15,624 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-11-29 16:47:15,627 : INFO : EPOCH - 1 : training on 1424321 raw words (1034675 effective words) took 5.3s, 193430 effective words/s
+2018-11-29 16:47:15,627 : INFO : training on a 1424321 raw words (1034675 effective words) took 5.4s, 192931 effective words/s
+2018-11-29 16:47:15,672 : WARNING : Effective 'alpha' higher than previous training cycles
+2018-11-29 16:47:15,674 : INFO : training model with 4 workers on 12133 vocabulary and 200 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2018-11-29 16:47:16,803 : INFO : EPOCH 1 - PROGRESS: at 20.42\% examples, 188166 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:47:17,887 : INFO : EPOCH 1 - PROGRESS: at 42.66\% examples, 200337 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:47:18,889 : INFO : EPOCH 1 - PROGRESS: at 64.37\% examples, 207478 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:47:19,906 : INFO : EPOCH 1 - PROGRESS: at 84.57\% examples, 206984 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:47:20,428 : INFO : worker thread finished; awaiting finish of 3 more threads
+2018-11-29 16:47:20,457 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-11-29 16:47:20,477 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-11-29 16:47:20,477 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-11-29 16:47:20,481 : INFO : EPOCH - 1 : training on 1424321 raw words (1035657 effective words) took 4.8s, 216081 effective words/s
+2018-11-29 16:47:20,482 : INFO : training on a 1424321 raw words (1035657 effective words) took 4.8s, 215456 effective words/s
+2018-11-29 16:47:20,508 : WARNING : Effective 'alpha' higher than previous training cycles
+2018-11-29 16:47:20,508 : INFO : training model with 4 workers on 12133 vocabulary and 200 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2018-11-29 16:47:21,541 : INFO : EPOCH 1 - PROGRESS: at 20.07\% examples, 207364 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:47:22,575 : INFO : EPOCH 1 - PROGRESS: at 42.12\% examples, 215835 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:47:23,582 : INFO : EPOCH 1 - PROGRESS: at 65.41\% examples, 222646 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:47:24,595 : INFO : EPOCH 1 - PROGRESS: at 92.22\% examples, 234471 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:47:24,812 : INFO : worker thread finished; awaiting finish of 3 more threads
+2018-11-29 16:47:24,828 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-11-29 16:47:24,845 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-11-29 16:47:24,862 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-11-29 16:47:24,865 : INFO : EPOCH - 1 : training on 1424321 raw words (1035325 effective words) took 4.3s, 238846 effective words/s
+2018-11-29 16:47:24,865 : INFO : training on a 1424321 raw words (1035325 effective words) took 4.3s, 238241 effective words/s
+2018-11-29 16:47:24,896 : WARNING : Effective 'alpha' higher than previous training cycles
+2018-11-29 16:47:24,896 : INFO : training model with 4 workers on 12133 vocabulary and 200 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2018-11-29 16:47:25,916 : INFO : EPOCH 1 - PROGRESS: at 16.21\% examples, 164994 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:47:26,967 : INFO : EPOCH 1 - PROGRESS: at 39.67\% examples, 199648 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:47:28,020 : INFO : EPOCH 1 - PROGRESS: at 67.48\% examples, 225806 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:47:29,020 : INFO : EPOCH 1 - PROGRESS: at 95.69\% examples, 241206 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:47:29,116 : INFO : worker thread finished; awaiting finish of 3 more threads
+2018-11-29 16:47:29,138 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-11-29 16:47:29,169 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-11-29 16:47:29,175 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-11-29 16:47:29,176 : INFO : EPOCH - 1 : training on 1424321 raw words (1035475 effective words) took 4.3s, 242835 effective words/s
+2018-11-29 16:47:29,176 : INFO : training on a 1424321 raw words (1035475 effective words) took 4.3s, 242067 effective words/s
+2018-11-29 16:47:29,200 : WARNING : Effective 'alpha' higher than previous training cycles
+2018-11-29 16:47:29,201 : INFO : training model with 4 workers on 12133 vocabulary and 200 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2018-11-29 16:47:30,229 : INFO : EPOCH 1 - PROGRESS: at 47.83\% examples, 483426 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:47:31,285 : INFO : EPOCH 1 - PROGRESS: at 79.13\% examples, 394288 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:47:31,797 : INFO : worker thread finished; awaiting finish of 3 more threads
+2018-11-29 16:47:31,837 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-11-29 16:47:31,841 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-11-29 16:47:31,846 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-11-29 16:47:31,850 : INFO : EPOCH - 1 : training on 1424321 raw words (1035707 effective words) took 2.6s, 392207 effective words/s
+2018-11-29 16:47:31,851 : INFO : training on a 1424321 raw words (1035707 effective words) took 2.6s, 391003 effective words/s
+2018-11-29 16:47:31,869 : WARNING : Effective 'alpha' higher than previous training cycles
+2018-11-29 16:47:31,869 : INFO : training model with 4 workers on 12133 vocabulary and 200 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2018-11-29 16:47:32,890 : INFO : EPOCH 1 - PROGRESS: at 31.41\% examples, 322239 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:47:33,901 : INFO : EPOCH 1 - PROGRESS: at 63.08\% examples, 326479 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:47:34,917 : INFO : EPOCH 1 - PROGRESS: at 97.00\% examples, 331673 words/s, in\_qsize 5, out\_qsize 0
+2018-11-29 16:47:34,946 : INFO : worker thread finished; awaiting finish of 3 more threads
+2018-11-29 16:47:34,967 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-11-29 16:47:34,970 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-11-29 16:47:34,978 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-11-29 16:47:34,978 : INFO : EPOCH - 1 : training on 1424321 raw words (1035009 effective words) took 3.1s, 334733 effective words/s
+2018-11-29 16:47:34,979 : INFO : training on a 1424321 raw words (1035009 effective words) took 3.1s, 333997 effective words/s
+2018-11-29 16:47:34,998 : WARNING : Effective 'alpha' higher than previous training cycles
+2018-11-29 16:47:35,004 : INFO : training model with 4 workers on 12133 vocabulary and 200 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2018-11-29 16:47:36,008 : INFO : EPOCH 1 - PROGRESS: at 39.09\% examples, 403297 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:47:37,022 : INFO : EPOCH 1 - PROGRESS: at 83.36\% examples, 428450 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:47:37,396 : INFO : worker thread finished; awaiting finish of 3 more threads
+2018-11-29 16:47:37,423 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-11-29 16:47:37,430 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-11-29 16:47:37,439 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-11-29 16:47:37,440 : INFO : EPOCH - 1 : training on 1424321 raw words (1035052 effective words) took 2.4s, 426093 effective words/s
+2018-11-29 16:47:37,441 : INFO : training on a 1424321 raw words (1035052 effective words) took 2.4s, 424868 effective words/s
+2018-11-29 16:47:37,459 : WARNING : Effective 'alpha' higher than previous training cycles
+2018-11-29 16:47:37,459 : INFO : training model with 4 workers on 12133 vocabulary and 200 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2018-11-29 16:47:38,479 : INFO : EPOCH 1 - PROGRESS: at 33.73\% examples, 344297 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:47:39,522 : INFO : EPOCH 1 - PROGRESS: at 65.13\% examples, 328173 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:47:40,467 : INFO : worker thread finished; awaiting finish of 3 more threads
+2018-11-29 16:47:40,502 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-11-29 16:47:40,512 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-11-29 16:47:40,516 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-11-29 16:47:40,517 : INFO : EPOCH - 1 : training on 1424321 raw words (1035273 effective words) took 3.0s, 339896 effective words/s
+2018-11-29 16:47:40,518 : INFO : training on a 1424321 raw words (1035273 effective words) took 3.1s, 339198 effective words/s
+2018-11-29 16:47:40,532 : WARNING : Effective 'alpha' higher than previous training cycles
+2018-11-29 16:47:40,538 : INFO : training model with 4 workers on 12133 vocabulary and 200 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2018-11-29 16:47:41,549 : INFO : EPOCH 1 - PROGRESS: at 33.73\% examples, 342701 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:47:42,594 : INFO : EPOCH 1 - PROGRESS: at 67.75\% examples, 342402 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:47:43,367 : INFO : worker thread finished; awaiting finish of 3 more threads
+2018-11-29 16:47:43,370 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-11-29 16:47:43,391 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-11-29 16:47:43,397 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-11-29 16:47:43,399 : INFO : EPOCH - 1 : training on 1424321 raw words (1035210 effective words) took 2.9s, 362820 effective words/s
+2018-11-29 16:47:43,399 : INFO : training on a 1424321 raw words (1035210 effective words) took 2.9s, 361844 effective words/s
+2018-11-29 16:47:43,422 : WARNING : Effective 'alpha' higher than previous training cycles
+2018-11-29 16:47:43,423 : INFO : training model with 4 workers on 12133 vocabulary and 200 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2018-11-29 16:47:44,457 : INFO : EPOCH 1 - PROGRESS: at 20.86\% examples, 210628 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:47:45,458 : INFO : EPOCH 1 - PROGRESS: at 39.80\% examples, 202568 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:47:46,480 : INFO : EPOCH 1 - PROGRESS: at 56.41\% examples, 191964 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:47:47,526 : INFO : EPOCH 1 - PROGRESS: at 75.50\% examples, 190668 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:47:48,537 : INFO : EPOCH 1 - PROGRESS: at 94.24\% examples, 191143 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:47:48,846 : INFO : worker thread finished; awaiting finish of 3 more threads
+2018-11-29 16:47:48,853 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-11-29 16:47:48,858 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-11-29 16:47:48,872 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-11-29 16:47:48,876 : INFO : EPOCH - 1 : training on 1424321 raw words (1035510 effective words) took 5.4s, 190150 effective words/s
+2018-11-29 16:47:48,878 : INFO : training on a 1424321 raw words (1035510 effective words) took 5.5s, 189861 effective words/s
+2018-11-29 16:47:48,932 : WARNING : Effective 'alpha' higher than previous training cycles
+2018-11-29 16:47:48,932 : INFO : training model with 4 workers on 12133 vocabulary and 200 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2018-11-29 16:47:49,957 : INFO : EPOCH 1 - PROGRESS: at 14.85\% examples, 151606 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:47:50,969 : INFO : EPOCH 1 - PROGRESS: at 31.93\% examples, 161650 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:47:51,977 : INFO : EPOCH 1 - PROGRESS: at 48.53\% examples, 165103 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:47:52,986 : INFO : EPOCH 1 - PROGRESS: at 67.44\% examples, 172461 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:47:54,002 : INFO : EPOCH 1 - PROGRESS: at 85.45\% examples, 174861 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:47:54,652 : INFO : worker thread finished; awaiting finish of 3 more threads
+2018-11-29 16:47:54,652 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-11-29 16:47:54,666 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-11-29 16:47:54,681 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-11-29 16:47:54,684 : INFO : EPOCH - 1 : training on 1424321 raw words (1035370 effective words) took 5.7s, 180699 effective words/s
+2018-11-29 16:47:54,685 : INFO : training on a 1424321 raw words (1035370 effective words) took 5.8s, 180038 effective words/s
+2018-11-29 16:47:54,715 : WARNING : Effective 'alpha' higher than previous training cycles
+2018-11-29 16:47:54,715 : INFO : training model with 4 workers on 12133 vocabulary and 200 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2018-11-29 16:47:55,798 : INFO : EPOCH 1 - PROGRESS: at 31.59\% examples, 303842 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:47:56,889 : INFO : EPOCH 1 - PROGRESS: at 51.45\% examples, 244277 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:47:57,898 : INFO : EPOCH 1 - PROGRESS: at 73.53\% examples, 239097 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:47:58,684 : INFO : worker thread finished; awaiting finish of 3 more threads
+2018-11-29 16:47:58,720 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-11-29 16:47:58,729 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-11-29 16:47:58,736 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-11-29 16:47:58,737 : INFO : EPOCH - 1 : training on 1424321 raw words (1035807 effective words) took 4.0s, 258227 effective words/s
+2018-11-29 16:47:58,738 : INFO : training on a 1424321 raw words (1035807 effective words) took 4.0s, 257822 effective words/s
+2018-11-29 16:47:58,765 : WARNING : Effective 'alpha' higher than previous training cycles
+2018-11-29 16:47:58,765 : INFO : training model with 4 workers on 12133 vocabulary and 200 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2018-11-29 16:47:59,851 : INFO : EPOCH 1 - PROGRESS: at 20.18\% examples, 192747 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:48:00,867 : INFO : EPOCH 1 - PROGRESS: at 46.60\% examples, 230444 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:48:01,919 : INFO : EPOCH 1 - PROGRESS: at 74.06\% examples, 243129 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:48:02,820 : INFO : worker thread finished; awaiting finish of 3 more threads
+2018-11-29 16:48:02,830 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-11-29 16:48:02,860 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-11-29 16:48:02,862 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-11-29 16:48:02,867 : INFO : EPOCH - 1 : training on 1424321 raw words (1035141 effective words) took 4.1s, 252851 effective words/s
+2018-11-29 16:48:02,869 : INFO : training on a 1424321 raw words (1035141 effective words) took 4.1s, 252288 effective words/s
+2018-11-29 16:48:02,905 : WARNING : Effective 'alpha' higher than previous training cycles
+2018-11-29 16:48:02,905 : INFO : training model with 4 workers on 12133 vocabulary and 200 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2018-11-29 16:48:03,955 : INFO : EPOCH 1 - PROGRESS: at 20.11\% examples, 201782 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:48:05,006 : INFO : EPOCH 1 - PROGRESS: at 42.49\% examples, 210665 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:48:06,024 : INFO : EPOCH 1 - PROGRESS: at 65.22\% examples, 216219 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:48:07,025 : INFO : EPOCH 1 - PROGRESS: at 87.42\% examples, 219884 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:48:07,426 : INFO : worker thread finished; awaiting finish of 3 more threads
+2018-11-29 16:48:07,431 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-11-29 16:48:07,434 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-11-29 16:48:07,461 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-11-29 16:48:07,461 : INFO : EPOCH - 1 : training on 1424321 raw words (1035428 effective words) took 4.5s, 227733 effective words/s
+2018-11-29 16:48:07,461 : INFO : training on a 1424321 raw words (1035428 effective words) took 4.6s, 227272 effective words/s
+2018-11-29 16:48:07,494 : WARNING : Effective 'alpha' higher than previous training cycles
+2018-11-29 16:48:07,494 : INFO : training model with 4 workers on 12133 vocabulary and 200 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2018-11-29 16:48:08,593 : INFO : EPOCH 1 - PROGRESS: at 23.36\% examples, 218967 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:48:09,661 : INFO : EPOCH 1 - PROGRESS: at 45.72\% examples, 217710 words/s, in\_qsize 8, out\_qsize 0
+2018-11-29 16:48:10,695 : INFO : EPOCH 1 - PROGRESS: at 68.03\% examples, 220264 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:48:11,714 : INFO : EPOCH 1 - PROGRESS: at 90.33\% examples, 221533 words/s, in\_qsize 7, out\_qsize 0
+2018-11-29 16:48:12,068 : INFO : worker thread finished; awaiting finish of 3 more threads
+2018-11-29 16:48:12,099 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-11-29 16:48:12,108 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-11-29 16:48:12,125 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-11-29 16:48:12,126 : INFO : EPOCH - 1 : training on 1424321 raw words (1035695 effective words) took 4.6s, 224120 effective words/s
+2018-11-29 16:48:12,129 : INFO : training on a 1424321 raw words (1035695 effective words) took 4.6s, 223593 effective words/s
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{c+c1}{\PYZsh{} Inspect paragraph vectors and word vectors}
+         
+         \PY{c+c1}{\PYZsh{} the pragraph vector of the first document}
+         \PY{n}{model}\PY{o}{.}\PY{n}{docvecs}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{0}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{} the word vector of \PYZsq{}movie\PYZsq{}}
+         \PY{n}{model}\PY{o}{.}\PY{n}{wv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{movie}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}11}]:} array([-0.16183381,  0.12456312, -0.01335587, -0.42504102, -0.30003437,
+                -0.0140024 ,  0.03075002, -0.07262519,  0.16955574, -0.00588711,
+                 0.13330661,  0.34285158,  0.03422689,  0.16842516, -0.25482705,
+                -0.19358243,  0.04123701, -0.13208947, -0.35571748,  0.12064377,
+                -0.30898485, -0.29411885, -0.16552879, -0.15874691,  0.04507516,
+                -0.04300391,  0.32410267,  0.013937  , -0.04040687, -0.29224434,
+                -0.04856979, -0.1116295 ,  0.00915188,  0.09112127, -0.2545681 ,
+                -0.3345861 , -0.07077353,  0.31784013,  0.04960489, -0.41506338,
+                -0.01637752, -0.22232306, -0.09818943, -0.33422542, -0.07733303,
+                -0.05552815,  0.13349698,  0.15030839, -0.15660381, -0.24477176,
+                 0.07735987,  0.04587603, -0.14181733,  0.08060279,  0.04808345,
+                -0.10767551,  0.13980703, -0.10440759, -0.11982111,  0.12235789,
+                -0.16645856,  0.01852177, -0.00102426, -0.03302133,  0.05966326,
+                -0.36508772, -0.14287128,  0.21138044, -0.26033118,  0.12129605,
+                 0.08976778,  0.19576767, -0.05471664,  0.01975648,  0.43221414,
+                 0.10682452,  0.15065292,  0.03178932, -0.09301608,  0.02151372,
+                 0.16667932,  0.16814029,  0.11884727, -0.0403614 ,  0.08739205,
+                 0.16322318, -0.33150536, -0.16081755, -0.08069109,  0.09853979,
+                -0.2910754 , -0.0124069 ,  0.17236711, -0.06154401, -0.288048  ,
+                -0.09386825,  0.2912294 , -0.3563259 , -0.38864982,  0.3310266 ,
+                 0.01427392,  0.12356894,  0.23026155, -0.12611575,  0.5078009 ,
+                -0.01169908,  0.11385526,  0.09270956,  0.35912213, -0.03354023,
+                -0.16012795,  0.02311128, -0.03141032, -0.1734618 ,  0.09177537,
+                -0.21226501, -0.10323358, -0.26189357, -0.07324238,  0.53196925,
+                -0.04308598, -0.06449925,  0.04209057,  0.20349883,  0.19346678,
+                 0.070992  ,  0.05256363,  0.12019345,  0.04352941,  0.02662358,
+                 0.00329227, -0.11965866, -0.04587132, -0.03493716,  0.0535812 ,
+                -0.18601915,  0.20363311, -0.43157324, -0.23161551,  0.03476121,
+                 0.38796136,  0.13938986, -0.1796492 , -0.2045296 , -0.3020526 ,
+                -0.17713366, -0.13149856,  0.05133752, -0.33229393,  0.25970936,
+                 0.18245725, -0.13282162, -0.09141342, -0.2143202 , -0.42059162,
+                -0.43859765, -0.19174923,  0.21275832,  0.00944428,  0.3506164 ,
+                 0.04712678,  0.19682868, -0.19509597,  0.13725056,  0.39238638,
+                 0.11430119,  0.19410567, -0.16083446,  0.06587894,  0.0285689 ,
+                -0.028165  , -0.08210553,  0.03016319,  0.32302228, -0.09624881,
+                 0.02926478, -0.26510578,  0.1152316 , -0.30380827,  0.12677887,
+                -0.07169519, -0.6198438 , -0.357696  ,  0.38052362, -0.02103613,
+                 0.3716604 ,  0.14247864, -0.06666965,  0.12678385, -0.37629774,
+                 0.03782431, -0.05809937,  0.13957895, -0.35185707, -0.18117827,
+                 0.00579353, -0.36504185,  0.19273318,  0.0403293 , -0.07180209],
+               dtype=float32)
+\end{Verbatim}
+            
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}11}]:} array([-0.32080868, -0.44208628, -1.9293183 ,  0.52698386,  1.0503274 ,
+                -0.4278534 , -0.46762788, -1.185181  ,  0.94758856,  0.8573701 ,
+                -0.10250252, -0.44488475,  0.17767504,  0.33515498,  0.5420199 ,
+                -1.144247  ,  0.5452122 , -0.2690067 , -1.4898711 , -0.49906024,
+                 1.3199672 ,  0.6627699 , -0.6692321 ,  0.12848899,  0.8057578 ,
+                -1.213073  , -2.3001816 ,  0.6786487 , -1.6315558 , -0.69076014,
+                 1.2474767 ,  2.688198  , -0.4066019 , -0.6906432 , -1.6458328 ,
+                -0.4838479 , -0.22592361,  0.50402784,  2.0284889 ,  0.02295262,
+                -0.18683141, -0.06759565,  1.4908113 , -0.7008959 , -0.16842826,
+                -0.9167728 ,  1.3537824 , -0.72132736, -1.966232  ,  0.58001393,
+                 0.235718  ,  1.2591712 ,  1.676096  , -0.00720707, -0.68636155,
+                -0.09933744, -0.63568777, -1.018072  ,  0.47194186, -0.61218387,
+                 0.99325264,  0.13874184, -0.062783  ,  1.1817472 , -0.15142146,
+                -0.6144181 , -1.7649287 ,  0.53576696, -1.0139626 ,  0.9796524 ,
+                -1.1644771 , -0.68344426, -0.74336225,  1.6141788 ,  1.0560164 ,
+                -0.03256304,  2.0317523 , -0.14260624, -0.45038137,  1.848514  ,
+                 0.8404191 , -0.6203046 , -0.067275  ,  0.14980055,  0.27271178,
+                 0.32834882,  0.38893285,  0.36045647, -0.79050106, -0.5524573 ,
+                 0.32633936, -0.03658831, -1.1070216 ,  0.6222119 , -1.773923  ,
+                -0.1484579 , -1.3019855 , -0.48654735,  0.11387898, -1.3481264 ,
+                 0.02982681, -2.2456415 , -0.60968745,  0.4616796 , -0.5299024 ,
+                 0.4219045 ,  1.3811265 , -0.49967077,  1.0561467 , -0.7880461 ,
+                 0.4065135 ,  0.3652853 , -0.4802662 ,  0.19970217, -0.20216256,
+                 0.27839452, -0.17768727,  0.2738623 ,  1.4785346 , -0.86936086,
+                 0.6138955 , -0.8072331 , -0.10665742, -1.6639041 ,  0.872701  ,
+                 0.15326138, -0.69102234, -0.71247363,  1.5169333 ,  1.3097624 ,
+                -1.2160581 ,  0.8250767 ,  0.49328578,  0.09200858, -0.37519982,
+                 0.38998967,  0.41336524, -0.28360963,  1.4676125 , -2.259849  ,
+                 0.20233826,  0.47153783, -1.0981681 , -0.47334275, -0.8716437 ,
+                -0.5021406 , -1.4393088 , -2.2639341 , -1.3701645 ,  0.23181465,
+                -0.68470883,  0.42660862, -1.0577153 ,  1.2044241 , -1.7349864 ,
+                -1.1685233 , -1.3469934 , -0.13052265,  0.34111783, -0.00976024,
+                -1.1178615 ,  1.4672929 , -0.5204701 , -1.6437451 ,  1.5688747 ,
+                -0.31005183,  0.30817533, -0.52944887, -0.32050443,  0.1693108 ,
+                -0.08643398,  1.147033  ,  0.19052649, -0.5054568 ,  0.07958519,
+                 0.02251151, -1.3353446 ,  0.6874848 , -0.26753142, -0.55790126,
+                 0.39676443,  1.4140972 ,  1.6589899 , -0.84850836,  0.3599535 ,
+                -0.17827247,  0.44097623,  0.08061384,  3.2280357 , -0.66111565,
+                -0.04238366, -1.7968224 ,  0.11930159,  1.6828778 ,  0.9030321 ,
+                -0.02051952, -0.6291989 ,  1.2638416 , -1.0686519 , -0.01532591],
+               dtype=float32)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{c+c1}{\PYZsh{} Check word similarity}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Top 5 words similar to word }\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{sound}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{model}\PY{o}{.}\PY{n}{wv}\PY{o}{.}\PY{n}{most\PYZus{}similar}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sound}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{topn}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Top 5 words similar to word }\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{sound}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{ but not relevant to }\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{film}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{model}\PY{o}{.}\PY{n}{wv}\PY{o}{.}\PY{n}{most\PYZus{}similar}\PY{p}{(}\PY{n}{positive}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sound}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{music}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{negative}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{film}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{topn}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Similarity between }\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{movie}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{ and }\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{film}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{model}\PY{o}{.}\PY{n}{wv}\PY{o}{.}\PY{n}{similarity}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{movie}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{film}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} 
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Similarity between }\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{movie}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{ and }\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{city}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{model}\PY{o}{.}\PY{n}{wv}\PY{o}{.}\PY{n}{similarity}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{movie}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{city}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} 
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+2018-11-29 16:50:45,587 : INFO : precomputing L2-norms of word weight vectors
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Top 5 words similar to word 'sound'
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}12}]:} [('sounding', 0.4111652970314026),
+          ('noise', 0.39860135316848755),
+          ('sounds', 0.3959551453590393),
+          ('camera', 0.3572186231613159),
+          ('voice', 0.35401657223701477)]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+Top 5 words similar to word 'sound' but not relevant to 'film'
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}12}]:} [('sounds', 0.3940489888191223),
+          ('voice', 0.3609972298145294),
+          ('noise', 0.34899282455444336),
+          ('ballads', 0.34382694959640503),
+          ('melodies', 0.3400244116783142)]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+Similarity between 'movie' and 'film':
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}12}]:} 0.66123486
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+Similarity between 'movie' and 'city':
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}12}]:} 0.045854423
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Inspect document similarity}
+        
+        \PY{n}{model}\PY{o}{.}\PY{n}{docvecs}\PY{o}{.}\PY{n}{most\PYZus{}similar}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{0}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{convolutional-neural-networks-cnn}{%
+\subsection{5. Convolutional Neural Networks
+(CNN)}\label{convolutional-neural-networks-cnn}}
+
+References (\textbf{highly recommended}): -
+http://www.wildml.com/2015/11/understanding-convolutional-neural-networks-for-nlp/
+-
+https://adeshpande3.github.io/adeshpande3.github.io/A-Beginner\%27s-Guide-To-Understanding-Convolutional-Neural-Networks/
+
+    \begin{itemize}
+\tightlist
+\item
+  CNNs are widely used in Computer Vision
+\item
+  CNNs were responsible for \textbf{major breakthroughs} in
+  \textbf{Image Recognition} and are the core of most Computer Vision
+  systems including automated photo tagging, self-driving cars
+\item
+  Recently, CNNs have been applied in NLP and achieved good performance.
+\end{itemize}
+
+    \hypertarget{convolution}{%
+\subsubsection{5.1. Convolution}\label{convolution}}
+
+\begin{itemize}
+\tightlist
+\item
+  Convolution is the technique to \textbf{extract distinguishing
+  features} from feature spaces
+\item
+  Example: feature detection from image pixels
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Feature space: a matrix of pixels of 0 (black) or 1 (white)
+  \item
+    \textbf{Filter/kernal/feature Detector}: a function applied to every
+    fixed subset of the feature matrix
+
+    \begin{itemize}
+    \tightlist
+    \item
+      e.g.~3x3 filter (a 3x3 matrix
+      \(\begin{vmatrix} 1 & 0 & 1 \\ 0 & 1 & 0 \\ 1 & 0 & 1 \end{vmatrix}\)
+      ) slides through every area of the matrix sequentially, multiplies
+      its values element-wise with the original matrix, then sum them up
+    \item
+      e.g.~a filter (e.g.
+      \(\begin{vmatrix} 0 & -1 & 0 \\ -1 & 4 & -1 \\ 0 & -1 & 0 \end{vmatrix}\)
+      ) to take difference between a pixel and its neighbors
+      --\textgreater{} detect edges 
+    \end{itemize}
+  \end{itemize}
+\item
+  Typically, a larger number of filters in different sizes will be used
+\item
+  Configuration of filters
+
+  \begin{itemize}
+  \tightlist
+  \item
+    filter size (\(h \text{x} w\))
+  \item
+    stride size (how much to shift a filter in each step) (\(s\))
+  \item
+    number of filters (depth) (\(d\))
+  \end{itemize}
+\item
+  Questions:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    With 5x5 feature space, afte apply a filter of size 3x3 with stride
+    size 2, what will be the size of the result?
+  \item
+    Formula to calculate the size?
+  \end{itemize}
+\end{itemize}
+
+    \hypertarget{pooling-layer}{%
+\subsubsection{5.2. Pooling Layer}\label{pooling-layer}}
+
+\begin{itemize}
+\tightlist
+\item
+  Pooling layers are typically applied after the convolutional layers.
+\item
+  A pooling layer subsamples its input.
+\item
+  The most common way to do pooling is to apply a \textbf{max} operation
+  to the result of each filter (a.k.a 1-max pooling).
+
+  \begin{itemize}
+  \tightlist
+  \item
+    e.g.~for the example below, by 1-max pooling, we get 8.
+  \item
+    If 100 filters have been used, then we get 100 numbers
+  \end{itemize}
+\item
+  Pooling can be applied over a window (e.g.~2x2) 
+\end{itemize}
+
+    \hypertarget{what-are-cnns}{%
+\subsubsection{5.3. What are CNNs}\label{what-are-cnns}}
+
+\begin{itemize}
+\tightlist
+\item
+  CNNs consists of several layers of convolutions with nonlinear
+  activation functions like ReLU or tanh
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  A CNN typically contains:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    A \textbf{convolution layer} (not dense layer) connected to the
+    input layer
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Each convolution layer applies different filters.
+    \item
+      Typically hundreds or thousands filters used.
+    \item
+      The results of filters are concatenated.
+    \end{itemize}
+  \item
+    A \textbf{pooling layer} is used to subsample the result of
+    convolution layer
+  \item
+    There may be multiple layers of convolution and pooling combined.
+    E.g. image detection
+
+    \begin{itemize}
+    \tightlist
+    \item
+      1st layer: detect edges
+    \item
+      2nd layer: detect shape, e.g.~round, square
+    \item
+      3rd layer: wheels, doors etc.
+    \end{itemize}
+  \item
+    Then each result out of convolution-pooling is connected to a neuron
+    in the output (local connections). Such results results are
+    high-level features used by classification algorithms.
+  \end{itemize}
+\item
+  During the training phase, a CNN \textbf{automatically learns the
+  values of its filters based on the task you want to perform}.
+\item
+  Powerful capabilities of CNN:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Location Invariance}: CNN extracts distinguishing features
+    by convolution-pooling and it does not care where these features
+    are. So images can still be recognized after rotation and scaling.
+  \item
+    \textbf{Compositionality}: Each filter composes a local patch of
+    lower-level features into higher-level representation. E.g., detect
+    edges from pixels, shapes from edges, and more complex objects from
+    shapes.
+  \end{itemize}
+\item
+  If you're interested in how CNNs are used in image recognition, follow
+  the classical MNIST handwritten digit recognition tutorial
+\item
+  Play with it!
+  http://scs.ryerson.ca/\textasciitilde{}aharley/vis/conv/flat.html
+\end{itemize}
+
+    \hypertarget{application-of-cnn-in-text-classification}{%
+\subsubsection{5.4. Application of CNN in Text
+Classification}\label{application-of-cnn-in-text-classification}}
+
+\begin{itemize}
+\tightlist
+\item
+  Assume \(m\) samples, each of which is a sentence with \(n\) words
+  (short sentences can be padded)
+\item
+  \textbf{Embedding}: In each sentence, each word can be represented as
+  its word vector of dimension \(d\) (pretrained or to be trained)
+\item
+  \textbf{Convolution}: Apply filters to n-grams of different lengths
+  (e.g.~unigram, bigrams, \ldots{}).
+
+  \begin{itemize}
+  \tightlist
+  \item
+    E.g. A filter can slide through every 2 words (bigram)
+  \item
+    So, the filter size (i.e.~region size) can be \(1\text{x}d\)
+    (unigram), \(2\text{x}d\) (bigram), \(3\text{x}d\) (trigram),
+    \ldots{}
+  \end{itemize}
+\item
+  At pooling layer, 1-max pooling is applied to the result of each
+  filter. Then all results after pooling are concatenated as the input
+  to the output layer
+
+  \begin{itemize}
+  \tightlist
+  \item
+    This is equivalent to select words or phrases that are
+    \textbf{discriminative} with regard to the classification goal
+  \end{itemize}
+\end{itemize}
+
+\emph{Illustration of a Convolutional Neural Network (CNN) architecture
+for sentence classification. Here we depict three filter region sizes:
+2, 3 and 4, each of which has 2 filters. Every filter performs
+convolution on the sentence matrix and generates (variable-length)
+feature maps. Then 1-max pooling is performed over each map, i.e., the
+largest number from each feature map is recorded. Thus a univariate
+feature vector is generated from all six maps, and these 6 features are
+concatenated to form a feature vector for the penultimate layer. The
+final softmax layer then receives this feature vector as input and uses
+it to classify the sentence; here we assume binary classification and
+hence depict two possible output states. Source: Zhang, Y., \& Wallace,
+B. (2015). A Sensitivity Analysis of (and Practitioners' Guide to)
+Convolutional Neural Networks for Sentence Classification.}
+
+\begin{itemize}
+\tightlist
+\item
+  Questions:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    How many parameters in total in the convolution layer?
+  \end{itemize}
+\end{itemize}
+
+    \hypertarget{how-to-deal-with-overfitting---regularization-dropout}{%
+\subsubsection{5.5. How to deal with overfitting - Regularization \&
+Dropout}\label{how-to-deal-with-overfitting---regularization-dropout}}
+
+\begin{itemize}
+\tightlist
+\item
+  Deep neural nets with a large number of parameters can be easily
+  suffer from overfitting
+\item
+  Typical approaches to overcome overfitting
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Regularization
+  \item
+    Dropout (which is also a kind of regularization technique)
+  \end{itemize}
+\item
+  What is dropout?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    During training, randomly remove units in the hidden layer from the
+    network. Update parameters as normal, leaving dropped-out units
+    unchanged
+  \item
+    No dropout during testing
+  \item
+    Typically, each hidden unit is set to 0 with probability 0.5
+    https://www.cs.toronto.edu/\textasciitilde{}hinton/absps/JMLRdropout.pdf
+  \end{itemize}
+\item
+  Why dropout?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Hidden units cannot co-adapt with other units since a unit may not
+    always be present
+  \item
+    Sample data usually come with noise. Dropout constrains network
+    adaptation to the data at training time
+  \item
+    After training, only very useful neurons are kept (have high
+    weights)
+  \end{itemize}
+\end{itemize}
+
+    \hypertarget{example-use-cnn-for-sentiment-analysis-single-label-classification}{%
+\subsubsection{5.6. Example: Use CNN for Sentiment Analysis
+(Single-Label
+Classification)}\label{example-use-cnn-for-sentiment-analysis-single-label-classification}}
+
+\begin{itemize}
+\tightlist
+\item
+  Dataset: IMDB review
+\item
+  25,000 movie reviews, positive or negative
+\item
+  Benchmark performance is 80-90\% with CNN
+  (https://arxiv.org/abs/1408.5882)
+\item
+  We're going to create a CNN with the following:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Word embedding trained as part of CNN
+  \item
+    filters in 3 sizes:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      unigram (Conv1D, kernel\_size=1)
+    \item
+      bigram (Conv1D, kernel\_size=2)
+    \item
+      trigram (Conv1D, kernel\_size=3)
+    \end{itemize}
+  \item
+    Maxpooling for each convolution layer
+  \item
+    Dropout 
+  \end{itemize}
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{k+kn}{from} \PY{n+nn}{IPython}\PY{n+nn}{.}\PY{n+nn}{core}\PY{n+nn}{.}\PY{n+nn}{interactiveshell} \PY{k}{import} \PY{n}{InteractiveShell}
+        \PY{n}{InteractiveShell}\PY{o}{.}\PY{n}{ast\PYZus{}node\PYZus{}interactivity} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{all}\PY{l+s+s2}{\PYZdq{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Exercise 5.1: Load data}
+        
+        \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        \PY{k+kn}{import} \PY{n+nn}{nltk}\PY{o}{,}\PY{n+nn}{string}
+        \PY{k+kn}{from} \PY{n+nn}{gensim} \PY{k}{import} \PY{n}{corpora}
+        
+        \PY{n}{data}\PY{o}{=}\PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{../../../dataset/imdb\PYZus{}reviews.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{header}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{delimiter}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{data}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+        \PY{n+nb}{len}\PY{p}{(}\PY{n}{data}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} if your computer does not have enough resource}
+        \PY{c+c1}{\PYZsh{} reduce the dataset}
+        \PY{n}{data}\PY{o}{=}\PY{n}{data}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{8000}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Exercise 5.2 Prepocessing data: Tokenize, pad sentences}
+        
+        \PY{k+kn}{from} \PY{n+nn}{keras}\PY{n+nn}{.}\PY{n+nn}{preprocessing}\PY{n+nn}{.}\PY{n+nn}{text} \PY{k}{import} \PY{n}{Tokenizer}
+        \PY{k+kn}{from} \PY{n+nn}{keras}\PY{n+nn}{.}\PY{n+nn}{preprocessing}\PY{n+nn}{.}\PY{n+nn}{sequence} \PY{k}{import} \PY{n}{pad\PYZus{}sequences}
+         
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        
+        \PY{c+c1}{\PYZsh{} set the maximum number of words to be used}
+        \PY{n}{MAX\PYZus{}NB\PYZus{}WORDS}\PY{o}{=}\PY{l+m+mi}{10000}
+        
+        \PY{c+c1}{\PYZsh{} set sentence/document length}
+        \PY{n}{MAX\PYZus{}DOC\PYZus{}LEN}\PY{o}{=}\PY{l+m+mi}{500}
+        
+        \PY{c+c1}{\PYZsh{} get a Keras tokenizer}
+        \PY{c+c1}{\PYZsh{} https://keras.io/preprocessing/text/}
+        \PY{n}{tokenizer} \PY{o}{=} \PY{n}{Tokenizer}\PY{p}{(}\PY{n}{num\PYZus{}words}\PY{o}{=}\PY{n}{MAX\PYZus{}NB\PYZus{}WORDS}\PY{p}{)}
+        \PY{n}{tokenizer}\PY{o}{.}\PY{n}{fit\PYZus{}on\PYZus{}texts}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{review}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} convert each document to a list of word index as a sequence}
+        \PY{n}{sequences} \PY{o}{=} \PY{n}{tokenizer}\PY{o}{.}\PY{n}{texts\PYZus{}to\PYZus{}sequences}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{review}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} pad all sequences into the same length }
+        \PY{c+c1}{\PYZsh{} if a sentence is longer than maxlen, pad it in the right}
+        \PY{c+c1}{\PYZsh{} if a sentence is shorter than maxlen, truncate it in the right}
+        \PY{n}{padded\PYZus{}sequences} \PY{o}{=} \PY{n}{pad\PYZus{}sequences}\PY{p}{(}\PY{n}{sequences}\PY{p}{,} \PYZbs{}
+                                         \PY{n}{maxlen}\PY{o}{=}\PY{n}{MAX\PYZus{}DOC\PYZus{}LEN}\PY{p}{,} \PYZbs{}
+                                         \PY{n}{padding}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{post}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PYZbs{}
+                                         \PY{n}{truncating}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{post}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{padded\PYZus{}sequences}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} get the mapping between word and its index}
+        \PY{n}{tokenizer}\PY{o}{.}\PY{n}{word\PYZus{}index}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{film}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{} get the count of each word}
+        \PY{n}{tokenizer}\PY{o}{.}\PY{n}{word\PYZus{}counts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{film}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Split data for training and testing}
+        
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{model\PYZus{}selection} \PY{k}{import} \PY{n}{train\PYZus{}test\PYZus{}split}
+        
+        \PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}test} \PY{o}{=} \PY{n}{train\PYZus{}test\PYZus{}split}\PY{p}{(}\PYZbs{}
+                                \PY{n}{padded\PYZus{}sequences}\PY{p}{,} \PY{n}{data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sentiment}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}\PYZbs{}
+                                \PY{n}{test\PYZus{}size}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{,} \PY{n}{random\PYZus{}state}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Exercise 5.3: Create CNN model}
+        
+        \PY{k+kn}{from} \PY{n+nn}{keras}\PY{n+nn}{.}\PY{n+nn}{layers} \PY{k}{import} \PY{n}{Embedding}\PY{p}{,} \PY{n}{Dense}\PY{p}{,} \PY{n}{Conv1D}\PY{p}{,} \PY{n}{MaxPooling1D}\PY{p}{,} \PYZbs{}
+        \PY{n}{Dropout}\PY{p}{,} \PY{n}{Activation}\PY{p}{,} \PY{n}{Input}\PY{p}{,} \PY{n}{Flatten}\PY{p}{,} \PY{n}{Concatenate}
+        \PY{k+kn}{from} \PY{n+nn}{keras}\PY{n+nn}{.}\PY{n+nn}{models} \PY{k}{import} \PY{n}{Model}
+        
+        \PY{c+c1}{\PYZsh{} The dimension for embedding}
+        \PY{n}{EMBEDDING\PYZus{}DIM}\PY{o}{=}\PY{l+m+mi}{100}
+        
+        \PY{c+c1}{\PYZsh{} define input layer, where a sentence represented as}
+        \PY{c+c1}{\PYZsh{} 1 dimension array with integers}
+        \PY{n}{main\PYZus{}input} \PY{o}{=} \PY{n}{Input}\PY{p}{(}\PY{n}{shape}\PY{o}{=}\PY{p}{(}\PY{n}{MAX\PYZus{}DOC\PYZus{}LEN}\PY{p}{,}\PY{p}{)}\PY{p}{,} \PYZbs{}
+                           \PY{n}{dtype}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{int32}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{main\PYZus{}input}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} define the embedding layer}
+        \PY{c+c1}{\PYZsh{} input\PYZus{}dim is the size of all words +1}
+        \PY{c+c1}{\PYZsh{} where 1 is for the padding symbol}
+        \PY{c+c1}{\PYZsh{} output\PYZus{}dim is the word vector dimension}
+        \PY{c+c1}{\PYZsh{} input\PYZus{}length is the max. length of a document}
+        \PY{c+c1}{\PYZsh{} input to embedding layer is the \PYZdq{}main\PYZus{}input\PYZdq{} layer}
+        \PY{n}{embed\PYZus{}1} \PY{o}{=} \PY{n}{Embedding}\PY{p}{(}\PY{n}{input\PYZus{}dim}\PY{o}{=}\PY{n}{MAX\PYZus{}NB\PYZus{}WORDS}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{,} \PYZbs{}
+                            \PY{n}{output\PYZus{}dim}\PY{o}{=}\PY{n}{EMBEDDING\PYZus{}DIM}\PY{p}{,} \PYZbs{}
+                            \PY{n}{input\PYZus{}length}\PY{o}{=}\PY{n}{MAX\PYZus{}DOC\PYZus{}LEN}\PY{p}{,}\PYZbs{}
+                            \PY{n}{name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{embedding}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{(}\PY{n}{main\PYZus{}input}\PY{p}{)}
+        
+        
+        \PY{c+c1}{\PYZsh{} define 1D convolution layer}
+        \PY{c+c1}{\PYZsh{} 64 filters are used}
+        \PY{c+c1}{\PYZsh{} a filter slides through each word (kernel\PYZus{}size=1)}
+        \PY{c+c1}{\PYZsh{} input to this layer is the embedding layer}
+        \PY{n}{conv1d\PYZus{}1}\PY{o}{=} \PY{n}{Conv1D}\PY{p}{(}\PY{n}{filters}\PY{o}{=}\PY{l+m+mi}{64}\PY{p}{,} \PY{n}{kernel\PYZus{}size}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PYZbs{}
+                         \PY{n}{name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{conv\PYZus{}unigram}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PYZbs{}
+                         \PY{n}{activation}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{relu}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{(}\PY{n}{embed\PYZus{}1}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} define a 1\PYZhy{}dimension MaxPooling }
+        \PY{c+c1}{\PYZsh{} to take the output of the previous convolution layer}
+        \PY{c+c1}{\PYZsh{} the convolution layer produce }
+        \PY{c+c1}{\PYZsh{} MAX\PYZus{}DOC\PYZus{}LEN\PYZhy{}1+1 values as ouput (???)}
+        \PY{n}{pool\PYZus{}1} \PY{o}{=} \PY{n}{MaxPooling1D}\PY{p}{(}\PY{n}{MAX\PYZus{}DOC\PYZus{}LEN}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{,} \PYZbs{}
+                              \PY{n}{name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pool\PYZus{}unigram}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{(}\PY{n}{conv1d\PYZus{}1}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} The pooling layer creates output }
+        \PY{c+c1}{\PYZsh{} in the size of (\PYZsh{} of sample, 1, 64)  }
+        \PY{c+c1}{\PYZsh{} remove one dimension since the size is 1}
+        \PY{n}{flat\PYZus{}1} \PY{o}{=} \PY{n}{Flatten}\PY{p}{(}\PY{n}{name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{flat\PYZus{}unigram}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{(}\PY{n}{pool\PYZus{}1}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} following the same logic to define }
+        \PY{c+c1}{\PYZsh{} filters for bigram}
+        \PY{n}{conv1d\PYZus{}2}\PY{o}{=} \PY{n}{Conv1D}\PY{p}{(}\PY{n}{filters}\PY{o}{=}\PY{l+m+mi}{64}\PY{p}{,} \PY{n}{kernel\PYZus{}size}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PYZbs{}
+                         \PY{n}{name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{conv\PYZus{}bigram}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PYZbs{}
+                         \PY{n}{activation}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{relu}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{(}\PY{n}{embed\PYZus{}1}\PY{p}{)}
+        \PY{n}{pool\PYZus{}2} \PY{o}{=} \PY{n}{MaxPooling1D}\PY{p}{(}\PY{n}{MAX\PYZus{}DOC\PYZus{}LEN}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pool\PYZus{}bigram}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{(}\PY{n}{conv1d\PYZus{}2}\PY{p}{)}
+        \PY{n}{flat\PYZus{}2} \PY{o}{=} \PY{n}{Flatten}\PY{p}{(}\PY{n}{name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{flat\PYZus{}bigram}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{(}\PY{n}{pool\PYZus{}2}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} filters for trigram}
+        \PY{n}{conv1d\PYZus{}3}\PY{o}{=} \PY{n}{Conv1D}\PY{p}{(}\PY{n}{filters}\PY{o}{=}\PY{l+m+mi}{64}\PY{p}{,} \PY{n}{kernel\PYZus{}size}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{,} \PYZbs{}
+                         \PY{n}{name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{conv\PYZus{}trigram}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{activation}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{relu}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{(}\PY{n}{embed\PYZus{}1}\PY{p}{)}
+        \PY{n}{pool\PYZus{}3} \PY{o}{=} \PY{n}{MaxPooling1D}\PY{p}{(}\PY{n}{MAX\PYZus{}DOC\PYZus{}LEN}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pool\PYZus{}trigram}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{(}\PY{n}{conv1d\PYZus{}3}\PY{p}{)}
+        \PY{n}{flat\PYZus{}3} \PY{o}{=} \PY{n}{Flatten}\PY{p}{(}\PY{n}{name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{flat\PYZus{}trigram}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{(}\PY{n}{pool\PYZus{}3}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Concatenate flattened output}
+        \PY{n}{z}\PY{o}{=}\PY{n}{Concatenate}\PY{p}{(}\PY{n}{name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{concate}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{(}\PY{p}{[}\PY{n}{flat\PYZus{}1}\PY{p}{,} \PY{n}{flat\PYZus{}2}\PY{p}{,} \PY{n}{flat\PYZus{}3}\PY{p}{]}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Create a dropout layer}
+        \PY{c+c1}{\PYZsh{} In each iteration only 50\PYZpc{} units are turned on}
+        \PY{n}{drop\PYZus{}1}\PY{o}{=}\PY{n}{Dropout}\PY{p}{(}\PY{n}{rate}\PY{o}{=}\PY{l+m+mf}{0.5}\PY{p}{,} \PY{n}{name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dropout}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{(}\PY{n}{z}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Create a dense layer}
+        \PY{n}{dense\PYZus{}1} \PY{o}{=} \PY{n}{Dense}\PY{p}{(}\PY{l+m+mi}{192}\PY{p}{,} \PY{n}{activation}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{relu}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dense}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{(}\PY{n}{drop\PYZus{}1}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} Create the output layer}
+        \PY{n}{preds} \PY{o}{=} \PY{n}{Dense}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{activation}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sigmoid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{output}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{(}\PY{n}{dense\PYZus{}1}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} create the model with input layer}
+        \PY{c+c1}{\PYZsh{} and the output layer}
+        \PY{n}{model} \PY{o}{=} \PY{n}{Model}\PY{p}{(}\PY{n}{inputs}\PY{o}{=}\PY{n}{main\PYZus{}input}\PY{p}{,} \PY{n}{outputs}\PY{o}{=}\PY{n}{preds}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Exercise 5.4: Show model configuration}
+        
+        \PY{n}{model}\PY{o}{.}\PY{n}{summary}\PY{p}{(}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{}model.get\PYZus{}config()}
+        \PY{c+c1}{\PYZsh{}model.get\PYZus{}weights()}
+        \PY{c+c1}{\PYZsh{}from keras.utils import plot\PYZus{}model}
+        \PY{c+c1}{\PYZsh{}plot\PYZus{}model(model, to\PYZus{}file=\PYZsq{}cnn\PYZus{}model.png\PYZsq{})}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Exercise 5.4: Compile the model}
+        
+        \PY{n}{model}\PY{o}{.}\PY{n}{compile}\PY{p}{(}\PY{n}{loss}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{binary\PYZus{}crossentropy}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PYZbs{}
+                      \PY{n}{optimizer}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{adam}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PYZbs{}
+                      \PY{n}{metrics}\PY{o}{=}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{accuracy}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Exercise 5.5: Fit the model}
+        
+        \PY{n}{BATCH\PYZus{}SIZE} \PY{o}{=} \PY{l+m+mi}{64}
+        \PY{n}{NUM\PYZus{}EPOCHES} \PY{o}{=} \PY{l+m+mi}{10}
+        
+        \PY{c+c1}{\PYZsh{} fit the model and save fitting history to \PYZdq{}training\PYZdq{}}
+        \PY{n}{training}\PY{o}{=}\PY{n}{model}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{,} \PYZbs{}
+                           \PY{n}{batch\PYZus{}size}\PY{o}{=}\PY{n}{BATCH\PYZus{}SIZE}\PY{p}{,} \PYZbs{}
+                           \PY{n}{epochs}\PY{o}{=}\PY{n}{NUM\PYZus{}EPOCHES}\PY{p}{,}\PYZbs{}
+                           \PY{n}{validation\PYZus{}data}\PY{o}{=}\PY{p}{[}\PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}test}\PY{p}{]}\PY{p}{,} \PYZbs{}
+                           \PY{n}{verbose}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Exercise 5.6. Investigate the training process}
+        
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        \PY{c+c1}{\PYZsh{} plot a figure with size 20x8}
+        
+        \PY{c+c1}{\PYZsh{} the fitting history is saved as dictionary}
+        \PY{c+c1}{\PYZsh{} covert the dictionary to dataframe}
+        \PY{n}{df}\PY{o}{=}\PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{o}{.}\PY{n}{from\PYZus{}dict}\PY{p}{(}\PY{n}{training}\PY{o}{.}\PY{n}{history}\PY{p}{)}
+        \PY{n}{df}\PY{o}{.}\PY{n}{columns}\PY{o}{=}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{train\PYZus{}acc}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{train\PYZus{}loss}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PYZbs{}
+                    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{val\PYZus{}acc}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{val\PYZus{}loss}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+        \PY{n}{df}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{epoch}\PY{l+s+s1}{\PYZsq{}}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{df}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} plot training history}
+        \PY{n}{fig}\PY{p}{,} \PY{n}{axes} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{nrows}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{ncols}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+        
+        \PY{n}{df}\PY{p}{[}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{train\PYZus{}acc}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{val\PYZus{}acc}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{ax}\PY{o}{=}\PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{;}
+        \PY{n}{df}\PY{p}{[}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{train\PYZus{}loss}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{val\PYZus{}loss}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{ax}\PY{o}{=}\PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{;}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    Observations from training history: - As training goes on, training
+accuracy/loss gets always better - Testing accuracy/loss gets better at
+the beginning, the gets worse - This indicates that model is
+\textbf{overfitted} and cannot be generalized after certain point -
+Thus, we should \textbf{stop training the model when testing
+accuracy/loss gets worse}. - This analysis can be used to determine
+hyperparameter \textbf{NUM\_EPOCHES} - Fortunately, this can be done
+automatically by \textbf{``Early Stopping''}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Exercise 5.6: Use early stopping to find the best model}
+        
+        \PY{k+kn}{from} \PY{n+nn}{keras}\PY{n+nn}{.}\PY{n+nn}{callbacks} \PY{k}{import} \PY{n}{EarlyStopping}\PY{p}{,} \PY{n}{ModelCheckpoint}
+        
+        \PY{c+c1}{\PYZsh{} the file path to save best model}
+        \PY{n}{BEST\PYZus{}MODEL\PYZus{}FILEPATH}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{best\PYZus{}model}\PY{l+s+s2}{\PYZdq{}}
+        
+        \PY{c+c1}{\PYZsh{} define early stopping based on validation loss}
+        \PY{c+c1}{\PYZsh{} if validation loss is not improved in }
+        \PY{c+c1}{\PYZsh{} an iteration compared with the previous one, }
+        \PY{c+c1}{\PYZsh{} stop training (i.e. patience=0). }
+        \PY{c+c1}{\PYZsh{} mode=\PYZsq{}min\PYZsq{} indicate the loss needs to decrease }
+        \PY{n}{earlyStopping}\PY{o}{=}\PY{n}{EarlyStopping}\PY{p}{(}\PY{n}{monitor}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{val\PYZus{}loss}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PYZbs{}
+                                    \PY{n}{patience}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{verbose}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PYZbs{}
+                                    \PY{n}{mode}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{min}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} define checkpoint to save best model}
+        \PY{c+c1}{\PYZsh{} which has max. validation acc}
+        \PY{n}{checkpoint} \PY{o}{=} \PY{n}{ModelCheckpoint}\PY{p}{(}\PY{n}{BEST\PYZus{}MODEL\PYZus{}FILEPATH}\PY{p}{,} \PYZbs{}
+                                     \PY{n}{monitor}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{val\PYZus{}acc}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PYZbs{}
+                                     \PY{n}{verbose}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PYZbs{}
+                                     \PY{n}{save\PYZus{}best\PYZus{}only}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PYZbs{}
+                                     \PY{n}{mode}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{max}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} compile model}
+        \PY{n}{model}\PY{o}{.}\PY{n}{compile}\PY{p}{(}\PY{n}{loss}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{binary\PYZus{}crossentropy}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PYZbs{}
+                      \PY{n}{optimizer}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{adam}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{metrics}\PY{o}{=}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{accuracy}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} fit the model with earlystopping and checkpoint}
+        \PY{c+c1}{\PYZsh{} as callbacks (functions that are executed as soon as }
+        \PY{c+c1}{\PYZsh{} an asynchronous thread is completed)}
+        \PY{n}{model}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{,} \PYZbs{}
+                  \PY{n}{batch\PYZus{}size}\PY{o}{=}\PY{n}{BATCH\PYZus{}SIZE}\PY{p}{,} \PY{n}{epochs}\PY{o}{=}\PY{n}{NUM\PYZus{}EPOCHES}\PY{p}{,} \PYZbs{}
+                  \PY{n}{callbacks}\PY{o}{=}\PY{p}{[}\PY{n}{earlyStopping}\PY{p}{,} \PY{n}{checkpoint}\PY{p}{]}\PY{p}{,}
+                  \PY{n}{validation\PYZus{}data}\PY{o}{=}\PY{p}{[}\PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}test}\PY{p}{]}\PY{p}{,}\PYZbs{}
+                  \PY{n}{verbose}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Exercise 5.7: Load the best model}
+        
+        \PY{c+c1}{\PYZsh{} load the model using the save file}
+        \PY{n}{model}\PY{o}{.}\PY{n}{load\PYZus{}weights}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{best\PYZus{}model}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} predict}
+        \PY{n}{pred}\PY{o}{=}\PY{n}{model}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{pred}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} evaluate the model}
+        \PY{n}{scores} \PY{o}{=} \PY{n}{model}\PY{o}{.}\PY{n}{evaluate}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}test}\PY{p}{,} \PY{n}{verbose}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s2}{: }\PY{l+s+si}{\PYZpc{}.2f}\PY{l+s+si}{\PYZpc{}\PYZpc{}}\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{model}\PY{o}{.}\PY{n}{metrics\PYZus{}names}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{scores}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Exercise 5.8: Put Everything as a function}
+        
+        \PY{k+kn}{from} \PY{n+nn}{keras}\PY{n+nn}{.}\PY{n+nn}{layers} \PY{k}{import} \PY{n}{Embedding}\PY{p}{,} \PY{n}{Dense}\PY{p}{,} \PY{n}{Conv1D}\PY{p}{,} \PY{n}{MaxPooling1D}\PY{p}{,} \PYZbs{}
+        \PY{n}{Dropout}\PY{p}{,} \PY{n}{Activation}\PY{p}{,} \PY{n}{Input}\PY{p}{,} \PY{n}{Flatten}\PY{p}{,} \PY{n}{Concatenate}
+        \PY{k+kn}{from} \PY{n+nn}{keras}\PY{n+nn}{.}\PY{n+nn}{models} \PY{k}{import} \PY{n}{Model}
+        \PY{k+kn}{from} \PY{n+nn}{keras}\PY{n+nn}{.}\PY{n+nn}{regularizers} \PY{k}{import} \PY{n}{l2}
+        \PY{k+kn}{from} \PY{n+nn}{keras}\PY{n+nn}{.}\PY{n+nn}{callbacks} \PY{k}{import} \PY{n}{EarlyStopping}\PY{p}{,} \PY{n}{ModelCheckpoint}
+                      
+        \PY{k}{def} \PY{n+nf}{cnn\PYZus{}model}\PY{p}{(}\PY{n}{FILTER\PYZus{}SIZES}\PY{p}{,} \PYZbs{}
+                      \PY{c+c1}{\PYZsh{} filter sizes as a list}
+                      \PY{n}{MAX\PYZus{}NB\PYZus{}WORDS}\PY{p}{,} \PYZbs{}
+                      \PY{c+c1}{\PYZsh{} total number of words}
+                      \PY{n}{MAX\PYZus{}DOC\PYZus{}LEN}\PY{p}{,} \PYZbs{}
+                      \PY{c+c1}{\PYZsh{} max words in a doc}
+                      \PY{n}{EMBEDDING\PYZus{}DIM}\PY{o}{=}\PY{l+m+mi}{200}\PY{p}{,} \PYZbs{}
+                      \PY{c+c1}{\PYZsh{} word vector dimension}
+                      \PY{n}{NUM\PYZus{}FILTERS}\PY{o}{=}\PY{l+m+mi}{64}\PY{p}{,} \PYZbs{}
+                      \PY{c+c1}{\PYZsh{} number of filters for all size}
+                      \PY{n}{DROP\PYZus{}OUT}\PY{o}{=}\PY{l+m+mf}{0.5}\PY{p}{,} \PYZbs{}
+                      \PY{c+c1}{\PYZsh{} dropout rate}
+                      \PY{n}{NUM\PYZus{}OUTPUT\PYZus{}UNITS}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PYZbs{}
+                      \PY{c+c1}{\PYZsh{} number of output units}
+                      \PY{n}{NUM\PYZus{}DENSE\PYZus{}UNITS}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{,}\PYZbs{}
+                      \PY{c+c1}{\PYZsh{} number of units in dense layer}
+                      \PY{n}{PRETRAINED\PYZus{}WORD\PYZus{}VECTOR}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,}\PYZbs{}
+                      \PY{c+c1}{\PYZsh{} Whether to use pretrained word vectors}
+                      \PY{n}{LAM}\PY{o}{=}\PY{l+m+mf}{0.0}\PY{p}{)}\PY{p}{:}            
+                      \PY{c+c1}{\PYZsh{} regularization coefficient}
+            
+            \PY{n}{main\PYZus{}input} \PY{o}{=} \PY{n}{Input}\PY{p}{(}\PY{n}{shape}\PY{o}{=}\PY{p}{(}\PY{n}{MAX\PYZus{}DOC\PYZus{}LEN}\PY{p}{,}\PY{p}{)}\PY{p}{,} \PYZbs{}
+                               \PY{n}{dtype}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{int32}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{main\PYZus{}input}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            
+            \PY{k}{if} \PY{n}{PRETRAINED\PYZus{}WORD\PYZus{}VECTOR} \PY{o+ow}{is} \PY{o+ow}{not} \PY{k+kc}{None}\PY{p}{:}
+                \PY{n}{embed\PYZus{}1} \PY{o}{=} \PY{n}{Embedding}\PY{p}{(}\PY{n}{input\PYZus{}dim}\PY{o}{=}\PY{n}{MAX\PYZus{}NB\PYZus{}WORDS}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{,} \PYZbs{}
+                                \PY{n}{output\PYZus{}dim}\PY{o}{=}\PY{n}{EMBEDDING\PYZus{}DIM}\PY{p}{,} \PYZbs{}
+                                \PY{n}{input\PYZus{}length}\PY{o}{=}\PY{n}{MAX\PYZus{}DOC\PYZus{}LEN}\PY{p}{,} \PYZbs{}
+                                \PY{c+c1}{\PYZsh{} use pretrained word vectors}
+                                \PY{n}{weights}\PY{o}{=}\PY{p}{[}\PY{n}{PRETRAINED\PYZus{}WORD\PYZus{}VECTOR}\PY{p}{]}\PY{p}{,}\PYZbs{}
+                                \PY{c+c1}{\PYZsh{} word vectors can be further tuned}
+                                \PY{c+c1}{\PYZsh{} set it to False if use static word vectors}
+                                \PY{n}{trainable}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}\PYZbs{}
+                                \PY{n}{name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{embedding}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{(}\PY{n}{main\PYZus{}input}\PY{p}{)}
+            \PY{k}{else}\PY{p}{:}
+                \PY{n}{embed\PYZus{}1} \PY{o}{=} \PY{n}{Embedding}\PY{p}{(}\PY{n}{input\PYZus{}dim}\PY{o}{=}\PY{n}{MAX\PYZus{}NB\PYZus{}WORDS}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{,} \PYZbs{}
+                                \PY{n}{output\PYZus{}dim}\PY{o}{=}\PY{n}{EMBEDDING\PYZus{}DIM}\PY{p}{,} \PYZbs{}
+                                \PY{n}{input\PYZus{}length}\PY{o}{=}\PY{n}{MAX\PYZus{}DOC\PYZus{}LEN}\PY{p}{,} \PYZbs{}
+                                \PY{n}{name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{embedding}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{(}\PY{n}{main\PYZus{}input}\PY{p}{)}
+            \PY{c+c1}{\PYZsh{} add convolution\PYZhy{}pooling\PYZhy{}flat block}
+            \PY{n}{conv\PYZus{}blocks} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+            \PY{k}{for} \PY{n}{f} \PY{o+ow}{in} \PY{n}{FILTER\PYZus{}SIZES}\PY{p}{:}
+                \PY{n}{conv} \PY{o}{=} \PY{n}{Conv1D}\PY{p}{(}\PY{n}{filters}\PY{o}{=}\PY{n}{NUM\PYZus{}FILTERS}\PY{p}{,} \PY{n}{kernel\PYZus{}size}\PY{o}{=}\PY{n}{f}\PY{p}{,} \PYZbs{}
+                              \PY{n}{activation}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{relu}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{conv\PYZus{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{+}\PY{n+nb}{str}\PY{p}{(}\PY{n}{f}\PY{p}{)}\PY{p}{)}\PY{p}{(}\PY{n}{embed\PYZus{}1}\PY{p}{)}
+                \PY{n}{conv} \PY{o}{=} \PY{n}{MaxPooling1D}\PY{p}{(}\PY{n}{MAX\PYZus{}DOC\PYZus{}LEN}\PY{o}{\PYZhy{}}\PY{n}{f}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{max\PYZus{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{+}\PY{n+nb}{str}\PY{p}{(}\PY{n}{f}\PY{p}{)}\PY{p}{)}\PY{p}{(}\PY{n}{conv}\PY{p}{)}
+                \PY{n}{conv} \PY{o}{=} \PY{n}{Flatten}\PY{p}{(}\PY{n}{name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{flat\PYZus{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{+}\PY{n+nb}{str}\PY{p}{(}\PY{n}{f}\PY{p}{)}\PY{p}{)}\PY{p}{(}\PY{n}{conv}\PY{p}{)}
+                \PY{n}{conv\PYZus{}blocks}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{conv}\PY{p}{)}
+            
+            \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{conv\PYZus{}blocks}\PY{p}{)}\PY{o}{\PYZgt{}}\PY{l+m+mi}{1}\PY{p}{:}
+                \PY{n}{z}\PY{o}{=}\PY{n}{Concatenate}\PY{p}{(}\PY{n}{name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{concate}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{(}\PY{n}{conv\PYZus{}blocks}\PY{p}{)}
+            \PY{k}{else}\PY{p}{:}
+                \PY{n}{z}\PY{o}{=}\PY{n}{conv\PYZus{}blocks}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                
+            \PY{n}{drop}\PY{o}{=}\PY{n}{Dropout}\PY{p}{(}\PY{n}{rate}\PY{o}{=}\PY{n}{DROP\PYZus{}OUT}\PY{p}{,} \PY{n}{name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dropout}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{(}\PY{n}{z}\PY{p}{)}
+        
+            \PY{n}{dense} \PY{o}{=} \PY{n}{Dense}\PY{p}{(}\PY{n}{NUM\PYZus{}DENSE\PYZus{}UNITS}\PY{p}{,} \PY{n}{activation}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{relu}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PYZbs{}
+                            \PY{n}{kernel\PYZus{}regularizer}\PY{o}{=}\PY{n}{l2}\PY{p}{(}\PY{n}{LAM}\PY{p}{)}\PY{p}{,}\PY{n}{name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dense}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{(}\PY{n}{drop}\PY{p}{)}
+            \PY{n}{preds} \PY{o}{=} \PY{n}{Dense}\PY{p}{(}\PY{n}{NUM\PYZus{}OUTPUT\PYZus{}UNITS}\PY{p}{,} \PY{n}{activation}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sigmoid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{output}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{(}\PY{n}{dense}\PY{p}{)}
+            \PY{n}{model} \PY{o}{=} \PY{n}{Model}\PY{p}{(}\PY{n}{inputs}\PY{o}{=}\PY{n}{main\PYZus{}input}\PY{p}{,} \PY{n}{outputs}\PY{o}{=}\PY{n}{preds}\PY{p}{)}
+            
+            \PY{n}{model}\PY{o}{.}\PY{n}{compile}\PY{p}{(}\PY{n}{loss}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{binary\PYZus{}crossentropy}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PYZbs{}
+                      \PY{n}{optimizer}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{adam}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{metrics}\PY{o}{=}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{accuracy}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{)} 
+            
+            \PY{k}{return} \PY{n}{model}
+\end{Verbatim}
+
+
+    \hypertarget{use-cnn-for-multi-label-classification}{%
+\subsubsection{5.7. Use CNN for multi-label
+classification}\label{use-cnn-for-multi-label-classification}}
+
+\begin{itemize}
+\tightlist
+\item
+  In multi-label classification, a document can be classified into
+  multiple classes
+\item
+  We can use \textbf{multiple ouput units}, each responsible for
+  predicating one class
+\item
+  For multi-label classification (\(K\) classes), do the following:
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    Represent the labels as \textbf{indication matrix}
+
+    \begin{itemize}
+    \tightlist
+    \item
+      e.g.~three classes {[}`econ',`biz',`tech'{]} in total,
+    \item
+      sample 1: `eco' only -\textgreater{} {[}1, 0, 0{]}
+    \item
+      sample 2: {[}`eco',`biz'{]} -\textgreater{}{[}1, 1, 0{]}
+    \end{itemize}
+  \item
+    Accordingly, \textbf{set output layer to have K output units}
+
+    \begin{itemize}
+    \tightlist
+    \item
+      each responsible for one class
+    \item
+      each unit gives the probabability of one class
+    \end{itemize}
+  \end{enumerate}
+\end{itemize}
+
+    \begin{itemize}
+\tightlist
+\item
+  Example: Yahoo News Ranked Multilabel Learning dataset
+  (http://research.yahoo.com)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    A subset is selected
+  \item
+    4 classes, 6426 samples
+  \end{itemize}
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Exercise 5.7.1: Load and process the data}
+        
+        \PY{k+kn}{import} \PY{n+nn}{json}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{preprocessing} \PY{k}{import} \PY{n}{MultiLabelBinarizer}
+        \PY{k+kn}{from} \PY{n+nn}{numpy}\PY{n+nn}{.}\PY{n+nn}{random} \PY{k}{import} \PY{n}{shuffle}
+        
+        \PY{c+c1}{\PYZsh{} load the data}
+        \PY{n}{data}\PY{o}{=}\PY{n}{json}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n+nb}{open}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{../../dataset/ydata.json}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{}data=json.load(open(\PYZdq{}ydata.json\PYZdq{},\PYZsq{}r\PYZsq{}))}
+        
+        
+        \PY{c+c1}{\PYZsh{} shuffle the data}
+        \PY{n}{shuffle}\PY{p}{(}\PY{n}{data}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} split into text and label}
+        \PY{n}{text}\PY{p}{,}\PY{n}{labels}\PY{o}{=}\PY{n+nb}{zip}\PY{p}{(}\PY{o}{*}\PY{n}{data}\PY{p}{)}
+        \PY{n}{text}\PY{o}{=}\PY{n+nb}{list}\PY{p}{(}\PY{n}{text}\PY{p}{)}
+        \PY{n}{labels}\PY{o}{=}\PY{n+nb}{list}\PY{p}{(}\PY{n}{labels}\PY{p}{)}
+        \PY{n}{text}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+        \PY{n}{labels}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Exercise 5.7.2: create indicator matrix for labels}
+        
+        \PY{n}{mlb} \PY{o}{=} \PY{n}{MultiLabelBinarizer}\PY{p}{(}\PY{p}{)}
+        \PY{n}{Y}\PY{o}{=}\PY{n}{mlb}\PY{o}{.}\PY{n}{fit\PYZus{}transform}\PY{p}{(}\PY{n}{labels}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} check size of indicator matrix}
+        \PY{n}{Y}\PY{o}{.}\PY{n}{shape}
+        \PY{c+c1}{\PYZsh{} check classes}
+        \PY{n}{mlb}\PY{o}{.}\PY{n}{classes\PYZus{}}
+        \PY{c+c1}{\PYZsh{} check \PYZsh{} of samples in each class}
+        \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{Y}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Exercise 5.7.3: Load and process the data}
+        
+        \PY{k+kn}{from} \PY{n+nn}{keras}\PY{n+nn}{.}\PY{n+nn}{preprocessing}\PY{n+nn}{.}\PY{n+nn}{text} \PY{k}{import} \PY{n}{Tokenizer}
+        \PY{k+kn}{from} \PY{n+nn}{keras}\PY{n+nn}{.}\PY{n+nn}{preprocessing}\PY{n+nn}{.}\PY{n+nn}{sequence} \PY{k}{import} \PY{n}{pad\PYZus{}sequences}
+         
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        
+        \PY{c+c1}{\PYZsh{} get a Keras tokenizer}
+        
+        \PY{n}{MAX\PYZus{}NB\PYZus{}WORDS}\PY{o}{=}\PY{l+m+mi}{8000}
+        \PY{c+c1}{\PYZsh{} documents are quite long in the dataset}
+        \PY{n}{MAX\PYZus{}DOC\PYZus{}LEN}\PY{o}{=}\PY{l+m+mi}{1000}
+        
+        \PY{n}{tokenizer} \PY{o}{=} \PY{n}{Tokenizer}\PY{p}{(}\PY{n}{num\PYZus{}words}\PY{o}{=}\PY{n}{MAX\PYZus{}NB\PYZus{}WORDS}\PY{p}{)}
+        \PY{n}{tokenizer}\PY{o}{.}\PY{n}{fit\PYZus{}on\PYZus{}texts}\PY{p}{(}\PY{n}{text}\PY{p}{)}
+        \PY{n}{voc}\PY{o}{=}\PY{n}{tokenizer}\PY{o}{.}\PY{n}{word\PYZus{}index}
+        \PY{c+c1}{\PYZsh{} convert each document to a list of word index as a sequence}
+        \PY{n}{sequences} \PY{o}{=} \PY{n}{tokenizer}\PY{o}{.}\PY{n}{texts\PYZus{}to\PYZus{}sequences}\PY{p}{(}\PY{n}{text}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} get the mapping between words to word index}
+        
+        \PY{c+c1}{\PYZsh{} pad all sequences into the same length (the longest)}
+        \PY{n}{padded\PYZus{}sequences} \PY{o}{=} \PY{n}{pad\PYZus{}sequences}\PY{p}{(}\PY{n}{sequences}\PY{p}{,} \PYZbs{}
+                                         \PY{n}{maxlen}\PY{o}{=}\PY{n}{MAX\PYZus{}DOC\PYZus{}LEN}\PY{p}{,} \PYZbs{}
+                                         \PY{n}{padding}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{post}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{truncating}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{post}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}print(padded\PYZus{}sequences[0])}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Exercise 5.7.4: Fit the model using the function}
+        
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{model\PYZus{}selection} \PY{k}{import} \PY{n}{train\PYZus{}test\PYZus{}split}
+        
+        \PY{n}{EMBEDDING\PYZus{}DIM}\PY{o}{=}\PY{l+m+mi}{100}
+        \PY{n}{FILTER\PYZus{}SIZES}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{} set the number of output units}
+        \PY{c+c1}{\PYZsh{} as the number of classes}
+        \PY{n}{output\PYZus{}units\PYZus{}num}\PY{o}{=}\PY{n+nb}{len}\PY{p}{(}\PY{n}{mlb}\PY{o}{.}\PY{n}{classes\PYZus{}}\PY{p}{)}
+        \PY{n}{num\PYZus{}filters}\PY{o}{=}\PY{l+m+mi}{64}
+        
+        \PY{c+c1}{\PYZsh{} set the dense units}
+        \PY{n}{dense\PYZus{}units\PYZus{}num}\PY{o}{=} \PY{n}{num\PYZus{}filters}\PY{o}{*}\PY{n+nb}{len}\PY{p}{(}\PY{n}{FILTER\PYZus{}SIZES}\PY{p}{)}
+        
+        
+        \PY{n}{BTACH\PYZus{}SIZE} \PY{o}{=} \PY{l+m+mi}{64}
+        \PY{n}{NUM\PYZus{}EPOCHES} \PY{o}{=} \PY{l+m+mi}{20}
+        
+        \PY{c+c1}{\PYZsh{} split dataset into train (70\PYZpc{}) and test sets (30\PYZpc{})}
+        \PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{Y\PYZus{}train}\PY{p}{,} \PY{n}{Y\PYZus{}test} \PY{o}{=} \PY{n}{train\PYZus{}test\PYZus{}split}\PY{p}{(}\PYZbs{}
+                        \PY{n}{padded\PYZus{}sequences}\PY{p}{,} \PY{n}{Y}\PY{p}{,} \PY{n}{test\PYZus{}size}\PY{o}{=}\PY{l+m+mf}{0.2}\PY{p}{,} \PY{n}{random\PYZus{}state}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+        
+        
+        \PY{n}{model}\PY{o}{=}\PY{n}{cnn\PYZus{}model}\PY{p}{(}\PY{n}{FILTER\PYZus{}SIZES}\PY{p}{,} \PY{n}{MAX\PYZus{}NB\PYZus{}WORDS}\PY{p}{,} \PYZbs{}
+                        \PY{n}{MAX\PYZus{}DOC\PYZus{}LEN}\PY{p}{,} \PYZbs{}
+                        \PY{n}{NUM\PYZus{}FILTERS}\PY{o}{=}\PY{n}{num\PYZus{}filters}\PY{p}{,}\PYZbs{}
+                        \PY{n}{NUM\PYZus{}OUTPUT\PYZus{}UNITS}\PY{o}{=}\PY{n}{output\PYZus{}units\PYZus{}num}\PY{p}{,} \PYZbs{}
+                        \PY{n}{NUM\PYZus{}DENSE\PYZus{}UNITS}\PY{o}{=}\PY{n}{dense\PYZus{}units\PYZus{}num}\PY{p}{)}
+        
+        \PY{n}{earlyStopping}\PY{o}{=}\PY{n}{EarlyStopping}\PY{p}{(}\PY{n}{monitor}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{val\PYZus{}loss}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{patience}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{verbose}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{mode}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{min}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{checkpoint} \PY{o}{=} \PY{n}{ModelCheckpoint}\PY{p}{(}\PY{n}{BEST\PYZus{}MODEL\PYZus{}FILEPATH}\PY{p}{,} \PY{n}{monitor}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{val\PYZus{}loss}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PYZbs{}
+                                     \PY{n}{verbose}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{save\PYZus{}best\PYZus{}only}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{mode}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{min}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            
+        \PY{n}{training}\PY{o}{=}\PY{n}{model}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{Y\PYZus{}train}\PY{p}{,} \PYZbs{}
+                  \PY{n}{batch\PYZus{}size}\PY{o}{=}\PY{n}{BTACH\PYZus{}SIZE}\PY{p}{,} \PY{n}{epochs}\PY{o}{=}\PY{n}{NUM\PYZus{}EPOCHES}\PY{p}{,} \PYZbs{}
+                  \PY{n}{callbacks}\PY{o}{=}\PY{p}{[}\PY{n}{earlyStopping}\PY{p}{,} \PY{n}{checkpoint}\PY{p}{]}\PY{p}{,}\PYZbs{}
+                  \PY{n}{validation\PYZus{}data}\PY{o}{=}\PY{p}{[}\PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{Y\PYZus{}test}\PY{p}{]}\PY{p}{,} \PY{n}{verbose}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Exercise 5.7.5: predicate using the best model}
+        \PY{c+c1}{\PYZsh{} calculate performance}
+        
+        \PY{c+c1}{\PYZsh{} load the best model}
+        \PY{n}{model}\PY{o}{.}\PY{n}{load\PYZus{}weights}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{best\PYZus{}model}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        
+        \PY{n}{pred}\PY{o}{=}\PY{n}{model}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{)}
+        \PY{n}{pred}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Exercise 5.7.6: Generate performance report}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{metrics} \PY{k}{import} \PY{n}{classification\PYZus{}report}
+        
+        \PY{n}{pred}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{where}\PY{p}{(}\PY{n}{pred}\PY{o}{\PYZgt{}}\PY{l+m+mf}{0.5}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}
+        
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{classification\PYZus{}report}\PY{p}{(}\PY{n}{Y\PYZus{}test}\PY{p}{,} \PY{n}{pred}\PY{p}{,}\PYZbs{}
+                              \PY{n}{target\PYZus{}names}\PY{o}{=}\PY{n}{mlb}\PY{o}{.}\PY{n}{classes\PYZus{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{use-pretrained-word-vectors}{%
+\subsubsection{5.8. Use Pretrained Word
+Vectors}\label{use-pretrained-word-vectors}}
+
+\begin{itemize}
+\tightlist
+\item
+  If \textbf{the size of labeled samples is small, it's better use
+  pretrained word vectors}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    e.g.~google or facebook pretrained word vectors
+  \item
+    or you can train word vectors using relevant context data using
+    gensim
+  \end{itemize}
+\item
+  Procedure:
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    Obtain/train pretrained word vectors (see Section 4.1 and Exercise
+    4.1.1)
+  \item
+    Look for the word vector for each word in the vocabulary and create
+    \textbf{embedding matrix} where each row represents one word vector
+  \item
+    Set embedding layer with the embedding matrix and set it not
+    trainable.
+  \end{enumerate}
+\item
+  With well-trained word vectors, often a small sample set can also
+  achieve good performance
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Exercise 5.8.1: Load full yahoo news dataset}
+        \PY{c+c1}{\PYZsh{} to train the word vector}
+        \PY{c+c1}{\PYZsh{} note this data can be unlabeled. only text is used}
+        \PY{k+kn}{import} \PY{n+nn}{json}
+        
+        \PY{n}{data}\PY{o}{=}\PY{n}{json}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n+nb}{open}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{../../dataset/ydata\PYZus{}full.json}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+        \PY{n}{text}\PY{p}{,}\PY{n}{labels}\PY{o}{=}\PY{n+nb}{zip}\PY{p}{(}\PY{o}{*}\PY{n}{data}\PY{p}{)}
+        \PY{n}{text}\PY{o}{=}\PY{n+nb}{list}\PY{p}{(}\PY{n}{text}\PY{p}{)}
+        
+        \PY{n}{sentences}\PY{o}{=}\PY{p}{[} \PY{p}{[}\PY{n}{token}\PY{o}{.}\PY{n}{strip}\PY{p}{(}\PY{n}{string}\PY{o}{.}\PY{n}{punctuation}\PY{p}{)}\PY{o}{.}\PY{n}{strip}\PY{p}{(}\PY{p}{)} \PYZbs{}
+                     \PY{k}{for} \PY{n}{token} \PY{o+ow}{in} \PY{n}{nltk}\PY{o}{.}\PY{n}{word\PYZus{}tokenize}\PY{p}{(}\PY{n}{doc}\PY{p}{)} \PYZbs{}
+                         \PY{k}{if} \PY{n}{token} \PY{o+ow}{not} \PY{o+ow}{in} \PY{n}{string}\PY{o}{.}\PY{n}{punctuation} \PY{o+ow}{and} \PYZbs{}
+                         \PY{n+nb}{len}\PY{p}{(}\PY{n}{token}\PY{o}{.}\PY{n}{strip}\PY{p}{(}\PY{n}{string}\PY{o}{.}\PY{n}{punctuation}\PY{p}{)}\PY{o}{.}\PY{n}{strip}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{o}{\PYZgt{}}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{]}\PYZbs{}
+                     \PY{k}{for} \PY{n}{doc} \PY{o+ow}{in} \PY{n}{text}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Exercise 5.8.2: Train word vector using }
+        \PY{c+c1}{\PYZsh{} the large data set}
+        
+        \PY{k+kn}{from} \PY{n+nn}{gensim}\PY{n+nn}{.}\PY{n+nn}{models} \PY{k}{import} \PY{n}{word2vec}
+        \PY{k+kn}{import} \PY{n+nn}{logging}
+        \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        
+        \PY{c+c1}{\PYZsh{} print out tracking information}
+        \PY{n}{logging}\PY{o}{.}\PY{n}{basicConfig}\PY{p}{(}\PY{n+nb}{format}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}(asctime)s}\PY{l+s+s1}{ : }\PY{l+s+si}{\PYZpc{}(levelname)s}\PY{l+s+s1}{ : }\PY{l+s+si}{\PYZpc{}(message)s}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PYZbs{}
+                            \PY{n}{level}\PY{o}{=}\PY{n}{logging}\PY{o}{.}\PY{n}{INFO}\PY{p}{)}
+        \PY{n}{EMBEDDING\PYZus{}DIM}\PY{o}{=}\PY{l+m+mi}{200}
+        \PY{c+c1}{\PYZsh{} min\PYZus{}count: words with total frequency lower than this are ignored}
+        \PY{c+c1}{\PYZsh{} size: the dimension of word vector}
+        \PY{c+c1}{\PYZsh{} window: is the maximum distance }
+        \PY{c+c1}{\PYZsh{}         between the current and predicted word }
+        \PY{c+c1}{\PYZsh{}         within a sentence (i.e. the length of ngrams)}
+        \PY{c+c1}{\PYZsh{} workers: \PYZsh{} of parallel threads in training}
+        \PY{c+c1}{\PYZsh{} for other parameters, check https://radimrehurek.com/gensim/models/word2vec.html}
+        \PY{n}{wv\PYZus{}model} \PY{o}{=} \PY{n}{word2vec}\PY{o}{.}\PY{n}{Word2Vec}\PY{p}{(}\PY{n}{sentences}\PY{p}{,} \PYZbs{}
+                                     \PY{n}{min\PYZus{}count}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PYZbs{}
+                                     \PY{n}{size}\PY{o}{=}\PY{n}{EMBEDDING\PYZus{}DIM}\PY{p}{,} \PYZbs{}
+                                     \PY{n}{window}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{workers}\PY{o}{=}\PY{l+m+mi}{4} \PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} get word vector for all words in the vocabulary}
+        \PY{c+c1}{\PYZsh{} see reference at https://github.com/fchollet/keras/blob/master/examples/pretrained\PYZus{}word\PYZus{}embeddings.py}
+        
+        \PY{n}{EMBEDDING\PYZus{}DIM}\PY{o}{=}\PY{l+m+mi}{200}
+        \PY{n}{MAX\PYZus{}NB\PYZus{}WORDS}\PY{o}{=}\PY{l+m+mi}{8000}
+        
+        \PY{c+c1}{\PYZsh{} tokenizer.word\PYZus{}index provides the mapping }
+        \PY{c+c1}{\PYZsh{} between a word and word index for all words}
+        \PY{n}{NUM\PYZus{}WORDS} \PY{o}{=} \PY{n+nb}{min}\PY{p}{(}\PY{n}{MAX\PYZus{}NB\PYZus{}WORDS}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{tokenizer}\PY{o}{.}\PY{n}{word\PYZus{}index}\PY{p}{)}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} \PYZdq{}+1\PYZdq{} is for padding symbol}
+        \PY{n}{embedding\PYZus{}matrix} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{NUM\PYZus{}WORDS}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{EMBEDDING\PYZus{}DIM}\PY{p}{)}\PY{p}{)}
+        
+        \PY{k}{for} \PY{n}{word}\PY{p}{,} \PY{n}{i} \PY{o+ow}{in} \PY{n}{tokenizer}\PY{o}{.}\PY{n}{word\PYZus{}index}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            \PY{c+c1}{\PYZsh{} if word\PYZus{}index is above the max number of words, ignore it}
+            \PY{k}{if} \PY{n}{i} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{n}{NUM\PYZus{}WORDS}\PY{p}{:}
+                \PY{k}{continue}
+            \PY{k}{if} \PY{n}{word} \PY{o+ow}{in} \PY{n}{wv\PYZus{}model}\PY{o}{.}\PY{n}{wv}\PY{p}{:}
+                \PY{n}{embedding\PYZus{}matrix}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{=}\PY{n}{wv\PYZus{}model}\PY{o}{.}\PY{n}{wv}\PY{p}{[}\PY{n}{word}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Exercise 5.8.3: Fit model using pretrained word vectors}
+        
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{model\PYZus{}selection} \PY{k}{import} \PY{n}{train\PYZus{}test\PYZus{}split}
+        
+        \PY{n}{EMBEDDING\PYZus{}DIM}\PY{o}{=}\PY{l+m+mi}{200}
+        \PY{n}{FILTER\PYZus{}SIZES}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{} set the number of output units}
+        \PY{c+c1}{\PYZsh{} as the number of classes}
+        \PY{n}{output\PYZus{}units\PYZus{}num}\PY{o}{=}\PY{n+nb}{len}\PY{p}{(}\PY{n}{mlb}\PY{o}{.}\PY{n}{classes\PYZus{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}Number of filters for each size}
+        \PY{n}{num\PYZus{}filters}\PY{o}{=}\PY{l+m+mi}{64}
+        
+        \PY{c+c1}{\PYZsh{} set the dense units}
+        \PY{n}{dense\PYZus{}units\PYZus{}num}\PY{o}{=} \PY{n}{num\PYZus{}filters}\PY{o}{*}\PY{n+nb}{len}\PY{p}{(}\PY{n}{FILTER\PYZus{}SIZES}\PY{p}{)}
+        
+        \PY{n}{BTACH\PYZus{}SIZE} \PY{o}{=} \PY{l+m+mi}{32}
+        \PY{n}{NUM\PYZus{}EPOCHES} \PY{o}{=} \PY{l+m+mi}{100}
+        
+        \PY{c+c1}{\PYZsh{} With well trained word vectors, sample size can be reduced}
+        \PY{c+c1}{\PYZsh{} Assume we only have 500 labeled data}
+        \PY{c+c1}{\PYZsh{} split dataset into train (80\PYZpc{}) and test sets (20\PYZpc{})}
+        
+        \PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{Y\PYZus{}train}\PY{p}{,} \PY{n}{Y\PYZus{}test} \PY{o}{=} \PY{n}{train\PYZus{}test\PYZus{}split}\PY{p}{(}\PYZbs{}
+                        \PY{n}{padded\PYZus{}sequences}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{500}\PY{p}{]}\PY{p}{,} \PY{n}{Y}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{500}\PY{p}{]}\PY{p}{,} \PYZbs{}
+                        \PY{n}{test\PYZus{}size}\PY{o}{=}\PY{l+m+mf}{0.2}\PY{p}{,} \PY{n}{random\PYZus{}state}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PYZbs{}
+                        \PY{n}{shuffle}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} create the model with embedding matrix}
+        \PY{n}{model}\PY{o}{=}\PY{n}{cnn\PYZus{}model}\PY{p}{(}\PY{n}{FILTER\PYZus{}SIZES}\PY{p}{,} \PY{n}{MAX\PYZus{}NB\PYZus{}WORDS}\PY{p}{,} \PYZbs{}
+                        \PY{n}{MAX\PYZus{}DOC\PYZus{}LEN}\PY{p}{,} \PYZbs{}
+                        \PY{n}{NUM\PYZus{}FILTERS}\PY{o}{=}\PY{n}{num\PYZus{}filters}\PY{p}{,}\PYZbs{}
+                        \PY{n}{NUM\PYZus{}OUTPUT\PYZus{}UNITS}\PY{o}{=}\PY{n}{output\PYZus{}units\PYZus{}num}\PY{p}{,} \PYZbs{}
+                        \PY{n}{NUM\PYZus{}DENSE\PYZus{}UNITS}\PY{o}{=}\PY{n}{dense\PYZus{}units\PYZus{}num}\PY{p}{,}\PYZbs{}
+                        \PY{n}{PRETRAINED\PYZus{}WORD\PYZus{}VECTOR}\PY{o}{=}\PY{n}{embedding\PYZus{}matrix}\PY{p}{)}
+        
+        \PY{n}{earlyStopping}\PY{o}{=}\PY{n}{EarlyStopping}\PY{p}{(}\PY{n}{monitor}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{val\PYZus{}loss}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{patience}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{verbose}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{mode}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{min}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{checkpoint} \PY{o}{=} \PY{n}{ModelCheckpoint}\PY{p}{(}\PY{n}{BEST\PYZus{}MODEL\PYZus{}FILEPATH}\PY{p}{,} \PY{n}{monitor}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{val\PYZus{}loss}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PYZbs{}
+                                     \PY{n}{verbose}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{save\PYZus{}best\PYZus{}only}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{mode}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{min}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            
+        \PY{n}{training}\PY{o}{=}\PY{n}{model}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{Y\PYZus{}train}\PY{p}{,} \PYZbs{}
+                  \PY{n}{batch\PYZus{}size}\PY{o}{=}\PY{n}{BTACH\PYZus{}SIZE}\PY{p}{,} \PY{n}{epochs}\PY{o}{=}\PY{n}{NUM\PYZus{}EPOCHES}\PY{p}{,} \PYZbs{}
+                  \PY{n}{callbacks}\PY{o}{=}\PY{p}{[}\PY{n}{earlyStopping}\PY{p}{,} \PY{n}{checkpoint}\PY{p}{]}\PY{p}{,}\PYZbs{}
+                  \PY{n}{validation\PYZus{}data}\PY{o}{=}\PY{p}{[}\PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{Y\PYZus{}test}\PY{p}{]}\PY{p}{,} \PY{n}{verbose}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Exercise 5.8.4: check model configuration}
+        \PY{c+c1}{\PYZsh{} Note that parameters from embedding layer}
+        \PY{c+c1}{\PYZsh{} is not trainable}
+        
+        \PY{n}{model}\PY{o}{.}\PY{n}{summary}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Exercise 5.8.5: Performance evaluation}
+        \PY{c+c1}{\PYZsh{} Let\PYZsq{}s use samples[500:1000]}
+        \PY{c+c1}{\PYZsh{} as an evaluation set}
+        
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{metrics} \PY{k}{import} \PY{n}{classification\PYZus{}report}
+        
+        \PY{n}{pred}\PY{o}{=}\PY{n}{model}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{padded\PYZus{}sequences}\PY{p}{[}\PY{l+m+mi}{500}\PY{p}{:}\PY{l+m+mi}{1000}\PY{p}{]}\PY{p}{)}
+        
+        \PY{n}{Y\PYZus{}pred}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{n}{pred}\PY{p}{)}
+        \PY{n}{Y\PYZus{}pred}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{where}\PY{p}{(}\PY{n}{Y\PYZus{}pred}\PY{o}{\PYZgt{}}\PY{l+m+mf}{0.5}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{)}
+        
+        \PY{n}{Y\PYZus{}pred}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{10}\PY{p}{]}
+        \PY{n}{Y}\PY{p}{[}\PY{l+m+mi}{500}\PY{p}{:}\PY{l+m+mi}{510}\PY{p}{]}
+        
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{classification\PYZus{}report}\PY{p}{(}\PY{n}{Y}\PY{p}{[}\PY{l+m+mi}{500}\PY{p}{:}\PY{l+m+mi}{1000}\PY{p}{]}\PY{p}{,} \PYZbs{}
+                        \PY{n}{Y\PYZus{}pred}\PY{p}{,} \PY{n}{target\PYZus{}names}\PY{o}{=}\PY{n}{mlb}\PY{o}{.}\PY{n}{classes\PYZus{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    Observations: - Note that we only trained the model with \textbf{500
+samples} - The performance is only slightly lower, compared with the one
+trained with 6000 samples - This shows that pre-trained word vectors can
+effectively improve the classification performance in the case of small
+labeled dataset
+
+    \hypertarget{how-to-select-hyperparameters}{%
+\subsubsection{5.9. How to select
+hyperparameters?}\label{how-to-select-hyperparameters}}
+
+\begin{itemize}
+\tightlist
+\item
+  Fitting a neural network is a very empirical process
+\item
+  See Section 3 of ``Practical Recommendations for Gradient-Based
+  Training of Deep Architectures'' (https://arxiv.org/abs/1206.5533) for
+  detailed discussion
+\item
+  The following is some useful techniques to set
+
+  \begin{itemize}
+  \tightlist
+  \item
+    MAX\_NB\_WORDS: max number words to be included in word embedding
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Based on word frequency histogram to include words that appear at
+      least \(n\) times
+    \end{itemize}
+  \item
+    MAX\_DOC\_LEN: max length of documents
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Based on document length frequency histogram to include complete
+      sentences as many as possible
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Exercise 5.9.1 Set MAX\PYZus{}NB\PYZus{}WORDS to }
+        \PY{c+c1}{\PYZsh{} include words that appear at least K times}
+        
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        
+        \PY{c+c1}{\PYZsh{} get count of each word}
+        \PY{n}{df}\PY{o}{=}\PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{o}{.}\PY{n}{from\PYZus{}dict}\PY{p}{(}\PY{n}{tokenizer}\PY{o}{.}\PY{n}{word\PYZus{}counts}\PY{p}{,} \PYZbs{}
+                                  \PY{n}{orient}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{index}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{df}\PY{o}{.}\PY{n}{columns}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{freq}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} get histogram of word count}
+        \PY{n}{df}\PY{o}{=}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{freq}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{value\PYZus{}counts}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{p}{)}
+        \PY{n}{df}\PY{o}{.}\PY{n}{columns}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{word\PYZus{}freq}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{} sort by word\PYZus{}freq}
+        \PY{n}{df}\PY{o}{=}\PY{n}{df}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{word\PYZus{}freq}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} convert absolute counts to precentage}
+        \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{percent}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{=}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{/}\PY{n+nb}{len}\PY{p}{(}\PY{n}{tokenizer}\PY{o}{.}\PY{n}{word\PYZus{}counts}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} get cumulative percentage}
+        \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{cumsum}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{=}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{percent}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{cumsum}\PY{p}{(}\PY{p}{)}
+        
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+        
+        \PY{n}{df}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{50}\PY{p}{]}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{word\PYZus{}freq}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{cumsum}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+        
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+        
+        \PY{c+c1}{\PYZsh{} if set min count for word to 10, }
+        \PY{c+c1}{\PYZsh{} what \PYZpc{} of words can be included?}
+        \PY{c+c1}{\PYZsh{} how many words will be included?}
+        \PY{c+c1}{\PYZsh{} This is the parameter MAX\PYZus{}NB\PYZus{}WORDS}
+        \PY{c+c1}{\PYZsh{} tokenizer = Tokenizer(num\PYZus{}words=MAX\PYZus{}NB\PYZus{}WORDS)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Exercise 5.9.2 Set MAX\PYZus{}DOC\PYZus{}LEN to }
+        \PY{c+c1}{\PYZsh{} include complete sentences as many as possible}
+        
+        \PY{c+c1}{\PYZsh{} create a series based on the length of all sentences}
+        \PY{n}{sen\PYZus{}len}\PY{o}{=}\PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{p}{[}\PY{n+nb}{len}\PY{p}{(}\PY{n}{item}\PY{p}{)} \PY{k}{for} \PY{n}{item} \PY{o+ow}{in} \PY{n}{sequences}\PY{p}{]}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} create histogram of sentence length}
+        \PY{c+c1}{\PYZsh{} the \PYZdq{}index\PYZdq{} is the sentence length}
+        \PY{c+c1}{\PYZsh{} \PYZdq{}counts\PYZdq{} is the count of sentences at a length}
+        \PY{n}{df}\PY{o}{=}\PY{n}{sen\PYZus{}len}\PY{o}{.}\PY{n}{value\PYZus{}counts}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{index}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{df}\PY{o}{.}\PY{n}{columns}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sent\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{counts}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{} sort by sentence length}
+        \PY{c+c1}{\PYZsh{} get percentage and cumulative percentage}
+        
+        \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{percent}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{=}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{counts}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{/}\PY{n+nb}{len}\PY{p}{(}\PY{n}{sen\PYZus{}len}\PY{p}{)}
+        \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{cumsum}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{=}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{percent}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{cumsum}\PY{p}{(}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} From the plot, 90\PYZpc{} sentences have length\PYZlt{}500}
+        \PY{c+c1}{\PYZsh{} so it makes sense to set MAX\PYZus{}DOC\PYZus{}LEN=4\PYZti{}500 }
+        \PY{n}{df}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{sent\PYZus{}length}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{cumsum}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+        
+        \PY{c+c1}{\PYZsh{} what will be the minimum sentence length}
+        \PY{c+c1}{\PYZsh{} such that 99\PYZpc{} of sentences will not be truncated?}
+\end{Verbatim}
+
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

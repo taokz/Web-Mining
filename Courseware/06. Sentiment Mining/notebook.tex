@@ -1,0 +1,877 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Sentiment\_Mining}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \#
+
+Sentiment Mining
+
+References: *
+http://spark-public.s3.amazonaws.com/nlp/slides/sentiment.pptx *
+https://www.cs.uic.edu/\textasciitilde{}liub/FBS/Sentiment-Analysis-tutorial-AAAI-2011.pdf
+
+    \hypertarget{what-is-sentiment-mining}{%
+\subsection{1. What is Sentiment Mining
+?}\label{what-is-sentiment-mining}}
+
+\begin{itemize}
+\tightlist
+\item
+  Computational study of opinions, sentiments, subjectivity,
+  evaluations, attitudes, appraisal, affects, views, emotions, etc.,
+  expressed in text, e.g.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Reviews, blogs, discussions, news, comments, feedback, or any other
+    documents
+  \item
+    See some interesting examples from Liu's AAAI-2011 tutorial (pp
+    31-38) source:
+    http://spark-public.s3.amazonaws.com/nlp/slides/sentiment.pptx
+  \end{itemize}
+\end{itemize}
+
+    \hypertarget{a-related-concept-emotion}{%
+\subsubsection{1.1. A related concept:
+emotion}\label{a-related-concept-emotion}}
+
+\begin{itemize}
+\tightlist
+\item
+  Based on (Parrott, 2001), people have six main emotions,
+  \textbf{love}, \textbf{joy}, \textbf{surprise}, \textbf{anger},
+  \textbf{sadness}, and \textbf{fear}.\\
+\item
+  Strengths of opinions/sentiments are related to certain emotions,
+  e.g., joy, anger.\\
+\item
+  However, the concepts of emotions and opinions are not equivalent.
+\end{itemize}
+
+    \hypertarget{why-sentiment-mining}{%
+\subsection{2. Why sentiment mining}\label{why-sentiment-mining}}
+
+\begin{itemize}
+\tightlist
+\item
+  Our perceptions and beliefs are influnced by others
+\item
+  Whenever we make decisions, we seek out others' opinion
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Movie: is this review positive or negative?
+  \item
+    Products: what do people think about the new iPhone?
+  \item
+    Public sentiment: how is consumer confidence? Is despair increasing?
+  \item
+    Politics: what do people think about this candidate or issue?
+  \item
+    Prediction: predict election outcomes or market trends from
+    sentiment
+  \end{itemize}
+\end{itemize}
+
+    \hypertarget{objectives-of-sentiment-mining}{%
+\subsection{3. Objectives of Sentiment
+Mining}\label{objectives-of-sentiment-mining}}
+
+\begin{itemize}
+\tightlist
+\item
+  Example (from Liu's AAAI-2011 tutorial):
+
+  \begin{itemize}
+  \tightlist
+  \item
+    ID: Abc123 on 5-1-2008 ``I bought an iPhone a few days ago. It is
+    such a nice phone. The touch screen is really cool. The voice
+    quality is clear too. It is much better than my old Blackberry,
+    which was a terrible phone and so difficult to type with its tiny
+    keys. However, my mother was mad with me as I did not tell her
+    before I bought the phone. She also thought the phone was too
+    expensive, \ldots{}''\\
+  \end{itemize}
+\item
+  Elements of sentiment:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    target entity: iPhone, Blackberry
+  \item
+    Target \textbf{aspect/feature} of attitude:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      iphone: touch screen, voice quality, expensive (price) 
+    \item
+      Blackberry: tiny keys
+    \end{itemize}
+  \item
+    Type of attitude
+
+    \begin{itemize}
+    \tightlist
+    \item
+      \textbf{positive} or \textbf{negative}: nice phone, terrible phone
+    \item
+      \textbf{Scale of the attitute}, e.g. {[}1, 5{]}, {[}strongly
+      agree, agree, neutral, disagree, strongly disagree{]}
+    \end{itemize}
+  \item
+    Opinion holder: Abc123, my mother
+  \item
+    Time when the opinion is expressed: 5-1-2008
+  \end{itemize}
+\end{itemize}
+
+    \hypertarget{sentiment-analysis-tasks}{%
+\subsection{4. Sentiment analysis
+tasks}\label{sentiment-analysis-tasks}}
+
+Giving a set of text (reviews, documents etc.): 1. Identify objects of
+the sentiment analysis * \textbf{Named entities}: company names, brands,
+proper names, hashtags etc * Usually object names or synonyms are
+explicitly mentioned 2. For each object, identify and extract object
+aspects/features that have been commented on in each review text *
+\textbf{Explicit} features * e.g.~the \textbf{battery life} of this
+camera is too short * \textbf{Implicit} features * e.g.~the camera is
+too large (implicit feature: \textbf{size}) 3. Determine whether the
+sentiment on the features are positive, negative or neutral. 4. Identify
+opinion holder (who) and time 4. Generate a summary of sentiment by
+multidimension: - on each feature and on each object - by opinion holder
+group and time
+
+    \hypertarget{aspectfeature-detection}{%
+\subsection{4.1. Aspect/feature
+detection}\label{aspectfeature-detection}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Explicit features/aspects}: typically can be extracted by
+  keywords and synonyms
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Question: how to find synonyms?
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Lexical similarity based on WordNet
+      (http://www.nltk.org/howto/wordnet.html)
+    \item
+      Word vectors
+    \end{itemize}
+  \item
+    Challenge: it may be difficult to find an exhaustive list of
+    synonyms for an aspect
+  \item
+    e.g. Source: Lappas, T., Sabnis, G., \& Valkanas, G. (2016). The
+    impact of fake reviews on online visibility: A vulnerability
+    assessment of the hotel industry. Information Systems Research,
+    27(4), 940-961.
+  \end{itemize}
+\item
+  However, \textbf{implicit features}: may need a \textbf{supervised
+  approach} (e.g.~the camera is too large)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Naive bayes, SVM, CNN with word embedding are perhaps good
+    approaches here
+
+    \begin{itemize}
+    \tightlist
+    \item
+      single-label or multi-label classification?
+    \end{itemize}
+  \item
+    Process:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Select a set of documents with features/aspects both
+      explicitly/implicitly mentioned
+    \item
+      Label each of the documents with features/aspects as classes
+    \item
+      Train a classification model
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Exercise 4.1.1}
+        \PY{k+kn}{from} \PY{n+nn}{IPython}\PY{n+nn}{.}\PY{n+nn}{core}\PY{n+nn}{.}\PY{n+nn}{interactiveshell} \PY{k}{import} \PY{n}{InteractiveShell}
+        \PY{n}{InteractiveShell}\PY{o}{.}\PY{n}{ast\PYZus{}node\PYZus{}interactivity} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{all}\PY{l+s+s2}{\PYZdq{}}
+        \PY{k+kn}{from} \PY{n+nn}{nltk}\PY{n+nn}{.}\PY{n+nn}{corpus} \PY{k}{import} \PY{n}{wordnet} \PY{k}{as} \PY{n}{wn}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Get synsets: a collection of synonymous words}
+        \PY{n}{wn}\PY{o}{.}\PY{n}{synsets}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{motorcar}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} note motorcar has just one possible context. }
+        \PY{c+c1}{\PYZsh{} It is identified by car.n.01}
+        \PY{c+c1}{\PYZsh{} the 1st noun (letter n) sense of car}
+        \PY{c+c1}{\PYZsh{} \PYZdq{}car\PYZdq{} has different synonyms depending on context}
+        
+        \PY{c+c1}{\PYZsh{} Show all synonyms under sysnset car.n.1}
+        \PY{n}{wn}\PY{o}{.}\PY{n}{synset}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{car.n.01}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{lemma\PYZus{}names}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{k}{for} \PY{n}{synset} \PY{o+ow}{in} \PY{n}{wn}\PY{o}{.}\PY{n}{synsets}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{car}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s2}{Synset: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{synset}\PY{o}{.}\PY{n}{name}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s2}{Definition: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{synset}\PY{o}{.}\PY{n}{definition}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s2}{Synoymns: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{synset}\PY{o}{.}\PY{n}{lemma\PYZus{}names}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{sentiment-detection}{%
+\subsection{4.2. Sentiment Detection}\label{sentiment-detection}}
+
+    \hypertarget{challenges-of-sentiment-analysis}{%
+\subsubsection{4.2.1. Challenges of sentiment
+analysis}\label{challenges-of-sentiment-analysis}}
+
+\begin{itemize}
+\tightlist
+\item
+  Negation:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    e.g., This film should be brilliant. It sounds like a great plot,
+    the actors are first grade, and the supporting cast is good as well,
+    and Stallone is attempting to deliver a good performance. However,
+    it can't hold up.
+  \end{itemize}
+\item
+  Sarcasm and language subtlety: sarcastic sentences are very common in
+  political blogs, comments and discussions
+
+  \begin{itemize}
+  \tightlist
+  \item
+    e.g.~This is the kind of movie you go because the theater has
+    air-conditioning
+  \item
+    e.g.~What a great car, it stopped working in the second day
+  \item
+    e.g.~The top of the picture was much brighter than the bottom
+  \end{itemize}
+\item
+  Domain Dependency
+
+  \begin{itemize}
+  \tightlist
+  \item
+    e.g.~unpredictable movie vs.~unpredictable steering (car domain)
+  \end{itemize}
+\item
+  Lots of emoticons
+\end{itemize}
+
+    \hypertarget{unsupervised-sentiment-analysis}{%
+\subsubsection{4.2.2. Unsupervised Sentiment
+Analysis}\label{unsupervised-sentiment-analysis}}
+
+\begin{itemize}
+\tightlist
+\item
+  Lexicon-based method where sentiment is determined based on
+  \textbf{opinion words} (e.g. ``amazing'', ``great'', ``poor'') counted
+  near features/aspects.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Some useful rules:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      \textbf{Negative} sentiment:
+
+      \begin{itemize}
+      \tightlist
+      \item
+        negative words not preceded by a negation within \(n\)
+        (e.g.~three) words in the same sentence.
+      \item
+        positive words preceded by a negation within \(n\) (e.g.~three)
+        words in the same sentence.
+      \end{itemize}
+    \item
+      \textbf{Positive} sentiment (in the similar fashion):
+
+      \begin{itemize}
+      \tightlist
+      \item
+        positive words not preceded by a negation within \(n\)
+        (e.g.~three) words in the same sentence.
+      \item
+        negative terms following a negation within \(n\) (e.g.~three)
+        words in the same sentence
+      \end{itemize}
+    \end{itemize}
+  \end{itemize}
+\item
+  \textbf{Polarity}-based (Postive or Negative) approaches:
+
+  \begin{itemize}
+  \tightlist
+  \item
+     WordStat sentiment Dictionary: This is probably one of the largest
+    lexicons freely available. It contains \textasciitilde{}14.000 words
+    ( 9164 negative and 4847 positive words ) and gives words a binary
+    classification (positive or a negative ) score.
+  \item
+     SentiWordNet; gives the words a positive or negative score between
+    0 and 1. It contains about 117.660 words, however only
+    \textasciitilde{}29.000 of these words have been scored (either
+    positive or negative).
+  \item
+    LIWC (Linguistic Inquiry and Word Count)(http://www.liwc.net/)
+  \item
+    Turney Algorithm ( Thumbs Up or Thumbs Down? Semantic Orientation
+    Applied to Unsupervised Classification of Reviews)
+
+    \begin{enumerate}
+    \def\labelenumi{\arabic{enumi}.}
+    \tightlist
+    \item
+      extract phrases,
+    \item
+      detect sentiment of phrases
+
+      \begin{itemize}
+      \tightlist
+      \item
+        Use search engine queries to check with cooccurrence of a phrase
+        (e.g.~low fees) with ``excellence''/``poor'' (Pointwise Mutual
+        Inforamtion)
+      \end{itemize}
+    \item
+      and average the sentiments
+    \end{enumerate}
+  \end{itemize}
+\item
+  \textbf{Valence}-based where the \textbf{intensity} of the sentiment
+  is considered, e.g.~excellent, good, average
+
+  \begin{itemize}
+  \tightlist
+  \item
+    VADER: A Parsimonious Rule-based Model for Sentiment Analysis of
+    Social Media Text 
+  \end{itemize}
+\end{itemize}
+
+    \hypertarget{vader}{%
+\subsubsection{4.2.3. VADER}\label{vader}}
+
+\begin{itemize}
+\tightlist
+\item
+  The method of VADER:
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    Created lexicons of sentiment-related words (\textasciitilde{}9000)
+    - Built based on existing well-established sentiment word-banks
+    (e.g.~LIWC). - Incorporated many lexical features
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Western-style emoticons10 (for example, ``:-'')
+    \item
+      Sentiment-related acronyms (e.g., LOL) and commonly used slangs
+      with sentiment value (e.g., ``nah'', ``meh'' and ``giggly'').
+    \end{itemize}
+  \item
+    Rated sentiment-related words were manually rated in terms of
+    sentiment intensity through Amazon Mechancical Turk: positive or
+    negative (and optionally, to what degree)
+  \item
+    Implemented heurestics rules:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      \textbf{Punctuation exclamation mark(!)} increases sentiment
+      intensity, e.g. \emph{``The food here is good!!!''}
+    \item
+      \textbf{Capitalization, specifically ALL-CAPS} of a
+      sentiment-relevant word increases the sentiment intensity, e.g.
+      \emph{``The food here is GREAT!''}
+    \item
+      \textbf{Degree modifiers} (also called intensifiers,
+      e.g.~extremely) increases intensity
+    \item
+      \textbf{Contrastive conjunction ``but''} signals a shift in
+      sentiment polarity, with the sentiment of the text following the
+      conjunction being dominant. e.g. \emph{``The food here is great,
+      but the service is horrible''}.
+    \end{itemize}
+  \end{enumerate}
+\item
+  VADER analyzes a piece of text to see if any of the words in the text
+  is present in the lexicon. Sentiment metrics are derived from the
+  ratings of such words
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Positive}, \textbf{neutral} and \textbf{negative}, represent
+    the proportion of the text that falls into those categories.
+  \item
+    The final metric, the compound score, is the sum of all of the
+    lexicon ratings which have been standardized to range between -1 and
+    1 based on some heuristics.
+  \end{itemize}
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Exercise 4.2.3.1 SentimentIntensityAnalyzer}
+        
+        \PY{k+kn}{from} \PY{n+nn}{nltk}\PY{n+nn}{.}\PY{n+nn}{sentiment}\PY{n+nn}{.}\PY{n+nn}{vader} \PY{k}{import} \PY{n}{SentimentIntensityAnalyzer}
+        
+        \PY{n}{sid} \PY{o}{=} \PY{n}{SentimentIntensityAnalyzer}\PY{p}{(}\PY{p}{)}
+        
+        \PY{n}{text}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The food is so good and the atmosphere is nice}\PY{l+s+s1}{\PYZsq{}}
+        \PY{n}{ss} \PY{o}{=} \PY{n}{sid}\PY{o}{.}\PY{n}{polarity\PYZus{}scores}\PY{p}{(}\PY{n}{text}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ss}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Exercise 4.2.3.2 Easy sentences}
+        
+        \PY{c+c1}{\PYZsh{}http://www.nltk.org/howto/sentiment.html}
+        \PY{c+c1}{\PYZsh{}http://t\PYZhy{}redactyl.io/blog/2017/04/using\PYZhy{}vader\PYZhy{}to\PYZhy{}handle\PYZhy{}sentiment\PYZhy{}analysis\PYZhy{}with\PYZhy{}social\PYZhy{}media\PYZhy{}text.html}
+        \PY{c+c1}{\PYZsh{}https://www.researchgate.net/publication/275828927\PYZus{}VADER\PYZus{}A\PYZus{}Parsimonious\PYZus{}Rule\PYZhy{}based\PYZus{}Model\PYZus{}for\PYZus{}Sentiment\PYZus{}Analysis\PYZus{}of\PYZus{}Social\PYZus{}Media\PYZus{}Text}
+        
+        \PY{k+kn}{from} \PY{n+nn}{nltk}\PY{n+nn}{.}\PY{n+nn}{sentiment}\PY{n+nn}{.}\PY{n+nn}{vader} \PY{k}{import} \PY{n}{SentimentIntensityAnalyzer}
+        
+        \PY{k+kn}{from} \PY{n+nn}{nltk} \PY{k}{import} \PY{n}{tokenize}
+        
+        \PY{n}{sentences} \PY{o}{=} \PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{VADER is smart, handsome, and funny.}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{c+c1}{\PYZsh{} positive sentence example}
+         \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{VADER is smart, handsome, and funny!}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{c+c1}{\PYZsh{} punctuation emphasis handled correctly (sentiment intensity adjusted)}
+         \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{VADER is very smart, handsome, and funny.}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}  \PY{c+c1}{\PYZsh{} booster words handled correctly (sentiment intensity adjusted)}
+         \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{VADER is VERY SMART, handsome, and FUNNY.}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}  \PY{c+c1}{\PYZsh{} emphasis for ALLCAPS handled}
+         \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{VADER is VERY SMART, handsome, and FUNNY!!!}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{c+c1}{\PYZsh{} combination of signals \PYZhy{} VADER appropriately adjusts intensity}
+         \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{VADER is VERY SMART, really handsome, and INCREDIBLY FUNNY!!!}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{c+c1}{\PYZsh{} booster words \PYZam{} punctuation make this close to ceiling for score}
+         \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{The book was good.}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}         \PY{c+c1}{\PYZsh{} positive sentence}
+         \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{The book was kind of good.}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{c+c1}{\PYZsh{} qualified positive sentence is handled correctly (intensity adjusted)}
+         \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{The plot was good, but the characters }\PY{l+s+se}{\PYZbs{}}
+        \PY{l+s+s2}{ are uncompelling and the dialog is not great.}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{c+c1}{\PYZsh{} mixed negation sentence}
+         \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{A really bad, horrible book.}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}       \PY{c+c1}{\PYZsh{} negative sentence with booster words}
+         \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{At least it isn}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{t a horrible book.}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{c+c1}{\PYZsh{} negated negative sentence with contraction}
+         \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{:) and :D}\PY{l+s+s2}{\PYZdq{}}     \PY{c+c1}{\PYZsh{} emoticons handled}
+         \PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{} initalize analyzer}
+        
+        \PY{n}{sid} \PY{o}{=} \PY{n}{SentimentIntensityAnalyzer}\PY{p}{(}\PY{p}{)}
+        
+        \PY{k}{for} \PY{n}{sentence} \PY{o+ow}{in} \PY{n}{sentences}\PY{p}{:}
+            \PY{n+nb}{print}\PY{p}{(}\PY{n}{sentence}\PY{p}{)}
+            \PY{n}{ss} \PY{o}{=} \PY{n}{sid}\PY{o}{.}\PY{n}{polarity\PYZus{}scores}\PY{p}{(}\PY{n}{sentence}\PY{p}{)}
+            \PY{k}{for} \PY{n}{k} \PY{o+ow}{in} \PY{n+nb}{sorted}\PY{p}{(}\PY{n}{ss}\PY{p}{)}\PY{p}{:}
+                \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}0\PYZcb{}}\PY{l+s+s1}{: }\PY{l+s+si}{\PYZob{}1\PYZcb{}}\PY{l+s+s1}{, }\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{k}\PY{p}{,} \PY{n}{ss}\PY{p}{[}\PY{n}{k}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Exercise 4.2.3.3. Tricky sentences}
+        \PY{c+c1}{\PYZsh{} How do you think the performance of VADER}
+        \PY{c+c1}{\PYZsh{} for this group of sentences?}
+        
+        \PY{n}{tricky\PYZus{}sentences} \PY{o}{=} \PY{p}{[}
+            \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Sentiment analysis has never been good.}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+            \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Sentiment analysis with VADER has never been this good.}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+            \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Warren Beatty has never been so entertaining.}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+            \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{I won}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{t say that the movie is astounding and I wouldn}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{t claim that }\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{} initalize analyzer}
+        \PY{n}{sid} \PY{o}{=} \PY{n}{SentimentIntensityAnalyzer}\PY{p}{(}\PY{p}{)}
+        
+        \PY{k}{for} \PY{n}{sentence} \PY{o+ow}{in} \PY{n}{tricky\PYZus{}sentences}\PY{p}{:}
+            \PY{n+nb}{print}\PY{p}{(}\PY{n}{sentence}\PY{p}{)}
+            \PY{n}{ss} \PY{o}{=} \PY{n}{sid}\PY{o}{.}\PY{n}{polarity\PYZus{}scores}\PY{p}{(}\PY{n}{sentence}\PY{p}{)}
+            \PY{k}{for} \PY{n}{k} \PY{o+ow}{in} \PY{n+nb}{sorted}\PY{p}{(}\PY{n}{ss}\PY{p}{)}\PY{p}{:}
+                \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}0\PYZcb{}}\PY{l+s+s1}{: }\PY{l+s+si}{\PYZob{}1\PYZcb{}}\PY{l+s+s1}{, }\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{k}\PY{p}{,} \PY{n}{ss}\PY{p}{[}\PY{n}{k}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Exercise 4.2.3.4. Tricky Paragraph}
+        
+        \PY{c+c1}{\PYZsh{} Deal with Paragraph}
+        \PY{c+c1}{\PYZsh{} question: if a paragraph contains mixed positive and }
+        \PY{c+c1}{\PYZsh{} negative sentences, how do you determine the sentiment}
+        \PY{c+c1}{\PYZsh{} of the entire paragraph?}
+        
+        \PY{n}{paragraph} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{This film should be brilliant. }\PY{l+s+se}{\PYZbs{}}
+        \PY{l+s+s2}{             It sounds like a great plot, the actors are first grade, }\PY{l+s+se}{\PYZbs{}}
+        \PY{l+s+s2}{             and the supporting cast is good as well, }\PY{l+s+se}{\PYZbs{}}
+        \PY{l+s+s2}{             and Stallone is attempting to deliver a good performance. }\PY{l+s+se}{\PYZbs{}}
+        \PY{l+s+s2}{             However, it can’t hold up.}\PY{l+s+s2}{\PYZdq{}}
+        
+        \PY{c+c1}{\PYZsh{} split into sentences}
+        \PY{n}{lines\PYZus{}list} \PY{o}{=} \PY{n}{tokenize}\PY{o}{.}\PY{n}{sent\PYZus{}tokenize}\PY{p}{(}\PY{n}{paragraph}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} initalize analyzer}
+        \PY{n}{sid} \PY{o}{=} \PY{n}{SentimentIntensityAnalyzer}\PY{p}{(}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} analyze the sentiment sentence by sentence}
+        
+        \PY{k}{for} \PY{n}{sentence} \PY{o+ow}{in} \PY{n}{lines\PYZus{}list}\PY{p}{:}
+            \PY{n+nb}{print}\PY{p}{(}\PY{n}{sentence}\PY{p}{)}
+            \PY{n}{ss} \PY{o}{=} \PY{n}{sid}\PY{o}{.}\PY{n}{polarity\PYZus{}scores}\PY{p}{(}\PY{n}{sentence}\PY{p}{)}
+            \PY{k}{for} \PY{n}{k} \PY{o+ow}{in} \PY{n+nb}{sorted}\PY{p}{(}\PY{n}{ss}\PY{p}{)}\PY{p}{:}
+                \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}0\PYZcb{}}\PY{l+s+s1}{: }\PY{l+s+si}{\PYZob{}1\PYZcb{}}\PY{l+s+s1}{, }\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{k}\PY{p}{,} \PY{n}{ss}\PY{p}{[}\PY{n}{k}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+            
+        \PY{c+c1}{\PYZsh{} what if you analyze the entire sentence \PYZbs{}}
+        \PY{c+c1}{\PYZsh{} as a whole?}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Exercise 4.5. Design a document sentiment classifier based on VADER}
+        \PY{c+c1}{\PYZsh{} test your classifier using amazon review dataset}
+        \PY{c+c1}{\PYZsh{} and estimate its accuracy}
+\end{Verbatim}
+
+
+    \hypertarget{supervised-sentiment-analysis}{%
+\subsubsection{4.2.4 Supervised Sentiment
+Analysis}\label{supervised-sentiment-analysis}}
+
+\begin{itemize}
+\tightlist
+\item
+  Naive Bayes (Base line), SVM, CNN.
+\item
+  Different ways to generate feature space:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    TF-IDF with all tokens
+  \item
+    with binary counts only
+  \item
+    Word embedding
+  \end{itemize}
+\item
+  Check lecture notes for ``Text Classification'' and ``Deep Learning
+  II''
+\end{itemize}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
